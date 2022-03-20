@@ -13,7 +13,7 @@ Game::~Game()
 
 void Game::initialize(const char* title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
-	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
+	if (SDL_Init(SDL_INIT_EVERYTHING))
 	{
 		std::cout << "Wszystkie systemy zosta³y poprawnie zainicjalizowane." <<std::endl;
 		
@@ -47,7 +47,6 @@ void Game::handleEvents()
 	case SDL_QUIT:
 		IsRunning = false;
 		break;
-
 	default:
 		break;
 	}

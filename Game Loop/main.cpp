@@ -1,10 +1,10 @@
 #include "game.h"
 #include <iostream>
-#include <memory>
 
+#define FRAME_DURATION 40 // 25 fps
 Game *game = nullptr;
 
-int main(int argc, const char* argv[])
+int main()
 {
 	game = new Game();
 
@@ -12,11 +12,18 @@ int main(int argc, const char* argv[])
 
 	while (game->running())
 	{
+        auto frameStart = SDL_GetTicks();
 		game->handleEvents();
 		game->update();
 		game->render();
-	}
+        auto frameTime = SDL_GetTicks() - frameStart;
+        if (frameTime < FRAME_DURATION)
+            SDL_Delay(FRAME_DURATION - frameTime);
+
+    }
 	game->clean();
+
+    delete game; //wyciek jest tak czy siak
 
 	return 0;
 }
