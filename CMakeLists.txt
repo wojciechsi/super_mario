@@ -16,7 +16,7 @@ set(CMAKE_CXX_STANDARD 20)
 add_executable(
         super_mario
         #super_mario "Game Loop/game.cpp" "Game Loop/game.h" "Game Loop/main.cpp"
-        src/headers/defs.h src/Game.cpp src/headers/Game.h src/Engine.cpp src/headers/Engine.h src/Level.cpp src/headers/Level.h src/Menu.cpp src/headers/Menu.h src/Object.cpp src/headers/Object.h src/MovingItem.cpp src/headers/MovingItem.h src/StillItem.cpp src/headers/StillItem.h src/Brick.cpp src/headers/Brick.h src/BirickQuestionMark.cpp src/headers/BirickQuestionMark.h src/Mario.cpp src/headers/Mario.h src/Enemy.cpp src/headers/Enemy.h src/Turtle.cpp src/headers/Turtle.h src/Gumba.cpp src/headers/Gumba.h src/main.cpp)
+        src/headers/defs.h src/Game.cpp src/headers/Game.h src/Engine.cpp src/headers/Engine.h src/Level.cpp src/headers/Level.h src/Menu.cpp src/headers/Menu.h src/Object.cpp src/headers/Object.h src/MovingItem.cpp src/headers/MovingItem.h src/Brick.cpp src/headers/Brick.h src/BirickQuestionMark.cpp src/headers/BirickQuestionMark.h src/Mario.cpp src/headers/Mario.h src/Enemy.cpp src/headers/Enemy.h src/Turtle.cpp src/headers/Turtle.h src/Gumba.cpp src/headers/Gumba.h src/main.cpp)
 
 
 #find_package(SFML REQUIRED)

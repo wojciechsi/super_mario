@@ -8,6 +8,8 @@
 
 class Object {
 
+private:
+    double x, y;
 };
 
 
