@@ -1,10 +1,21 @@
-#include "Window.h"
+#include <SFML/Graphics.hpp>
 
-//okno
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+    int main() {
+        sf::RenderWindow window(sf::VideoMode(600, 600), "SFML jest łatwiejszy niż SDL2");
+        sf::CircleShape shape (300);
+        shape.setFillColor(sf::Color::Green);
 
-int main() {
+        while (window.isOpen()) {
+            sf::Event event;
+            while (window.pollEvent(event)) {
+                if (event.type == sf::Event::Closed)
+                    window.close();
+            }
 
-    return 0;
-}
+            window.clear();
+            window.draw(shape);
+            window.display();
+        }
+
+        return 0;
+    }
