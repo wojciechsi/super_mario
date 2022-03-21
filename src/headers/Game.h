@@ -12,7 +12,14 @@
 
 class Game {
 public:
-    void run() {};
+
+    void run();
+
+private:
+    sf::RenderWindow window = sf::RenderWindow(
+            sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT),
+            "Super Mario Bros");
+    Engine engine;
 };
 
 

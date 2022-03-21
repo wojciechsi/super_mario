@@ -6,10 +6,11 @@
 #define SUPER_MARIO_ENGINE_H
 
 #include "Level.h"
-#include "Object.h"
+#include <SFML/Graphics.hpp>
 
 class Engine {
-
+public:
+    void updateWindow (sf::Window&);
 };
 
 
