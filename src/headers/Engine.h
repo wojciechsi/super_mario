@@ -5,12 +5,17 @@
 #ifndef SUPER_MARIO_ENGINE_H
 #define SUPER_MARIO_ENGINE_H
 
-#include "Level.h"
 #include <SFML/Graphics.hpp>
+#include "Level.h"
+#include "Mario.h"
+
 
 class Engine {
 public:
-    void updateWindow (sf::Window&);
+    Engine() = default;
+    void updateWindow (sf::RenderWindow&);
+private:
+    Mario mario;
 };
 
 

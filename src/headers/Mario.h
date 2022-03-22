@@ -8,8 +8,12 @@
 #include "defs.h"
 #include "MovingItem.h"
 
-class Mario : public MovingItem{
+class Mario : virtual public MovingItem{
+public:
+    Mario();
 
+private:
+    bool isBig = false;
 };
 
 

@@ -7,8 +7,11 @@
 
 #include "Object.h"
 
-class MovingItem : public Object{
-
+class MovingItem : virtual public Object{
+public:
+    MovingItem(int, int);
+private:
+    int vertitalSpeed, horizontalSpeed;
 };
 
 
