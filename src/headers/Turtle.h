@@ -7,6 +7,9 @@
 
 #include "Enemy.h"
 
+/**
+ * Klasa przechowuje informacje o żółwiu
+ */
 class Turtle : public Enemy{
 
 };

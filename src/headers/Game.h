@@ -1,7 +1,3 @@
-//
-// Created by wojciech on 21.03.2022.
-//
-
 #ifndef SUPER_MARIO_GAME_H
 #define SUPER_MARIO_GAME_H
 
@@ -10,6 +6,10 @@
 #include "Menu.h"
 #include "Engine.h"
 
+/**
+ * Klasa odpowiedzialna za inicjalizację programu.
+ * Należy ją wywołać w głównym pliku.
+ */
 class Game {
 public:
     Game() = default;

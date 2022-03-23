@@ -1,12 +1,11 @@
-//
-// Created by wojciech on 21.03.2022.
-//
-
 #ifndef SUPER_MARIO_GUMBA_H
 #define SUPER_MARIO_GUMBA_H
 
 #include "Enemy.h"
 
+/**
+ * Klasa reprezentuje przeciwnika "Gumba"
+ */
 class Gumba : public Enemy{
 
 };

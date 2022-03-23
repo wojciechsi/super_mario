@@ -1,7 +1,3 @@
-//
-// Created by wojciech on 21.03.2022.
-//
-
 #ifndef SUPER_MARIO_ENGINE_H
 #define SUPER_MARIO_ENGINE_H
 
@@ -9,7 +5,9 @@
 #include "Level.h"
 #include "Mario.h"
 
-
+/**
+ * Klasa zapewnia logikę działania gry
+ */
 class Engine {
 public:
     Engine() = default;
