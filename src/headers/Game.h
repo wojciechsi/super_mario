@@ -7,7 +7,7 @@
 #include "Engine.h"
 
 /**
- * Klasa odpowiedzialna za inicjalizację programu.
+ * Klasa odpowiedzialna za inicjalizacje programu.
  * Należy ją wywołać w głównym pliku.
  */
 class Game {
