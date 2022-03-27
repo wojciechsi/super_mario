@@ -1,3 +1,5 @@
 # Project exclude paths
 /cmake-build-debug/
 /SDL2-2.0.20/
+/cmake_modules/FindSFML.cmake
+/CMakeLists.txt
