@@ -3,7 +3,7 @@ project(super_mario)
 
 set(CMAKE_CXX_STANDARD 20)
 IF(WIN32)
-link_directories("C:/Path_To_Library")
+    set(SFML_ROOT "C:\\Program Files (x86)\\SFML")
 ENDIF()
 add_executable(
         super_mario
