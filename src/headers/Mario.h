@@ -10,7 +10,7 @@
 class Mario : virtual public MovingItem{
 public:
     Mario();
-    void MoveStatus() override;
+    void MoveStatus();
     sf::RectangleShape MarioShape;
 private:
     bool isBig = false;

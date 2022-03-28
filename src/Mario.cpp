@@ -9,10 +9,10 @@ void Mario::MoveStatus()
 {
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
     {
-        shape.move(sf::Vector2f(-0.5f, 0));
+        this-> move(-0.5f, 0);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
     {
-        shape.move(sf::Vector2f(0.5f, 0));
+        this-> move(0.5f, 0);
     }
 }
