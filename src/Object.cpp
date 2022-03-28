@@ -6,7 +6,7 @@ void Object::draw(sf::RenderWindow &iWindow) {
     iWindow.draw(sprite);
 }
 
-Object::Object(int iX, int iY) :x(iX), y(iY) {this -> shape.setSize(sf::Vector2f(50.f, 50.f));}
+Object::Object(int iX, int iY) :x(iX), y(iY) {}
 
 Object::Object() {}
 
@@ -15,7 +15,4 @@ void Object::setTexture(std::string s) {
     sprite.setTexture(texture);
 }
 
-void Object::move(const float x, const float y)
-{
-    this -> shape.move(x, y);
-}
+
