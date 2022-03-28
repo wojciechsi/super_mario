@@ -19,7 +19,7 @@ public:
 
     sf::RectangleShape shape;
 
-    virtual void move(const float x,const float y);
+    void move(const float x,const float y);
 
     //virtual void MoveStatus();
 

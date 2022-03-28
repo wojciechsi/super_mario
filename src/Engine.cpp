@@ -3,5 +3,4 @@
 void Engine::updateWindow(sf::RenderWindow & iWindow) {
     mario.MoveStatus();
     mario.draw(iWindow);
-
 }

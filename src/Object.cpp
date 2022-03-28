@@ -1,7 +1,7 @@
 #include "headers/Object.h"
 
 void Object::draw(sf::RenderWindow &iWindow) {
-   // sprite.setPosition(x, y);
+   sprite.setPosition(x, y);
 
     iWindow.draw(sprite);
 }
@@ -17,5 +17,6 @@ void Object::setTexture(std::string s) {
 
 void Object::move(const float x, const float y)
 {
-    this -> shape.move(x, y);
+    this -> x += x;
+    this -> y += y;
 }
