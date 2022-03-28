@@ -17,7 +17,7 @@ public:
 
     void draw(sf::RenderWindow& iWindow);
 
-    sf::RectangleShape shape;
+    //sf::RectangleShape shape;
 
     void move(const float x,const float y);
 

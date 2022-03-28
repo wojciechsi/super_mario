@@ -4,6 +4,7 @@
 #include <chrono>
 #include "headers/Game.h"
 
+
 void Game::run() {
 
     while(window.isOpen()) {
@@ -14,9 +15,6 @@ void Game::run() {
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window.close();
-
-           // mario.MoveStatus();
-
         }
 
         window.clear(sf::Color::Red);
