@@ -1,7 +1,7 @@
 #include "headers/Object.h"
 
 void Object::draw(sf::RenderWindow &iWindow) {
-    sprite.setPosition(x, y);
+   // sprite.setPosition(x, y);
 
     iWindow.draw(sprite);
 }

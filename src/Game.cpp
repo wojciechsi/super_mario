@@ -14,11 +14,16 @@ void Game::run() {
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window.close();
+
+           // mario.MoveStatus();
+
         }
 
         window.clear(sf::Color::Red);
+        //mario.MoveStatus();
         engine.updateWindow(window);
         window.display();
+
 
         //koniec klatki i ewentualne poczekanie
         auto frameStop = std::chrono::steady_clock::now();
