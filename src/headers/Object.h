@@ -16,8 +16,15 @@ public:
     void setTexture (std::string);
 
     void draw(sf::RenderWindow& iWindow);
+
+    sf::RectangleShape shape;
+
+    virtual void move(const float x,const float y);
+
+    //virtual void MoveStatus();
+
 private:
-    double x, y;
+    float x, y;
 
     sf::Sprite sprite;
 

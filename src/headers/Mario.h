@@ -10,7 +10,7 @@
 class Mario : virtual public MovingItem{
 public:
     Mario();
-
+    void UpdateStatus();
 private:
     bool isBig = false;
 };
