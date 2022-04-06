@@ -1,12 +1,12 @@
 #ifndef SUPER_MARIO_MOVINGITEM_H
 #define SUPER_MARIO_MOVINGITEM_H
 
-#include "Object.h"
+#include "Item.h"
 
 /**
  * Klasa przechowuje informacje o poruszającym się obiekcie
  */
-class MovingItem : public Object{
+class MovingItem : public Item{
 public:
     MovingItem(int, int);
     void move(const float x,const float y);

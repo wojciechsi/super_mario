@@ -7,4 +7,4 @@
 constexpr unsigned short SCREEN_HEIGHT = 256;
 constexpr unsigned short SCREEN_WIDTH = 240;
 
-constexpr int FRAME_TIME = 20000;
+constexpr double FRAME_TIME = 0.017;

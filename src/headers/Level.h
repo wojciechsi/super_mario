@@ -13,7 +13,7 @@ public:
 private:
     std::vector<Gumba> gumbas;
     std::vector<Turtle> turtles;
-    std::vector<Object> groundTiles;
+    std::vector<Item> groundTiles;
 
 };
 

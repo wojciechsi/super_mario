@@ -5,20 +5,31 @@
 #include "Menu.h"
 #include "Mario.h"
 /**
- * Klasa odpowiedzialna za inicjalizacje programu.
+ * Klasa odpowiedzialna za inicjalizacje programu
+ * i jego ciągłość działania.
  * Należy ją wywołać w głównym pliku.
  */
 class Game {
 public:
     Game() = default;
+
+    /**
+     * Głowna pętla programu
+     */
     void run();
 
 private:
     sf::RenderWindow window = sf::RenderWindow(
             sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT),
             "Super Mario Bros");
+
     void updateWindow (sf::RenderWindow&);
+
     Mario mario;
+
+    bool gameON = true;
+
+    void handleEvents();
 };
 
 

@@ -5,9 +5,9 @@
 #ifndef SUPER_MARIO_BRICK_H
 #define SUPER_MARIO_BRICK_H
 
-#include "Object.h"
+#include "Item.h"
 
-class Brick : public Object{
+class Brick : public Item{
 
 };
 
