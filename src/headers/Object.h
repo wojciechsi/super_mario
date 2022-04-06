@@ -17,14 +17,10 @@ public:
 
     void draw(sf::RenderWindow& iWindow);
 
-    //sf::RectangleShape shape;
-
-    void move(const float x,const float y);
-
-    //virtual void MoveStatus();
-
-private:
+protected:
     float x, y;
+private:
+
 
     sf::Sprite sprite;
 

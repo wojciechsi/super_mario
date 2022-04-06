@@ -17,9 +17,9 @@ void Game::run() {
                 window.close();
         }
 
-        window.clear(sf::Color::Red);
+        window.clear(sf::Color::Black);
         //mario.MoveStatus();
-        engine.updateWindow(window);
+        updateWindow(window);
         window.display();
 
 
@@ -29,4 +29,9 @@ void Game::run() {
             frameStop = std::chrono::steady_clock::now();
 
     }
+}
+
+void Game::updateWindow(sf::RenderWindow & iWindow) {
+    mario.MoveStatus();
+    mario.draw(iWindow);
 }

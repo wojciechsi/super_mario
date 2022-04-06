@@ -6,9 +6,10 @@
 /**
  * Klasa przechowuje informacje o poruszającym się obiekcie
  */
-class MovingItem : virtual public Object{
+class MovingItem : public Object{
 public:
     MovingItem(int, int);
+    void move(const float x,const float y);
 private:
     int vertitalSpeed, horizontalSpeed;
 

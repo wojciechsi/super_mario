@@ -3,3 +3,7 @@
 //
 
 #include "headers/Level.h"
+
+Level::Level() {
+
+}

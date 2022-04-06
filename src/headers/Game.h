@@ -2,10 +2,8 @@
 #define SUPER_MARIO_GAME_H
 
 #include "defs.h"
-
 #include "Menu.h"
-#include "Engine.h"
-
+#include "Mario.h"
 /**
  * Klasa odpowiedzialna za inicjalizacje programu.
  * Należy ją wywołać w głównym pliku.
@@ -19,7 +17,8 @@ private:
     sf::RenderWindow window = sf::RenderWindow(
             sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT),
             "Super Mario Bros");
-    Engine engine;
+    void updateWindow (sf::RenderWindow&);
+    Mario mario;
 };
 
 

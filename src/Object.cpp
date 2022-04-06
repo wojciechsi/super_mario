@@ -15,8 +15,4 @@ void Object::setTexture(std::string s) {
     sprite.setTexture(texture);
 }
 
-void Object::move(const float x, const float y)
-{
-    this -> x += x;
-    this -> y += y;
-}
+

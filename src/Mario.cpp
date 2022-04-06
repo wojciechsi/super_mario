@@ -9,10 +9,10 @@ void Mario::MoveStatus()
 {
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
     {
-        this-> move(-0.5f, 0);
+        this-> move(-0.05f, 0);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
     {
-        this-> move(0.5f, 0);
+        this-> move(0.05f, 0);
     }
 }
