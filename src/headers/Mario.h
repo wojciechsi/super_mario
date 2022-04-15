@@ -12,12 +12,13 @@ public:
     Mario();
     void MoveStatus();
     sf::RectangleShape MarioShape;
-    bool goesRight = false;
+
 
     bool isGoesRight() const;
 
 private:
     bool isBig = false;
+    bool goesRight = false;
 };
 
 

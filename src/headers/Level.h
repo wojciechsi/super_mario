@@ -13,11 +13,15 @@ public:
     Level();
 
     void printLevelContent (sf::RenderWindow &iwindow);
+
+    /**
+     * Przemieszcza cały świat w lewo (oprócz Maria)
+     */
     void updateLevelPositionsWhileWalk();
 private:
     std::vector<Gumba> gumbas;
     std::vector<Turtle> turtles;
-    Item groundTiles [1000];
+    Item groundTiles [MAX_LEVEL_SIZE];
 
 
 };
