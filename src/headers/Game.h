@@ -4,6 +4,7 @@
 #include "defs.h"
 #include "Menu.h"
 #include "Mario.h"
+#include "Level.h"
 /**
  * Klasa odpowiedzialna za inicjalizacje programu
  * i jego ciągłość działania.
@@ -18,6 +19,8 @@ public:
      */
     void run();
 
+
+
 private:
     sf::RenderWindow window = sf::RenderWindow(
             sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT),
@@ -26,6 +29,8 @@ private:
     void updateWindow (sf::RenderWindow&);
 
     Mario mario;
+
+    Level level;
 
     bool gameON = true;
 

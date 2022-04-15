@@ -3,6 +3,7 @@
 
 void Game::run() {
 
+
     while(window.isOpen()) {
         //początek klatki
         auto frameStart = std::chrono::steady_clock::now();
@@ -30,6 +31,9 @@ void Game::updateWindow(sf::RenderWindow & iWindow) {
     if (gameON) {
         mario.MoveStatus();
         mario.draw(iWindow);
+        if(mario.isGoesRight())
+            level.updateLevelPositionsWhileWalk();
+        level.printLevelContent(iWindow);
     }
 }
 

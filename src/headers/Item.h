@@ -19,6 +19,8 @@ public:
 
     Item() = default;
 
+    Item(Item& other);
+
     /**
      * Po zadaniu tekstury ustawia też wymiary i środek
      * @param s ścieżka do tekstury
@@ -26,6 +28,12 @@ public:
     void setTexture (std::string s);
 
     void draw(sf::RenderWindow& iWindow);
+
+    /**
+     * Przesuwa jak mario chodzi
+     * @todo inna nazwa metody
+     */
+    void walkMove ();
 
 protected:
 

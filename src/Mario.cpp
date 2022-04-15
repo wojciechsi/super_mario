@@ -7,6 +7,7 @@ Mario::Mario() : MovingItem(0.5f * SCREEN_WIDTH,
 
 void Mario::MoveStatus()
 {
+    goesRight = false;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
     {
         //nie wypuść ne lewo od ekranu
@@ -15,6 +16,12 @@ void Mario::MoveStatus()
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
     {
-        this-> move(1.0f, 0);
+        if(this->sprite.getPosition().x < SCREEN_WIDTH/2)
+            this-> move(1.0f, 0);
+        else goesRight = true;
     }
+}
+
+bool Mario::isGoesRight() const {
+    return goesRight;
 }
