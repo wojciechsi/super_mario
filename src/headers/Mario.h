@@ -11,7 +11,7 @@ class Mario : virtual public MovingItem{
 public:
     Mario();
     void MoveStatus();
-    sf::RectangleShape MarioShape;
+    //sf::RectangleShape MarioShape;
 
 
     bool isGoesRight() const;

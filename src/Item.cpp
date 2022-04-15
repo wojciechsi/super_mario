@@ -26,3 +26,8 @@ void Item::walkMove() {
     x--;
 }
 
+bool Item::upDownTouch(Item up) {
+    if (up.sprite.getGlobalBounds().intersects(this->sprite.getGlobalBounds())) return true;
+    else return false;
+}
+

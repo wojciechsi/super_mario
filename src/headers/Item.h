@@ -35,6 +35,8 @@ public:
      */
     void walkMove ();
 
+    bool upDownTouch (Item);
+
 protected:
 
     float x{}, y{}; //pozycja

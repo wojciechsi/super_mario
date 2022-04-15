@@ -30,6 +30,7 @@ void Game::run() {
 void Game::updateWindow(sf::RenderWindow & iWindow) {
     if (gameON) {
         mario.MoveStatus();
+        if (!level.isOnTopOfAny(mario)) mario.move(0, 1);
         mario.draw(iWindow);
         if(mario.isGoesRight())
             level.updateLevelPositionsWhileWalk();

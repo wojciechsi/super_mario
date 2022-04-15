@@ -5,6 +5,7 @@
 #include "Gumba.h"
 #include "Turtle.h"
 #include "defs.h"
+#include "Mario.h"
 /**
  * Klasa zawiera aktualny poziom gry
  */
@@ -18,6 +19,9 @@ public:
      * Przemieszcza cały świat w lewo (oprócz Maria)
      */
     void updateLevelPositionsWhileWalk();
+
+    bool isOnTopOfAny (Mario);
+
 private:
     std::vector<Gumba> gumbas;
     std::vector<Turtle> turtles;

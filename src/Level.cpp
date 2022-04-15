@@ -24,6 +24,8 @@ void Level::printLevelContent(sf::RenderWindow &iwindow) {
     for (auto &gumba : gumbas) {
         gumba.draw(iwindow);
     }
+
+
 }
 
 void Level::updateLevelPositionsWhileWalk() {
@@ -36,4 +38,17 @@ void Level::updateLevelPositionsWhileWalk() {
     for (auto &gumba : gumbas) {
         gumba.walkMove();
     }
+}
+
+bool Level::isOnTopOfAny(Mario mario) {
+    for (auto &tile : groundTiles) {
+        if (mario.upDownTouch(tile)) return true;
+    }
+    for (auto &turtle : turtles) {
+
+    }
+    for (auto &gumba : gumbas) {
+
+    }
+    return false;
 }
