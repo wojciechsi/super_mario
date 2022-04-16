@@ -13,12 +13,15 @@ public:
     void MoveStatus();
     //sf::RectangleShape MarioShape;
 
-
     bool isGoesRight() const;
+
+    void jump();
 
 private:
     bool isBig = false;
     bool goesRight = false;
+
+    int jumpCtr = 0;
 };
 
 

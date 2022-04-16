@@ -12,6 +12,11 @@ public:
     void move(const float x,const float y);
 private:
     int vertitalSpeed, horizontalSpeed;
+    bool onTopOfAny = false;
+public:
+    bool isOnTopOfAny() const;
+
+    void setOnTopOfAny(bool onTopOfAny);
 
 };
 

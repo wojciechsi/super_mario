@@ -7,9 +7,13 @@
 
 Level::Level() {
     for (int i = 0; i < 500; i++) {
-        groundTiles[i] = (Item(i*9, SCREEN_HEIGHT/2 + 50));
-        groundTiles[i].setTexture("../src/resources/smallMario1.png");
+        groundTiles[i] = (Item(i*16, SCREEN_HEIGHT/2 + 50));
+        groundTiles[i].setTexture("../src/resources/soil.png");
     }
+    groundTiles[500] = Item(16*40, SCREEN_HEIGHT/2 + 20);
+    groundTiles[500].setTexture("../src/resources/soil.png");
+    groundTiles[501] = Item(16*41, SCREEN_HEIGHT/2 + 20);
+    groundTiles[501].setTexture("../src/resources/soil.png");
 }
 
 void Level::printLevelContent(sf::RenderWindow &iwindow) {
@@ -42,7 +46,8 @@ void Level::updateLevelPositionsWhileWalk() {
 
 bool Level::isOnTopOfAny(Mario mario) {
     for (auto &tile : groundTiles) {
-        if (mario.upDownTouch(tile)) return true;
+        if (tile.isOnScreen())
+            if (mario.upDownTouch(tile)) return true;
     }
     for (auto &turtle : turtles) {
 

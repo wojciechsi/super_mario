@@ -20,8 +20,18 @@ void Mario::MoveStatus()
             this-> move(1.0f, 0);
         else goesRight = true;
     }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
+        if(this->isOnTopOfAny()) jumpCtr = MAX_JUMP;
+    }
+
+    if (jumpCtr > 0) move(0, -5.0f);
+    if (jumpCtr > 0) jumpCtr--;
 }
 
 bool Mario::isGoesRight() const {
     return goesRight;
+}
+
+void Mario::jump() {
+
 }

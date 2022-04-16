@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
+#include "defs.h"
 
 /**
  * Klasa przechowuje informacje o obiekcie w grze
@@ -36,6 +37,8 @@ public:
     void walkMove ();
 
     bool upDownTouch (Item);
+
+    inline bool isOnScreen() {if (x > 0 and x < SCREEN_WIDTH) return true; else return false;}
 
 protected:
 
