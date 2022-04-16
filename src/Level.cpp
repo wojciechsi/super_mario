@@ -46,8 +46,11 @@ void Level::updateLevelPositionsWhileWalk() {
 
 bool Level::isOnTopOfAny(Mario mario) {
     for (auto &tile : groundTiles) {
-        if (tile.isOnScreen())
-            if (mario.upDownTouch(tile)) return true;
+        if (tile.isOnScreen()) {
+            if (mario.upDownTouch(tile)){
+                return true;
+            }
+        }
     }
     for (auto &turtle : turtles) {
 
