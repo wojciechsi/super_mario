@@ -25,8 +25,8 @@ public:
 private:
     std::vector<Gumba> gumbas;
     std::vector<Turtle> turtles;
-    Item groundTiles [MAX_LEVEL_SIZE];
-
+    Item groundTiles[MAX_LEVEL_SIZE];
+    Item lowerTiles[MAX_LEVEL_SIZE];
 
 };
 
