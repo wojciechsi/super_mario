@@ -1,5 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Release "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2021.3.4/bin/ninja/win/ninja.exe" -G Ninja "C:\Pliki\Projekt Mario PK4"
--- Found SFML .. in C:/Pliki/SFML_CLION/SFML-2.5.1/include
--- Configuring done
--- Generating done
--- Build files have been written to: C:/Pliki/Projekt Mario PK4/cmake-build-release
