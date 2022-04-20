@@ -11,7 +11,7 @@ public:
     MovingItem(int, int);
     void move(const float x,const float y);
 private:
-    int vertitalSpeed, horizontalSpeed;
+    int horizontalSpeed;
     bool onTopOfAny = false;
 public:
     bool isOnTopOfAny() const;

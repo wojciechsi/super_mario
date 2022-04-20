@@ -22,6 +22,8 @@ public:
 
     bool isOnTopOfAny (Mario);
 
+    bool isSthAtPoint (float x, float y);
+
 private:
     std::vector<Gumba> gumbas;
     std::vector<Turtle> turtles;

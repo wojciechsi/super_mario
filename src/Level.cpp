@@ -13,6 +13,11 @@ Level::Level() {
             lowerTiles[i] = (Item(i * 16, SCREEN_HEIGHT - 8 ));
             lowerTiles[i].setTexture("../src/resources/soil.png");
         }
+        //below for tests
+        groundTiles[501] = (Item(20 * 16, SCREEN_HEIGHT - 40));
+        groundTiles[501].setTexture("../src/resources/soil.png");
+        groundTiles[502] = (Item(20 * 16, SCREEN_HEIGHT - 56));
+        groundTiles[502].setTexture("../src/resources/soil.png");
 
     }
 
@@ -66,6 +71,16 @@ bool Level::isOnTopOfAny(Mario mario) {
     }
     for (auto &gumba : gumbas) {
 
+    }
+    return false;
+}
+
+bool Level::isSthAtPoint(float x, float y) {
+    for (auto &tile : groundTiles) {
+        if (tile.isOnScreen()) {
+            if (tile.getSprite().getGlobalBounds().contains(x, y))
+                return true;
+        }
     }
     return false;
 }

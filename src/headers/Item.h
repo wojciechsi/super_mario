@@ -47,6 +47,9 @@ protected:
     sf::Vector2u size; //rozmiar na mapie
 
     sf::Sprite sprite;
+public:
+    const sf::Sprite &getSprite() const;
+
 private:
 
     sf::Texture texture;

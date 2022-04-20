@@ -31,3 +31,7 @@ bool Item::upDownTouch(Item up) {
     else return false;
 }
 
+const sf::Sprite &Item::getSprite() const {
+    return sprite;
+}
+

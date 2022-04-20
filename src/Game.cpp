@@ -2,8 +2,7 @@
 #include "headers/Game.h"
 
 void Game::run() {
-
-
+    window.setSize(sf::Vector2u(SCREEN_WIDTH*2, SCREEN_HEIGHT*2)); //scale
     while(window.isOpen()) {
         //początek klatki
         auto frameStart = std::chrono::steady_clock::now();
