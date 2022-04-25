@@ -30,12 +30,9 @@ void Mario::MoveStatus()
 
     if (jumpCtr > 0) move(0, -5.0f);
     if (jumpCtr > 0) jumpCtr--;
+
 }
 
 bool Mario::isGoesRight() const {
     return goesRight;
-}
-
-void Mario::jump() {
-
 }

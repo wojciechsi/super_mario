@@ -8,16 +8,16 @@
  */
 class MovingItem : public Item{
 public:
-    MovingItem(int, int);
-    void move(const float x,const float y);
+    MovingItem() = default;
+    MovingItem(const MovingItem& other) = default;
+    MovingItem(int iX, int iY);
+    void move(const float x, const float y);
 private:
-    int horizontalSpeed;
     bool onTopOfAny = false;
 public:
     bool isOnTopOfAny() const;
 
     void setOnTopOfAny(bool onTopOfAny);
-
 };
 
 

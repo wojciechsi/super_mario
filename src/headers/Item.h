@@ -20,13 +20,17 @@ public:
 
     Item() = default;
 
-    Item(Item& other);
+    //Item(Item&&);
+
+    Item(const Item& other);
 
     /**
      * Po zadaniu tekstury ustawia też wymiary i środek
      * @param s ścieżka do tekstury
      */
     void setTexture (std::string s);
+
+    void setTexture (const sf::Texture& t);
 
     void draw(sf::RenderWindow& iWindow);
 
@@ -38,7 +42,7 @@ public:
 
     bool upDownTouch (Item);
 
-    inline bool isOnScreen() {if (x > 0 and x < SCREEN_WIDTH) return true; else return false;}
+    inline bool isOnScreen() {if (x > -10 and x < SCREEN_WIDTH) return true; else return false;}
 
 protected:
 

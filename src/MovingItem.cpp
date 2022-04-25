@@ -2,6 +2,8 @@
 
 MovingItem::MovingItem(int iX, int iY) : Item(iX, iY) {}
 
+
+
 void MovingItem::move(const float x, const float y)
 {
     this -> x += x;
@@ -15,3 +17,5 @@ bool MovingItem::isOnTopOfAny() const {
 void MovingItem::setOnTopOfAny(bool onTopOfAny) {
     MovingItem::onTopOfAny = onTopOfAny;
 }
+
+

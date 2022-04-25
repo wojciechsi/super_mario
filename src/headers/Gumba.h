@@ -7,7 +7,10 @@
  * Klasa reprezentuje przeciwnika "Gumba"
  */
 class Gumba : public Enemy{
-
+public:
+    Gumba(const Gumba&) = default;
+    Gumba ();
+    Gumba (int iX, int iY);
 };
 
 

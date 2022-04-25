@@ -7,6 +7,10 @@
 
 Level::Level() {
 
+    sf::Texture gumbaTexture;
+    gumbaTexture.loadFromFile("../src/resources/gumba.png");
+
+
         for (int i = 0; i < 500; i++) {
             groundTiles[i] = (Item(i * 16, SCREEN_HEIGHT - 24));
             groundTiles[i].setTexture("../src/resources/soil.png");
@@ -18,6 +22,11 @@ Level::Level() {
         groundTiles[501].setTexture("../src/resources/soil.png");
         groundTiles[502] = (Item(20 * 16, SCREEN_HEIGHT - 56));
         groundTiles[502].setTexture("../src/resources/soil.png");
+        gumbas [0] = (Gumba (450,40));
+        gumbas [1] = (Gumba (580,60));
+        gumbas[0].setTexture(gumbaTexture);
+    gumbas[1].setTexture(gumbaTexture);
+
 
     }
 
@@ -58,7 +67,7 @@ void Level::updateLevelPositionsWhileWalk() {
     }
 }
 
-bool Level::isOnTopOfAny(Mario mario) {
+bool Level::isOnTopOfAny(Item mario) {
     for (auto &tile : groundTiles) {
         if (tile.isOnScreen()) {
             if (mario.upDownTouch(tile)){
@@ -83,4 +92,16 @@ bool Level::isSthAtPoint(float x, float y) {
         }
     }
     return false;
+}
+
+void Level::updateEnemiesPositions() {
+    for (auto &gumba : gumbas)
+        if (gumba.isOnScreen()) {
+            gumba.setOnTopOfAny(false);
+            if(isOnTopOfAny(gumba))
+                gumba.setOnTopOfAny(true);
+            gumba.update(); }
+    for (auto &turtle : turtles)
+        if (turtle.isOnScreen())
+            turtle.update();
 }

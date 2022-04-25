@@ -7,7 +7,16 @@
  * Klasa reprezentuje wroga
  */
 class Enemy : public MovingItem {
+protected:
+    float velocity;
+public:
+    Enemy () = default;
 
+    Enemy (const Enemy& other) = default;
+
+    Enemy (int iX, int iY) : MovingItem(iX, iY) {};
+    //virtual void die() = 0;
+    void update ();
 };
 
 

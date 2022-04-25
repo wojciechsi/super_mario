@@ -20,15 +20,19 @@ public:
      */
     void updateLevelPositionsWhileWalk();
 
-    bool isOnTopOfAny (Mario);
+    bool isOnTopOfAny (Item);
 
     bool isSthAtPoint (float x, float y);
 
+    void updateEnemiesPositions();
+
 private:
-    std::vector<Gumba> gumbas;
+    Gumba gumbas [100];
     std::vector<Turtle> turtles;
     Item groundTiles[MAX_LEVEL_SIZE];
     Item lowerTiles[MAX_LEVEL_SIZE];
+
+
 
 };
 

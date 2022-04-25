@@ -2,6 +2,9 @@
 #include "headers/Game.h"
 
 void Game::run() {
+
+
+
     window.setSize(sf::Vector2u(SCREEN_WIDTH*2, SCREEN_HEIGHT*2)); //scale
     while(window.isOpen()) {
         //początek klatki
@@ -33,10 +36,17 @@ void Game::updateWindow(sf::RenderWindow & iWindow) {
         if (!level.isOnTopOfAny(mario)) mario.move(0, 2.0f);
         mario.setOnTopOfAny(false);
         mario.draw(iWindow);
+        level.updateEnemiesPositions();
         if(mario.isGoesRight())
             level.updateLevelPositionsWhileWalk();
+        /**
+         * @todo za dużo się tu dzieje
+         * konieczna refaktoryzacja!
+         */
         level.printLevelContent(iWindow);
     }
+
+
 }
 
 void Game::handleEvents() {

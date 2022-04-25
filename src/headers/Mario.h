@@ -15,8 +15,6 @@ public:
 
     bool isGoesRight() const;
 
-    void jump();
-
 private:
     bool isBig = false;
     bool goesRight = false;
