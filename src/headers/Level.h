@@ -6,6 +6,7 @@
 #include "Turtle.h"
 #include "defs.h"
 #include "Mario.h"
+#include <memory>
 /**
  * Klasa zawiera aktualny poziom gry
  */
@@ -27,10 +28,10 @@ public:
     void updateEnemiesPositions();
 
 private:
-    Gumba gumbas [100];
+    std::vector<Gumba> gumbas;
     std::vector<Turtle> turtles;
-    Item groundTiles[MAX_LEVEL_SIZE];
-    Item lowerTiles[MAX_LEVEL_SIZE];
+    std::vector<Item> groundTiles;
+    std::vector<Item> lowerTiles;
 
 
 

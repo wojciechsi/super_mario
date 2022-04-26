@@ -9,23 +9,27 @@ Level::Level() {
 
     sf::Texture gumbaTexture;
     gumbaTexture.loadFromFile("../src/resources/gumba.png");
+    sf::Texture soilTexture;
+    soilTexture.loadFromFile("../src/resources/soil.png");
 
 
         for (int i = 0; i < 500; i++) {
-            groundTiles[i] = (Item(i * 16, SCREEN_HEIGHT - 24));
-            groundTiles[i].setTexture("../src/resources/soil.png");
-            lowerTiles[i] = (Item(i * 16, SCREEN_HEIGHT - 8 ));
-            lowerTiles[i].setTexture("../src/resources/soil.png");
+            groundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 24, soilTexture));
+            lowerTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8 , soilTexture));
+
         }
         //below for tests
-        groundTiles[501] = (Item(20 * 16, SCREEN_HEIGHT - 40));
-        groundTiles[501].setTexture("../src/resources/soil.png");
-        groundTiles[502] = (Item(20 * 16, SCREEN_HEIGHT - 56));
-        groundTiles[502].setTexture("../src/resources/soil.png");
-        gumbas [0] = (Gumba (450,40));
-        gumbas [1] = (Gumba (580,60));
+        groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 40, soilTexture));
+        groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 56, soilTexture));
+
+        gumbas.emplace_back(Gumba (450,40));
+        gumbas.emplace_back(Gumba (580,60));
         gumbas[0].setTexture(gumbaTexture);
     gumbas[1].setTexture(gumbaTexture);
+    for(auto & tile : groundTiles)
+        tile.setTexture(soilTexture);
+    for(auto & tile : lowerTiles)
+        tile.setTexture(soilTexture);
 
 
     }

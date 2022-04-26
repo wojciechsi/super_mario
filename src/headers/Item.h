@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "defs.h"
+#include <memory>
 
 /**
  * Klasa przechowuje informacje o obiekcie w grze
@@ -20,7 +21,7 @@ public:
 
     Item() = default;
 
-    //Item(Item&&);
+    Item(int x, int y, sf::Texture t) : Item(x, y) {setTexture(t);};
 
     Item(const Item& other);
 
