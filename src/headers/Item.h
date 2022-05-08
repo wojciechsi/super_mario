@@ -19,9 +19,9 @@ public:
      */
     Item(int x, int y);
 
-    Item() = default;
+    Item() : x(0), y(0), size(sf::Vector2u(0,0)) { };
 
-    Item(int x, int y, sf::Texture t) : Item(x, y) {setTexture(t);};
+    Item(int x, int y, const sf::Texture& t) : Item(x, y) {setTexture(t);};
 
     Item(const Item& other);
 

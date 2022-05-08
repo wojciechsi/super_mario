@@ -14,10 +14,19 @@ public:
     void move(const float x, const float y);
 private:
     bool onTopOfAny = false;
+
+    void gravityMove() {move(0, GRAVITY_FACTOR);};
 public:
     bool isOnTopOfAny() const;
 
     void setOnTopOfAny(bool onTopOfAny);
+
+
+
+    /**
+    * Aktualizuje położenie i stan
+    */
+    void update();
 };
 
 

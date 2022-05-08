@@ -7,6 +7,7 @@ Mario::Mario() : MovingItem(0.5f * SCREEN_WIDTH,
 
 void Mario::MoveStatus()
 {
+    //@todo this method should provide keyboard inputs XOR updating stuff
     goesRight = false;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
     {

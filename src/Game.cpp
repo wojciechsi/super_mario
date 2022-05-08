@@ -32,8 +32,8 @@ void Game::run() {
 void Game::updateWindow(sf::RenderWindow & iWindow) {
     if (gameON) {
         if(level.isOnTopOfAny(mario)) mario.setOnTopOfAny(true);
-        mario.MoveStatus();
-        if (!level.isOnTopOfAny(mario)) mario.move(0, 2.0f);
+        mario.MoveStatus(); //this calls for moves from keyboard and much more...
+        mario.update(); //basicly this does gravity
         mario.setOnTopOfAny(false);
         mario.draw(iWindow);
         level.updateEnemiesPositions();

@@ -15,7 +15,8 @@ public:
     Enemy (const Enemy& other) = default;
 
     Enemy (int iX, int iY) : MovingItem(iX, iY) {};
-    //virtual void die() = 0;
+    //virtual void die() = 0; //pure virtual methods are allowed by compiler as long
+    //as you provide it's declaration in ALL child classes
     void update ();
 };
 
