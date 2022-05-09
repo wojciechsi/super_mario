@@ -4,6 +4,7 @@
 #include <tuple>
 #include "Item.h"
 
+
 /**
  * Struktura przechowująca informację o możliwościach ruchu
  */
@@ -47,13 +48,13 @@ public:
      * Metoda zwracająca informację o dolnej kolizji.
      * @return czy występuje kolizja dolna
      */
-    bool isOnTopOfAny() const;
+    bool hasDownCollision() const;
 
-    void setOnTopOfAny(bool rvalue);
+    void setDownCollision(bool rvalue);
 
+    void setCollisions (Collisons newCollisons) {collisions = newCollisons;}
 
-
-    /**
+   /**
     * Aktualizuje położenie i stan
     */
     void update();

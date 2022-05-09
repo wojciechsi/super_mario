@@ -26,7 +26,7 @@ void Mario::MoveStatus()
         else goesRight = true;
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
-        if(this->isOnTopOfAny()) jumpCtr = MAX_JUMP;
+        if(this->hasDownCollision()) jumpCtr = MAX_JUMP;
     }
 
     if (jumpCtr > 0) move(0, -5.0f);

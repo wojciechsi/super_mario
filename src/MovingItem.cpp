@@ -9,18 +9,18 @@ void MovingItem::move(const float x, const float y)
     else if (x < 0 and collisions.left == false)
         this -> x += x;
     //to nie duplikacja tylko rozwinięcie pętli
-    if (y > 0 and collisions.up == false)
+    if (y > 0 and collisions.down == false)
         this -> y += y;
-    else if (y < 0 and collisions.down == false)
+    else if (y < 0 and collisions.up == false)
         this -> y += y;
 }
 
-bool MovingItem::isOnTopOfAny() const {
-    return collisions.up;
+bool MovingItem::hasDownCollision() const {
+    return collisions.down;
 }
 
-void MovingItem::setOnTopOfAny(bool rvalue) {
-    collisions.up = rvalue;
+void MovingItem::setDownCollision(bool rvalue) {
+    collisions.down = rvalue;
 }
 
 void MovingItem::update() {

@@ -45,6 +45,8 @@ public:
 
     inline bool isOnScreen() {if (x > -10 and x < SCREEN_WIDTH) return true; else return false;}
 
+
+
 protected:
 
     float x{}, y{}; //pozycja
@@ -54,6 +56,8 @@ protected:
     sf::Sprite sprite;
 public:
     const sf::Sprite &getSprite() const;
+
+    sf::Sprite getSprite() {return sprite;}
 
 private:
 

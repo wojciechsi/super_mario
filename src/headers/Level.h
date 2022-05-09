@@ -6,7 +6,7 @@
 #include "Turtle.h"
 #include "defs.h"
 #include "Mario.h"
-#include <memory>
+#include <iostream>
 /**
  * Klasa zawiera aktualny poziom gry
  */
@@ -27,13 +27,19 @@ public:
 
     void updateEnemiesPositions();
 
+    /**
+     * Ustawia parametry kolizji dla danego obiektu względem pozostałych elementów
+     * @param movingItem modyfikowany obiekt
+     */
+    void generateCollisions (MovingItem& movingItem, sf::RenderWindow & iWindow);
+
 private:
     std::vector<Gumba> gumbas;
     std::vector<Turtle> turtles;
     std::vector<Item> groundTiles;
-    std::vector<Item> lowerTiles;
+    std::vector<Item> lowerTiles; //unused in collisions
 
-
+    bool checkCollisons (const sf::FloatRect& rectangle);
 
 };
 

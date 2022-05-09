@@ -35,12 +35,14 @@ Level::Level() {
     }
 
 
+
 void Level::printLevelContent(sf::RenderWindow &iwindow) {
-    //std::for_each(groundTiles.begin(), groundTiles.end(),
-    //              [&](Item &i){i.draw(iwindow);});
-    for (auto &tile : groundTiles) {
-        tile.draw(iwindow);
-    }
+    std::for_each(groundTiles.begin(), groundTiles.end(),
+                  [&](Item &i){i.draw(iwindow);});
+    //buhahahaha
+    //for (auto &tile : groundTiles) {
+    //    tile.draw(iwindow);
+    //}
     for(auto &tile1 : lowerTiles)
     {
         tile1.draw(iwindow);
@@ -69,6 +71,7 @@ void Level::updateLevelPositionsWhileWalk() {
     for (auto &gumba : gumbas) {
         gumba.walkMove();
     }
+    //@todo others in future
 }
 
 bool Level::isOnTopOfAny(Item mario) {
@@ -82,9 +85,12 @@ bool Level::isOnTopOfAny(Item mario) {
     for (auto &turtle : turtles) {
 
     }
+    /*
     for (auto &gumba : gumbas) {
-
+        if(gumba.isOnScreen())
+            if(mario.upDownTouch(gumba)) return true;
     }
+     */
     return false;
 }
 
@@ -101,11 +107,49 @@ bool Level::isSthAtPoint(float x, float y) {
 void Level::updateEnemiesPositions() {
     for (auto &gumba : gumbas)
         if (gumba.isOnScreen()) {
-            gumba.setOnTopOfAny(false);
+            gumba.setDownCollision(false);
             if(isOnTopOfAny(gumba))
-                gumba.setOnTopOfAny(true);
+                gumba.setDownCollision(true);
             gumba.update(); }
     for (auto &turtle : turtles)
         if (turtle.isOnScreen())
             turtle.update();
 }
+
+void Level::generateCollisions(MovingItem& movingItem, sf::RenderWindow & iWindow) {
+    Collisons newCollisions;
+
+    sf::FloatRect rectangle = movingItem.getSprite().getGlobalBounds();
+    /*
+    float minX = rectangle.left;
+    float maxX = minX + rectangle.width;
+    float minY = rectangle.top;
+    float maxY = minY + rectangle.height;
+    */
+    const sf::FloatRect leftBonduary(rectangle.left, rectangle.top, 2.0f, rectangle.height);
+    const sf::FloatRect rightBonduary(rectangle.left + rectangle.width, rectangle.top, -2.0f, rectangle.height);
+    const sf::FloatRect topBonduary(rectangle.left, rectangle.top, rectangle.width, 2.0f);
+    const sf::FloatRect bottomBonduary(rectangle.left, rectangle.top + rectangle.height, rectangle.width, 2.0f);
+
+    sf::RectangleShape rs (sf::Vector2f (bottomBonduary.width, bottomBonduary.height));
+    rs.setPosition(sf::Vector2f(bottomBonduary.left, bottomBonduary.top));
+    iWindow.draw(rs);
+
+    if(checkCollisons(leftBonduary)) newCollisions.left = true;
+    if(checkCollisons(rightBonduary)) newCollisions.right = true;
+    if(checkCollisons(topBonduary)) newCollisions.up = true;
+    if(checkCollisons(bottomBonduary)) newCollisions.down = true;
+
+
+    movingItem.setCollisions(newCollisions);
+    }
+
+bool Level::checkCollisons(const sf::FloatRect& rectangle) {
+    for (auto& item : groundTiles) {
+        if(item.isOnScreen())
+            if (item.getSprite().getGlobalBounds().intersects(rectangle))
+                return true;
+    }
+    return false;
+}
+
