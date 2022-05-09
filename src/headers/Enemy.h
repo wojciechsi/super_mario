@@ -17,7 +17,15 @@ public:
     Enemy (int iX, int iY) : MovingItem(iX, iY) {};
     //virtual void die() = 0; //pure virtual methods are allowed by compiler as long
     //as you provide it's declaration in ALL child classes
+    /**
+     * Rozszerza metodę klasy MovingItem o automatyczny ruch i odbicia
+     */
     void update ();
+private:
+    /**
+     * Odbija od ewentualnych przeszkód
+     */
+    void bounceFromOther();
 };
 
 

@@ -4,22 +4,28 @@ MovingItem::MovingItem(int iX, int iY) : Item(iX, iY) {}
 
 void MovingItem::move(const float x, const float y)
 {
-    //@todo space condition (there is no other place for that!!!)
-    this -> x += x;
-    this -> y += y;
+    if (x > 0 and collisions.right == false)
+        this -> x += x;
+    else if (x < 0 and collisions.left == false)
+        this -> x += x;
+    //to nie duplikacja tylko rozwinięcie pętli
+    if (y > 0 and collisions.up == false)
+        this -> y += y;
+    else if (y < 0 and collisions.down == false)
+        this -> y += y;
 }
 
 bool MovingItem::isOnTopOfAny() const {
-    return onTopOfAny;
+    return collisions.up;
 }
 
-void MovingItem::setOnTopOfAny(bool onTopOfAny) {
-    MovingItem::onTopOfAny = onTopOfAny;
+void MovingItem::setOnTopOfAny(bool rvalue) {
+    collisions.up = rvalue;
 }
-
 
 void MovingItem::update() {
-    if (!isOnTopOfAny()) gravityMove();
+    gravityMove();
+    //they also get updated from level instance
 }
 
 
