@@ -108,32 +108,29 @@ void Level::updateEnemiesPositions() {
     for (auto &gumba : gumbas)
         if (gumba.isOnScreen()) {
             gumba.setDownCollision(false);
-            if(isOnTopOfAny(gumba))
-                gumba.setDownCollision(true);
+            //if(isOnTopOfAny(gumba))
+            //    gumba.setDownCollision(true); // version 0
+            generateCollisions(gumba); //version 1
+            //@todo gumba nie wychodzi za ekran
             gumba.update(); }
     for (auto &turtle : turtles)
         if (turtle.isOnScreen())
             turtle.update();
 }
 
-void Level::generateCollisions(MovingItem& movingItem, sf::RenderWindow & iWindow) {
+void Level::generateCollisions(MovingItem& movingItem) {
     Collisons newCollisions;
 
     sf::FloatRect rectangle = movingItem.getSprite().getGlobalBounds();
-    /*
-    float minX = rectangle.left;
-    float maxX = minX + rectangle.width;
-    float minY = rectangle.top;
-    float maxY = minY + rectangle.height;
-    */
-    const sf::FloatRect leftBonduary(rectangle.left, rectangle.top, 2.0f, rectangle.height);
-    const sf::FloatRect rightBonduary(rectangle.left + rectangle.width, rectangle.top, -2.0f, rectangle.height);
-    const sf::FloatRect topBonduary(rectangle.left, rectangle.top, rectangle.width, 2.0f);
-    const sf::FloatRect bottomBonduary(rectangle.left, rectangle.top + rectangle.height, rectangle.width, 2.0f);
 
-    sf::RectangleShape rs (sf::Vector2f (bottomBonduary.width, bottomBonduary.height));
-    rs.setPosition(sf::Vector2f(bottomBonduary.left, bottomBonduary.top));
-    iWindow.draw(rs);
+    const sf::FloatRect leftBonduary(rectangle.left, rectangle.top,
+                                     ITEM_COLL_WIDTH, rectangle.height);
+    const sf::FloatRect rightBonduary(rectangle.left + rectangle.width, rectangle.top,
+                                      -ITEM_COLL_WIDTH, rectangle.height);
+    const sf::FloatRect topBonduary(rectangle.left + ITEM_COLL_OFFSET, rectangle.top,
+                                    rectangle.width -2*ITEM_COLL_OFFSET,  ITEM_COLL_WIDTH);
+    const sf::FloatRect bottomBonduary(rectangle.left + ITEM_COLL_OFFSET, rectangle.top + rectangle.height,
+                                       rectangle.width - 2*ITEM_COLL_OFFSET, ITEM_COLL_WIDTH);
 
     if(checkCollisons(leftBonduary)) newCollisions.left = true;
     if(checkCollisons(rightBonduary)) newCollisions.right = true;

@@ -32,7 +32,8 @@ void Game::run() {
 void Game::updateWindow(sf::RenderWindow & iWindow) {
     if (gameON) {
         //if(level.isOnTopOfAny(mario)) mario.setDownCollision(true); //VERSION 0
-        level.generateCollisions(mario, iWindow);    //VERSION 1 with 2d collisions
+        level.generateCollisions(mario);    //VERSION 1 with 2d collisions
+        //@todo rozpędzony mario przechodzi przez ścianę
         mario.MoveStatus(); //this calls for moves from keyboard and much more...
         mario.update(); //basicly this does gravity
         mario.setDownCollision(false);

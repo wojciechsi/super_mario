@@ -31,7 +31,7 @@ public:
      * Ustawia parametry kolizji dla danego obiektu względem pozostałych elementów
      * @param movingItem modyfikowany obiekt
      */
-    void generateCollisions (MovingItem& movingItem, sf::RenderWindow & iWindow);
+    void generateCollisions (MovingItem& movingItem);
 
 private:
     std::vector<Gumba> gumbas;

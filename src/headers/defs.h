@@ -14,3 +14,6 @@ constexpr double FRAME_TIME = 0.017;
 constexpr int MAX_JUMP = 20;
 
 constexpr float GRAVITY_FACTOR = 2.0f;
+
+constexpr float ITEM_COLL_WIDTH = 1.0f;
+constexpr float ITEM_COLL_OFFSET = 5.0f;
