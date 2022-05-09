@@ -6,6 +6,13 @@
 #include "defs.h"
 #include <memory>
 
+struct Bonduaries {
+    sf::FloatRect leftBonduary;
+    sf::FloatRect rightBonduary;
+    sf::FloatRect topBonduary;
+    sf::FloatRect bottomBonduary;
+};
+
 /**
  * Klasa przechowuje informacje o obiekcie w grze
  */
@@ -36,15 +43,13 @@ public:
     void draw(sf::RenderWindow& iWindow);
 
     /**
-     * Przesuwa jak mario chodzi
-     * @todo inna nazwa metody
+     * Przemieszcza wszystkie elementy o jednen krok w lewo
      */
-    void walkMove ();
+    void moveOneStepLeft ();
 
     bool upDownTouch (Item);
 
-    inline bool isOnScreen() {if (x > -10 and x < SCREEN_WIDTH) return true; else return false;}
-
+    inline bool isOnScreen() {if (x > -10 and x < (SCREEN_WIDTH + 10)) return true; else return false;}
 
 
 protected:
@@ -58,6 +63,8 @@ public:
     const sf::Sprite &getSprite() const;
 
     sf::Sprite getSprite() {return sprite;}
+
+    Bonduaries getBonduariesBoxes();
 
 private:
 

@@ -30,7 +30,7 @@ void Item::setTexture(const sf::Texture& t) {
     sprite.setOrigin(size.x / 2, size.y / 2);
 }
 
-void Item::walkMove() {
+void Item::moveOneStepLeft() {
     x--;
 }
 
@@ -41,5 +41,19 @@ bool Item::upDownTouch(Item up) {
 
 const sf::Sprite &Item::getSprite() const {
     return sprite;
+}
+
+Bonduaries Item::getBonduariesBoxes() {
+    sf::FloatRect rectangle = sprite.getGlobalBounds();
+    Bonduaries b;
+    b.leftBonduary = sf::FloatRect (rectangle.left, rectangle.top,
+                                     ITEM_COLL_WIDTH, rectangle.height);
+    b.rightBonduary = sf::FloatRect (rectangle.left + rectangle.width, rectangle.top,
+                                      -ITEM_COLL_WIDTH, rectangle.height);
+    b.topBonduary = sf::FloatRect (rectangle.left + ITEM_COLL_OFFSET, rectangle.top,
+                                    rectangle.width /*-2*ITEM_COLL_OFFSET*/,  ITEM_COLL_WIDTH);
+    b.bottomBonduary = sf::FloatRect (rectangle.left + ITEM_COLL_OFFSET, rectangle.top + rectangle.height,
+                                       rectangle.width - 2*ITEM_COLL_OFFSET, ITEM_COLL_WIDTH);
+    return b;
 }
 

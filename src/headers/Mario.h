@@ -11,14 +11,17 @@ class Mario : virtual public MovingItem{
 public:
     Mario();
     void MoveStatus();
-    //sf::RectangleShape MarioShape;
 
     bool isGoesRight() const;
 
+    void die();
+
+    void addPoints (int points);
 private:
+
     bool isBig = false;
     bool goesRight = false;
-
+    int points = 0;
     int jumpCtr = 0;
 };
 

@@ -34,13 +34,18 @@ void Game::updateWindow(sf::RenderWindow & iWindow) {
         //if(level.isOnTopOfAny(mario)) mario.setDownCollision(true); //VERSION 0
         level.generateCollisions(mario);    //VERSION 1 with 2d collisions
         //@todo rozpędzony mario przechodzi przez ścianę
+        //@todo gumba odwala jak wyjdzie za ekran
         mario.MoveStatus(); //this calls for moves from keyboard and much more...
-        mario.update(); //basicly this does gravity
-        mario.setDownCollision(false);
+        mario.update();
+        //mario.setDownCollision(false); // part of VERSION 0
         mario.draw(iWindow);
         level.updateEnemiesPositions();
+        level.generateCollisionsWithEnemies(mario);
         if(mario.isGoesRight())
             level.updateLevelPositionsWhileWalk();
+        if(!mario.isAlive()) {
+            gameON = false;
+        }
         /**
          * @todo za dużo się tu dzieje
          * konieczna refaktoryzacja!
@@ -57,4 +62,9 @@ void Game::handleEvents() {
         if (event.type == sf::Event::Closed)
             window.close();
     }
+}
+
+bool Game::ifMarioShouldDie() {
+
+    return false;
 }

@@ -11,7 +11,10 @@ public:
     Gumba(const Gumba&) = default;
     Gumba ();
     Gumba (int iX, int iY);
+    void die();
 };
+
+
 
 
 #endif //SUPER_MARIO_GUMBA_H

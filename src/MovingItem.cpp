@@ -28,4 +28,9 @@ void MovingItem::update() {
     //they also get updated from level instance
 }
 
+void MovingItem::die() {
+    alive = false;
+    std::cout << "DIED "; //@todo remove DDP
+}
+
 

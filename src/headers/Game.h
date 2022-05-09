@@ -35,7 +35,10 @@ private:
     bool gameON = true;
 
     void handleEvents();
+
+    bool ifMarioShouldDie();
 };
+
 
 
 #endif //SUPER_MARIO_GAME_H

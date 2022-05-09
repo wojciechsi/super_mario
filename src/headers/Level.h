@@ -18,6 +18,7 @@ public:
 
     /**
      * Przemieszcza cały świat w lewo (oprócz Maria)
+     * ruch odbywa się względem niego
      */
     void updateLevelPositionsWhileWalk();
 
@@ -33,13 +34,18 @@ public:
      */
     void generateCollisions (MovingItem& movingItem);
 
+    void generateCollisionsWithEnemies (MovingItem& mario);
+
 private:
     std::vector<Gumba> gumbas;
     std::vector<Turtle> turtles;
     std::vector<Item> groundTiles;
     std::vector<Item> lowerTiles; //unused in collisions
 
-    bool checkCollisons (const sf::FloatRect& rectangle);
+    bool checkStillCollisons (const sf::FloatRect& rectangle);
+
+    bool chceckEnemiesCollisions (const sf::FloatRect& rectangle, bool killing = false);
+    const void createTestLevel ();
 
 };
 

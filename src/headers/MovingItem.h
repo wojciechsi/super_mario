@@ -35,12 +35,15 @@ public:
      * @param y przesunięcie pionowe
      */
     void move(const float x, const float y);
+
+    virtual void die ();
 private:
     /**
      * Przemieszcza obiekt o stałą grawitacji dla klatki.
      * Warunek możliwości ruchu jest sprawdzany wewnętrznie.
      */
     void gravityMove() {move(0, GRAVITY_FACTOR);};
+    bool alive = true;
 protected:
     Collisons collisions;
 public:
@@ -58,6 +61,8 @@ public:
     * Aktualizuje położenie i stan
     */
     void update();
+
+    bool isAlive () {return alive;}
 };
 
 

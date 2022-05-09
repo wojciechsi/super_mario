@@ -1,37 +1,36 @@
-//
-// Created by wojciech on 21.03.2022.
-//
-
 #include "headers/Level.h"
 
-
-Level::Level() {
-
+const void Level::createTestLevel() {
     sf::Texture gumbaTexture;
     gumbaTexture.loadFromFile("../src/resources/gumba.png");
     sf::Texture soilTexture;
     soilTexture.loadFromFile("../src/resources/soil.png");
 
+    for (int i = 0; i < 500; i++) {
+        groundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 24, soilTexture));
+        lowerTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8 , soilTexture));
 
-        for (int i = 0; i < 500; i++) {
-            groundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 24, soilTexture));
-            lowerTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8 , soilTexture));
+    }
+    //below for tests
+    groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 40, soilTexture));
+    groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 56, soilTexture));
 
-        }
-        //below for tests
-        groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 40, soilTexture));
-        groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 56, soilTexture));
+    groundTiles.emplace_back(Item(25 * 16, SCREEN_HEIGHT - 40, soilTexture));
+    groundTiles.emplace_back(Item(25 * 16, SCREEN_HEIGHT - 56, soilTexture));
+    groundTiles.emplace_back(Item(18 * 16, SCREEN_HEIGHT - 72, soilTexture));
 
-        gumbas.emplace_back(Gumba (450,40));
-        gumbas.emplace_back(Gumba (580,60));
-        gumbas[0].setTexture(gumbaTexture);
+    gumbas.emplace_back(Gumba (450,40));
+    gumbas.emplace_back(Gumba (580,60));
+    gumbas[0].setTexture(gumbaTexture);
     gumbas[1].setTexture(gumbaTexture);
     for(auto & tile : groundTiles)
         tile.setTexture(soilTexture);
     for(auto & tile : lowerTiles)
         tile.setTexture(soilTexture);
+}
 
-
+Level::Level() {
+    createTestLevel();
     }
 
 
@@ -59,17 +58,17 @@ void Level::printLevelContent(sf::RenderWindow &iwindow) {
 
 void Level::updateLevelPositionsWhileWalk() {
     for (auto &tile : groundTiles) {
-        tile.walkMove();
+        tile.moveOneStepLeft();
     }
     for(auto &tile1 : lowerTiles)
     {
-        tile1.walkMove();
+        tile1.moveOneStepLeft();
     }
     for (auto &turtle : turtles) {
-        turtle.walkMove();
+        turtle.moveOneStepLeft();
     }
     for (auto &gumba : gumbas) {
-        gumba.walkMove();
+        gumba.moveOneStepLeft();
     }
     //@todo others in future
 }
@@ -121,27 +120,19 @@ void Level::updateEnemiesPositions() {
 void Level::generateCollisions(MovingItem& movingItem) {
     Collisons newCollisions;
 
-    sf::FloatRect rectangle = movingItem.getSprite().getGlobalBounds();
 
-    const sf::FloatRect leftBonduary(rectangle.left, rectangle.top,
-                                     ITEM_COLL_WIDTH, rectangle.height);
-    const sf::FloatRect rightBonduary(rectangle.left + rectangle.width, rectangle.top,
-                                      -ITEM_COLL_WIDTH, rectangle.height);
-    const sf::FloatRect topBonduary(rectangle.left + ITEM_COLL_OFFSET, rectangle.top,
-                                    rectangle.width -2*ITEM_COLL_OFFSET,  ITEM_COLL_WIDTH);
-    const sf::FloatRect bottomBonduary(rectangle.left + ITEM_COLL_OFFSET, rectangle.top + rectangle.height,
-                                       rectangle.width - 2*ITEM_COLL_OFFSET, ITEM_COLL_WIDTH);
+    Bonduaries b = movingItem.getBonduariesBoxes();
 
-    if(checkCollisons(leftBonduary)) newCollisions.left = true;
-    if(checkCollisons(rightBonduary)) newCollisions.right = true;
-    if(checkCollisons(topBonduary)) newCollisions.up = true;
-    if(checkCollisons(bottomBonduary)) newCollisions.down = true;
+    if(checkStillCollisons(b.leftBonduary)) newCollisions.left = true;
+    if(checkStillCollisons(b.rightBonduary)) newCollisions.right = true;
+    if(checkStillCollisons(b.topBonduary)) newCollisions.up = true;
+    if(checkStillCollisons(b.bottomBonduary)) newCollisions.down = true;
 
 
     movingItem.setCollisions(newCollisions);
     }
 
-bool Level::checkCollisons(const sf::FloatRect& rectangle) {
+bool Level::checkStillCollisons(const sf::FloatRect& rectangle) {
     for (auto& item : groundTiles) {
         if(item.isOnScreen())
             if (item.getSprite().getGlobalBounds().intersects(rectangle))
@@ -150,3 +141,31 @@ bool Level::checkCollisons(const sf::FloatRect& rectangle) {
     return false;
 }
 
+bool Level::chceckEnemiesCollisions(const sf::FloatRect &rectangle, bool killing) {
+    for(auto it=gumbas.begin();
+                                    it!= gumbas.end();
+                                    it++) {
+        if ((*it).isOnScreen()){
+            if ((*it).getSprite().getGlobalBounds().intersects(rectangle)) {
+                if(killing) {
+                    (*it).die();
+                    gumbas.erase(it);
+
+                }
+                return true; //todo this a Item class method
+            }
+
+        }
+    }
+    for(auto& turtle : turtles) {
+
+    }
+    return false;
+}
+
+void Level::generateCollisionsWithEnemies(MovingItem &mario) {
+    Bonduaries b = mario.getBonduariesBoxes();
+    if (chceckEnemiesCollisions(b.leftBonduary) or chceckEnemiesCollisions(b.rightBonduary))
+        mario.die();
+    chceckEnemiesCollisions(b.bottomBonduary, true);
+}
