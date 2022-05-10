@@ -5,6 +5,7 @@ const void Level::createTestLevel() {
     gumbaTexture.loadFromFile("../src/resources/gumba.png");
     sf::Texture soilTexture;
     soilTexture.loadFromFile("../src/resources/soil.png");
+    sf::Texture* ptrGumbaTexture = &gumbaTexture;
 
     for (int i = 0; i < 500; i++) {
         groundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 24, soilTexture));
@@ -21,19 +22,19 @@ const void Level::createTestLevel() {
 
     gumbas.emplace_back(Gumba (450,40));
     gumbas.emplace_back(Gumba (580,60));
-    gumbas[0].setTexture(gumbaTexture);
-    gumbas[1].setTexture(gumbaTexture);
+    gumbas[0].setTexture(texturesStorage.gumbaTexture);
+    gumbas[1].setTexture(texturesStorage.gumbaTexture);
+
     for(auto & tile : groundTiles)
-        tile.setTexture(soilTexture);
+        tile.setTexture(texturesStorage.soilTexture);
     for(auto & tile : lowerTiles)
-        tile.setTexture(soilTexture);
+        tile.setTexture(texturesStorage.soilTexture);
 }
 
 Level::Level() {
+    loadTexturesToStorage();
     createTestLevel();
     }
-
-
 
 void Level::printLevelContent(sf::RenderWindow &iwindow) {
     std::for_each(groundTiles.begin(), groundTiles.end(),
@@ -142,15 +143,12 @@ bool Level::checkStillCollisons(const sf::FloatRect& rectangle) {
 }
 
 bool Level::chceckEnemiesCollisions(const sf::FloatRect &rectangle, bool killing) {
-    for(auto it=gumbas.begin();
-                                    it!= gumbas.end();
-                                    it++) {
+    for(auto it=gumbas.begin(); it!= gumbas.end(); it++) {
         if ((*it).isOnScreen()){
             if ((*it).getSprite().getGlobalBounds().intersects(rectangle)) {
                 if(killing) {
                     (*it).die();
                     gumbas.erase(it);
-
                 }
                 return true; //todo this a Item class method
             }
@@ -165,7 +163,12 @@ bool Level::chceckEnemiesCollisions(const sf::FloatRect &rectangle, bool killing
 
 void Level::generateCollisionsWithEnemies(MovingItem &mario) {
     Bonduaries b = mario.getBonduariesBoxes();
+    chceckEnemiesCollisions(b.bottomBonduary, true);
     if (chceckEnemiesCollisions(b.leftBonduary) or chceckEnemiesCollisions(b.rightBonduary))
         mario.die();
-    chceckEnemiesCollisions(b.bottomBonduary, true);
+}
+
+void Level::loadTexturesToStorage() {
+    texturesStorage.gumbaTexture.get()->loadFromFile("../src/resources/gumba.png");
+    texturesStorage.soilTexture->loadFromFile("../src/resources/soil.png");
 }

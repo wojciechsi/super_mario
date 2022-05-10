@@ -1,6 +1,5 @@
 #include "headers/Item.h"
 
-
 Item::Item(const Item &other) {
     this->x = other.x;
     this->y = other.y;
@@ -24,11 +23,14 @@ void Item::setTexture(std::string s) {
 }
 
 void Item::setTexture(const sf::Texture& t) {
-    texture = std::ref(t);
+    texture = t;
+    //texture.swap(t);
     sprite.setTexture(texture);
     size = texture.getSize();
     sprite.setOrigin(size.x / 2, size.y / 2);
 }
+
+
 
 void Item::moveOneStepLeft() {
     x--;
@@ -51,9 +53,17 @@ Bonduaries Item::getBonduariesBoxes() {
     b.rightBonduary = sf::FloatRect (rectangle.left + rectangle.width, rectangle.top,
                                       -ITEM_COLL_WIDTH, rectangle.height);
     b.topBonduary = sf::FloatRect (rectangle.left + ITEM_COLL_OFFSET, rectangle.top,
-                                    rectangle.width /*-2*ITEM_COLL_OFFSET*/,  ITEM_COLL_WIDTH);
+                                    rectangle.width -2*ITEM_COLL_OFFSET,  ITEM_COLL_WIDTH);
     b.bottomBonduary = sf::FloatRect (rectangle.left + ITEM_COLL_OFFSET, rectangle.top + rectangle.height,
                                        rectangle.width - 2*ITEM_COLL_OFFSET, ITEM_COLL_WIDTH);
     return b;
 }
+
+void Item::setTexture(std::shared_ptr<sf::Texture> t) {
+    pTexture = t;
+    sprite.setTexture(*pTexture.lock());
+    size = texture.getSize();
+    sprite.setOrigin(size.x / 2, size.y / 2);
+}
+
 

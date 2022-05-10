@@ -28,7 +28,7 @@ public:
 
     Item() : x(0), y(0), size(sf::Vector2u(0,0)) { };
 
-    Item(int x, int y, const sf::Texture& t) : Item(x, y) {setTexture(t);};
+    Item(int x, int y, const sf::Texture& t) : Item(x, y) {setTexture(t);}; //todo nie działa
 
     Item(const Item& other);
 
@@ -39,6 +39,8 @@ public:
     void setTexture (std::string s);
 
     void setTexture (const sf::Texture& t);
+
+    void setTexture(std::shared_ptr<sf::Texture> t);
 
     void draw(sf::RenderWindow& iWindow);
 
@@ -69,6 +71,7 @@ public:
 private:
 
     sf::Texture texture;
+    std::weak_ptr<sf::Texture> pTexture;
 };
 
 

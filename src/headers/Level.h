@@ -7,6 +7,12 @@
 #include "defs.h"
 #include "Mario.h"
 #include <iostream>
+
+struct TexturesStorage {
+    std::shared_ptr<sf::Texture> soilTexture = std::make_shared<sf::Texture>();
+    std::shared_ptr<sf::Texture> gumbaTexture = std::make_shared<sf::Texture>();
+};
+
 /**
  * Klasa zawiera aktualny poziom gry
  */
@@ -42,11 +48,13 @@ private:
     std::vector<Item> groundTiles;
     std::vector<Item> lowerTiles; //unused in collisions
 
+    TexturesStorage texturesStorage;
+
     bool checkStillCollisons (const sf::FloatRect& rectangle);
 
     bool chceckEnemiesCollisions (const sf::FloatRect& rectangle, bool killing = false);
     const void createTestLevel ();
-
+    void loadTexturesToStorage ();
 };
 
 
