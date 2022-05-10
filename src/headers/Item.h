@@ -28,7 +28,7 @@ public:
 
     Item() : x(0), y(0), size(sf::Vector2u(0,0)) { };
 
-    Item(int x, int y, const sf::Texture& t) : Item(x, y) {setTexture(t);}; //todo nie działa
+    Item(int x, int y, std::shared_ptr<sf::Texture> t) : Item(x, y) {setTexture(t);};
 
     Item(const Item& other);
 
@@ -37,8 +37,6 @@ public:
      * @param s ścieżka do tekstury
      */
     void setTexture (std::string s);
-
-    void setTexture (const sf::Texture& t);
 
     void setTexture(std::shared_ptr<sf::Texture> t);
 
@@ -49,10 +47,11 @@ public:
      */
     void moveOneStepLeft ();
 
-    bool upDownTouch (Item);
-
+    /**
+     * Funkcja filtrująca iteracje
+     * @return czy analiza danego elementu ma sens
+     */
     inline bool isOnScreen() {if (x > -10 and x < (SCREEN_WIDTH + 10)) return true; else return false;}
-
 
 protected:
 

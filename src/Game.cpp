@@ -52,8 +52,6 @@ void Game::updateWindow(sf::RenderWindow & iWindow) {
          */
         level.printLevelContent(iWindow);
     }
-
-
 }
 
 void Game::handleEvents() {
@@ -62,9 +60,4 @@ void Game::handleEvents() {
         if (event.type == sf::Event::Closed)
             window.close();
     }
-}
-
-bool Game::ifMarioShouldDie() {
-
-    return false;
 }

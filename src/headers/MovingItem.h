@@ -18,7 +18,6 @@ struct Collisons {
 class MovingItem : public Item{
 public:
     MovingItem() = default;
-
     /**
      * Konstruktor przenoszący
      */

@@ -20,6 +20,10 @@ class Level {
 public:
     Level();
 
+    /**
+     * Renderuje elementy poziomu na ekranie
+     * @param iwindow okno
+     */
     void printLevelContent (sf::RenderWindow &iwindow);
 
     /**
@@ -28,10 +32,9 @@ public:
      */
     void updateLevelPositionsWhileWalk();
 
-    bool isOnTopOfAny (Item);
-
-    bool isSthAtPoint (float x, float y);
-
+    /**
+     * Kontynuuje ruch wrogich postaci
+     */
     void updateEnemiesPositions();
 
     /**
@@ -40,6 +43,11 @@ public:
      */
     void generateCollisions (MovingItem& movingItem);
 
+    /**
+     * Wyzwala akcję zwoiązane z kolizjami Maria z wrogami.
+     * Zabija wrogów lub Mario.
+     * @param mario Mario
+     */
     void generateCollisionsWithEnemies (MovingItem& mario);
 
 private:
@@ -53,7 +61,9 @@ private:
     bool checkStillCollisons (const sf::FloatRect& rectangle);
 
     bool chceckEnemiesCollisions (const sf::FloatRect& rectangle, bool killing = false);
+
     const void createTestLevel ();
+
     void loadTexturesToStorage ();
 };
 

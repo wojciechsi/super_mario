@@ -10,12 +10,27 @@
 class Mario : virtual public MovingItem{
 public:
     Mario();
+
+    /**
+     * Zarządza ruchem gracza
+     */
     void MoveStatus();
 
+    /**
+     * Zwraca informację o ewentualnym ruchu w prawo, za połowę ekranu.
+     * @return
+     */
     bool isGoesRight() const;
 
+    /**
+     * Rozpoczyna proces umierania gracza
+     */
     void die();
 
+    /**
+     * Dodaje punkty dla gracza
+     * @param points ilość punktów
+     */
     void addPoints (int points);
 private:
 

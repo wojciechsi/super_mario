@@ -22,23 +22,8 @@ void Item::setTexture(std::string s) {
     sprite.setOrigin(size.x / 2, size.y / 2);
 }
 
-void Item::setTexture(const sf::Texture& t) {
-    texture = t;
-    //texture.swap(t);
-    sprite.setTexture(texture);
-    size = texture.getSize();
-    sprite.setOrigin(size.x / 2, size.y / 2);
-}
-
-
-
 void Item::moveOneStepLeft() {
     x--;
-}
-
-bool Item::upDownTouch(Item up) {
-    if (up.sprite.getGlobalBounds().intersects(this->sprite.getGlobalBounds())) return true;
-    else return false;
 }
 
 const sf::Sprite &Item::getSprite() const {

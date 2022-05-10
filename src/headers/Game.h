@@ -19,8 +19,6 @@ public:
      */
     void run();
 
-
-
 private:
     sf::RenderWindow window = sf::RenderWindow(
             sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT),
@@ -35,10 +33,6 @@ private:
     bool gameON = true;
 
     void handleEvents();
-
-    bool ifMarioShouldDie();
 };
-
-
 
 #endif //SUPER_MARIO_GAME_H
