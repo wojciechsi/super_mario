@@ -5,18 +5,17 @@ Mario::Mario() : MovingItem(0.5f * SCREEN_WIDTH,
     setTexture("../src/resources/smallMario.png");
 }
 
-void Mario::MoveStatus()
+void Mario::update()
 {
+    MovingItem::update();
 
-    {//@todo this method should provide keyboard inputs XOR updating stuff
         goesRight = false;
+        //todo move below to handleKeyboardInput
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
             //nie wypuść ne lewo od ekran
             this->sprite.setScale(-1.0f, 1.0f);
             if (this->sprite.getPosition().x < (this->size.x) / 2) return;
             else this->move(-1.0f, 0);
-
-
         } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
             this->sprite.setScale(1.0f, 1.0f);
             if (this->sprite.getPosition().x < SCREEN_WIDTH / 2)
@@ -24,13 +23,14 @@ void Mario::MoveStatus()
             else goesRight = true;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
-            if (this->hasDownCollision()) jumpCtr = MAX_JUMP;
+            if (this->hasDownCollision()) jump();
         }
+        jumpProcess();
+        if (deadProcessCtr > 0) deadProcessCtr--;
 
-        if (jumpCtr > 0) move(0, -5.0f);
-        if (collisions.up) jumpCtr = 0; //BUXFIX 5454841
-        if (jumpCtr > 0) jumpCtr--;
-    }
+}
+
+void Mario::handleKeyboardInputs() {
 
 }
 
@@ -40,11 +40,18 @@ bool Mario::isGoesRight() const {
 
 void Mario::die() {
     MovingItem::die();
-    std::cout<<"MARIO ";
-    jumpCtr = MAX_JUMP;
-    //change texture
+    deadProcessCtr = DIE_TIME;
+    jump();
+
 }
 
 void Mario::addPoints(int addedPoints) {
     points += addedPoints;
 }
+
+void Mario::jumpProcess() {
+    if (jumpCtr > 0) move(0, JUMP_VELOCITY);
+    if (collisions.up) jumpCtr = 0; //BUXFIX 5454841
+    if (jumpCtr > 0) jumpCtr--;
+}
+

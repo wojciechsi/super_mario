@@ -8,9 +8,9 @@ void MovingItem::move(const float x, const float y)
         this -> x += x;
     else if (x < 0 and collisions.left == false)
         this -> x += x;
-    //to nie duplikacja tylko rozwinięcie pętli
-    if (y > 0 and collisions.down == false)
-        this -> y += y;
+    if (y > 0){
+        if(collisions.down == false or !alive)
+        this -> y += y;}
     else if (y < 0 and collisions.up == false)
         this -> y += y;
 }
@@ -30,7 +30,6 @@ void MovingItem::update() {
 
 void MovingItem::die() {
     alive = false;
-    std::cout << "DIED "; //@todo remove DDP
 }
 
 

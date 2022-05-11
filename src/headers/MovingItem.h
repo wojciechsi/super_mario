@@ -56,6 +56,7 @@ public:
 
     void setCollisions (Collisons newCollisons) {collisions = newCollisons;}
 
+
    /**
     * Aktualizuje położenie i stan
     */

@@ -31,26 +31,18 @@ void Game::run() {
 
 void Game::updateWindow(sf::RenderWindow & iWindow) {
     if (gameON) {
-        //if(level.isOnTopOfAny(mario)) mario.setDownCollision(true); //VERSION 0
-        level.generateCollisions(mario);    //VERSION 1 with 2d collisions
-        //@todo rozpędzony mario przechodzi przez ścianę
+        level.printLevelContent(iWindow);
+        level.generateCollisions(mario);
         //@todo gumba odwala jak wyjdzie za ekran
-        mario.MoveStatus(); //this calls for moves from keyboard and much more...
         mario.update();
-        //mario.setDownCollision(false); // part of VERSION 0
         mario.draw(iWindow);
         level.updateEnemiesPositions();
-        level.generateCollisionsWithEnemies(mario);
-        if(mario.isGoesRight())
-            level.updateLevelPositionsWhileWalk();
-        if(!mario.isAlive()) {
-            gameON = false;
+        if(mario.isAlive()) {
+            level.generateCollisionsWithEnemies(mario);
+               if (mario.isGoesRight())
+                   if (!mario.hasRightCollision())
+                        level.updateLevelPositionsWhileWalk();
         }
-        /**
-         * @todo za dużo się tu dzieje
-         * konieczna refaktoryzacja!
-         */
-        level.printLevelContent(iWindow);
     }
 }
 

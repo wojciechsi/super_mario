@@ -36,7 +36,7 @@ Bonduaries Item::getBonduariesBoxes() {
     b.leftBonduary = sf::FloatRect (rectangle.left, rectangle.top,
                                      ITEM_COLL_WIDTH, rectangle.height);
     b.rightBonduary = sf::FloatRect (rectangle.left + rectangle.width, rectangle.top,
-                                      -ITEM_COLL_WIDTH, rectangle.height);
+                                      -ITEM_COLL_WIDTH, rectangle.height - 2*ITEM_COLL_OFFSET);
     b.topBonduary = sf::FloatRect (rectangle.left + ITEM_COLL_OFFSET, rectangle.top,
                                     rectangle.width -2*ITEM_COLL_OFFSET,  ITEM_COLL_WIDTH);
     b.bottomBonduary = sf::FloatRect (rectangle.left + ITEM_COLL_OFFSET, rectangle.top + rectangle.height,
