@@ -12,7 +12,7 @@ public:
     Mario();
 
     /**
-     * Zarządza ruchem gracza
+     * Aktualizuje stan - metoda najwyższego poziomu abstrakcji dla klasy.
      */
     void update();
 
@@ -27,6 +27,10 @@ public:
      */
     void die();
 
+    /**
+     * Wykrywanie kolizji po prawej stronie
+     * @return
+     */
     bool hasRightCollision() {return collisions.right;}
 
     /**
@@ -42,8 +46,24 @@ private:
     int points = 0;
     int jumpCtr = 0;
 
+    /**
+     * Wyzwala skok
+     */
     void jump() {jumpCtr = MAX_JUMP;}
+
+    /**
+     * Przetwarza skok, jeśli jest
+     */
     void jumpProcess();
+
+    /**
+     * Przetwarza proces umierania, jeśli jest
+     */
+    void deadProcess();
+
+    /**
+     * Przyjmuje i przetwarza dane wprowadzane z klawiatury.
+     */
     void handleKeyboardInputs();
 };
 

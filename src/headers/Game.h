@@ -1,14 +1,15 @@
 #ifndef SUPER_MARIO_GAME_H
 #define SUPER_MARIO_GAME_H
 
+#include <chrono>
 #include "defs.h"
 #include "Menu.h"
 #include "Mario.h"
 #include "Level.h"
+#include "Window.h"
+
 /**
- * Klasa odpowiedzialna za inicjalizacje programu
- * i jego ciągłość działania.
- * Należy ją wywołać w głównym pliku.
+ * Silnik gry
  */
 class Game {
 public:
@@ -20,19 +21,35 @@ public:
     void run();
 
 private:
-    sf::RenderWindow window = sf::RenderWindow(
-            sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT),
-            "Super Mario Bros");
-
-    void updateWindow (sf::RenderWindow&);
-
+    Window window;
     Mario mario;
-
     Level level;
-
     bool gameON = true;
 
+    /**
+     * Aktualizuje stan gry i przetwarza informaje.
+     */
+    void updateGame ();
+
+    /**
+     * Przetwarza wydarzenia spoza mechaniki gry.
+     */
     void handleEvents();
+
+    /**
+     * Wysyła aktualne dane do wyświetlenia.
+     */
+    void renderContent();
+
+    /**
+     * Przetwarza relacje między elementami gry.
+     */
+    void processRelations();
+
+    /**
+     * Wyszukuje możliwość i wyzwala śmierci wrogów lub gracza.
+     */
+    void updateWhatMarioWithEnemiesDo ();
 };
 
 #endif //SUPER_MARIO_GAME_H

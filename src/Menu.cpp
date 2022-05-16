@@ -3,7 +3,7 @@
 
 Menu::Menu(float width, float height)
 {
-    if(!font.loadFromFile("Fonts/.../"))
+    if(!font.loadFromFile("../src/resources/SuperMario256.ttf"))
     {
         std::cout << "Font error";
     }

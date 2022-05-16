@@ -9,7 +9,7 @@ constexpr unsigned short SCREEN_WIDTH = 240;
 
 constexpr unsigned short MAX_LEVEL_SIZE = 1000;
 
-constexpr double FRAME_TIME = 0.017;
+constexpr unsigned int FRAMES = 80;
 
 constexpr int MAX_JUMP = 20;
 constexpr float JUMP_VELOCITY = -5.0f;
