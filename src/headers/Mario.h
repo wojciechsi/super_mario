@@ -49,7 +49,7 @@ private:
     /**
      * Wyzwala skok
      */
-    void jump() {jumpCtr = MAX_JUMP;}
+    void jump() {if (this->hasDownCollision()) jumpCtr = MAX_JUMP;}
 
     /**
      * Przetwarza skok, jeśli jest
@@ -57,7 +57,7 @@ private:
     void jumpProcess();
 
     /**
-     * Przetwarza proces umierania, jeśli jest
+     * Przetwarza proces umierania, jeśli jest.
      */
     void deadProcess();
 
@@ -65,6 +65,16 @@ private:
      * Przyjmuje i przetwarza dane wprowadzane z klawiatury.
      */
     void handleKeyboardInputs();
+
+    /**
+     * Wyzwala ruch w lewo.
+     */
+    void moveLeft();
+
+    /**
+     * Wyzwala ruch w prawo.
+     */
+    void moveRight();
 };
 
 

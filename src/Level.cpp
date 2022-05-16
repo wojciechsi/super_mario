@@ -25,12 +25,9 @@ Level::Level() {
     }
 
 void Level::printLevelContent(sf::RenderWindow &iwindow) {
-    std::for_each(groundTiles.begin(), groundTiles.end(),
-                  [&](Item &i){i.draw(iwindow);});
-    //buhahahaha
-    //for (auto &tile : groundTiles) {
-    //    tile.draw(iwindow);
-    //}
+    for (auto &tile : groundTiles) {
+        tile.draw(iwindow);
+    }
     for(auto &tile1 : lowerTiles)
     {
         tile1.draw(iwindow);
@@ -61,30 +58,42 @@ void Level::updateLevelPositionsWhileWalk() {
 }
 
 void Level::updateEnemiesPositions() {
-    for (auto &gumba : gumbas)
-        if (gumba.isOnScreen()) {
-            gumba.setDownCollision(false);
-            //if(isOnTopOfAny(gumba))
-            //    gumba.setDownCollision(true); // version 0
-            generateCollisions(gumba); //version 1
-            //@todo gumba nie wychodzi za ekran
-            gumba.update(); }
-    for (auto &turtle : turtles)
-        if (turtle.isOnScreen())
-            turtle.update();
+    std::jthread gumbaThread ([&]() {
+        for (auto &gumba: gumbas)
+            if (gumba.isOnScreen()) {
+                generateCollisions(gumba);
+                gumba.update();
+            }
+
+    });
+    std::jthread turtleThread ([&](){
+        for (auto &turtle: turtles)
+            if (turtle.isOnScreen())
+                turtle.update();
+    });
 }
 
 void Level::generateCollisions(MovingItem& movingItem) {
     Collisons newCollisions;
-
-
     Bonduaries b = movingItem.getBonduariesBoxes();
 
-    if(checkStillCollisons(b.leftBonduary)) newCollisions.left = true;
-    if(checkStillCollisons(b.rightBonduary)) newCollisions.right = true;
-    if(checkStillCollisons(b.topBonduary)) newCollisions.up = true;
-    if(checkStillCollisons(b.bottomBonduary)) newCollisions.down = true;
+    std::jthread leftThread([&](){
+        if(checkStillCollisons(b.leftBonduary)) newCollisions.left = true;
+    });
+    std::jthread rightThread([&](){
+        if(checkStillCollisons(b.rightBonduary)) newCollisions.right = true;
+    });
+    std::jthread topThread ([&](){
+        if(checkStillCollisons(b.topBonduary)) newCollisions.up = true;
+    });
+    std::jthread bottomThread ([&](){
+        if(checkStillCollisons(b.bottomBonduary)) newCollisions.down = true;
+    });
 
+    leftThread.join();
+    rightThread.join();
+    topThread.join();
+    bottomThread.join();
 
     movingItem.setCollisions(newCollisions);
     }

@@ -7,6 +7,8 @@
 #include "defs.h"
 #include "Mario.h"
 #include <iostream>
+#include <thread>
+#include <ranges>
 
 struct TexturesStorage {
     std::shared_ptr<sf::Texture> soilTexture = std::make_shared<sf::Texture>();

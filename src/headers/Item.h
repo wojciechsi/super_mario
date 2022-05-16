@@ -33,7 +33,7 @@ public:
     Item(const Item& other);
 
     /**
-     * Po zadaniu tekstury ustawia też wymiary i środek
+     * Po zadaniu tekstury ustawia też wymiary i środek.
      * @param s ścieżka do tekstury
      */
     void setTexture (std::string s);
