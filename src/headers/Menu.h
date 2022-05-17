@@ -2,6 +2,7 @@
 #define SUPER_MARIO_MENU_H
 
 #include <SFML/Graphics.hpp>
+#include "Window.h"
 
 #define Max_main_menu 5
 /**
@@ -14,10 +15,12 @@ public:
     void Up();
     void Down();
 
+
     int Pressed()
     {
         return selected;
     }
+    void Display(sf::RenderWindow& window);
     ~Menu();
 private:
     int selected;
