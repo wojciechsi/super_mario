@@ -46,7 +46,7 @@ void Mario::die() {
     MovingItem::die();
     deadProcessCtr = DIE_TIME;
     jump();
-
+    std::cout << "MARIODIE ";
 }
 
 void Mario::addPoints(int addedPoints) {
@@ -55,7 +55,7 @@ void Mario::addPoints(int addedPoints) {
 
 void Mario::jumpProcess() {
     if (jumpCtr > 0) move(0, JUMP_VELOCITY);
-    if (collisions.up) jumpCtr = 0; //BUXFIX 5454841
+    if (collisions.up) jumpCtr = 0;
     if (jumpCtr > 0) jumpCtr--;
 }
 

@@ -9,11 +9,7 @@
 #include <iostream>
 #include <thread>
 #include <ranges>
-
-struct TexturesStorage {
-    std::shared_ptr<sf::Texture> soilTexture = std::make_shared<sf::Texture>();
-    std::shared_ptr<sf::Texture> gumbaTexture = std::make_shared<sf::Texture>();
-};
+#include "TexturesStorage.h"
 
 /**
  * Klasa zawiera aktualny poziom gry
@@ -52,21 +48,41 @@ public:
      */
     void generateCollisionsWithEnemies (MovingItem& mario);
 
+    bool shouldMarioJump () {return marioJumpOnTurtleFlag;}
+
 private:
     std::vector<Gumba> gumbas;
     std::vector<Turtle> turtles;
     std::vector<Item> groundTiles;
     std::vector<Item> lowerTiles; //unused in collisions
 
-    TexturesStorage texturesStorage;
 
+
+    bool marioJumpOnTurtleFlag = false;
+
+    /**
+     * Metoda sprawdza kolizję z nieruchomymi elementami gry.
+     * @param rectangle prostokąt, który jest sprawdzany
+     * @return czy jest kolizja
+     */
     bool checkStillCollisons (const sf::FloatRect& rectangle);
 
+    /**
+     * Sprawdza kolizję z wrogami.
+     * Jeżeli @param killing == true, to Mario zabija wroga.
+     * Należy ustawić ten parametr, jeśli sprawdzana jest kolizja dolnej krawędzi gracza,
+     * wrogów zabija się poprzes wskoczenie na nich od góry.
+     * @param rectangle badany prostokąt
+     * @return czy wystąpiła kolizja
+     */
     bool chceckEnemiesCollisions (const sf::FloatRect& rectangle, bool killing = false);
 
     const void createTestLevel ();
 
-    void loadTexturesToStorage ();
+    /**
+     * Sprawdza kolizję pomiędzy wrogami.
+     */
+    void checkCollisionsBetweenEnemies (Enemy& enemy);
 };
 
 

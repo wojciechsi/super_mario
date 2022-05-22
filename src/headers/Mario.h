@@ -39,6 +39,7 @@ public:
      */
     void addPoints (int points);
 
+    void jumpWithinConditions () {this->move(0.0f, -50.0f); /*jumpCtr = MAX_JUMP*/;}
 private:
     int deadProcessCtr = 0;
     bool isBig = false;

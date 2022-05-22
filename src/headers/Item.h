@@ -51,7 +51,7 @@ public:
      * Funkcja filtrująca iteracje
      * @return czy analiza danego elementu ma sens
      */
-    inline bool isOnScreen() {if (x > -10 and x < (SCREEN_WIDTH + 10)) return true; else return false;}
+    inline bool isOnScreen() {if (x > -SCREEN_LOAD_OFFSET and x < (SCREEN_WIDTH + SCREEN_LOAD_OFFSET)) return true; else return false;}
 
 protected:
 

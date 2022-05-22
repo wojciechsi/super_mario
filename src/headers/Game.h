@@ -7,6 +7,7 @@
 #include "Mario.h"
 #include "Level.h"
 #include "Window.h"
+#include "TexturesStorage.h"
 
 /**
  * Silnik gry
@@ -25,6 +26,7 @@ private:
     Mario mario;
     Level level;
     bool gameON = true;
+
 
     /**
      * Aktualizuje stan gry i przetwarza informaje.
@@ -50,6 +52,11 @@ private:
      * Wyszukuje możliwość i wyzwala śmierci wrogów lub gracza.
      */
     void updateWhatMarioWithEnemiesDo ();
+
+    /**
+     * Wczytuje tekstury z plików.
+     */
+    void loadTexturesToStorage ();
 };
 
 #endif //SUPER_MARIO_GAME_H

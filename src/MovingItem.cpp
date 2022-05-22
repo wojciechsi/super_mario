@@ -19,10 +19,6 @@ bool MovingItem::hasDownCollision() const {
     return collisions.down;
 }
 
-void MovingItem::setDownCollision(bool rvalue) {
-    collisions.down = rvalue;
-}
-
 void MovingItem::update() {
     gravityMove();
     //they also get updated from level instance

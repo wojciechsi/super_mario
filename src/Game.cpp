@@ -1,6 +1,7 @@
 #include "headers/Game.h"
 
 void Game::run() {
+
     window.initialize();
     while(window.isOpen()) {
         handleEvents();
@@ -34,6 +35,8 @@ void Game::updateWhatMarioWithEnemiesDo() {
             if (!mario.hasRightCollision())
                 level.updateLevelPositionsWhileWalk();
     }
+    if (level.shouldMarioJump())
+        mario.jumpWithinConditions();
 }
 
 void Game::renderContent() {

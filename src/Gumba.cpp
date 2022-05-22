@@ -1,7 +1,7 @@
 #include "headers/Gumba.h"
 
 Gumba::Gumba() : Enemy(0, 0) {
-    velocity = -0.8;
+    velocity = BASIC_ENEMY_SPEED;
 }
 
 Gumba::Gumba(int iX, int iY) : Gumba() {

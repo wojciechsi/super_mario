@@ -52,8 +52,6 @@ public:
      */
     bool hasDownCollision() const;
 
-    void setDownCollision(bool rvalue);
-
     void setCollisions (Collisons newCollisons) {collisions = newCollisons;}
 
 

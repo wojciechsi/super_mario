@@ -15,17 +15,31 @@ public:
     Enemy (const Enemy& other) = default;
 
     Enemy (int iX, int iY) : MovingItem(iX, iY) {};
-    //virtual void die() = 0; //pure virtual methods are allowed by compiler as long
-    //as you provide it's declaration in ALL child classes
     /**
      * Rozszerza metodę klasy MovingItem o automatyczny ruch i odbicia
      */
     void update ();
+
+    bool operator==(const Enemy& rEnemy);
+
+    /**
+    * Ustawia lewą i prawą kolizję
+    * @param left lewa kolizja
+    * @param right prawa kolizja
+    */
+    void setLeftAndRightCollisons (bool left, bool right);
 private:
     /**
      * Odbija od ewentualnych przeszkód
      */
     void bounceFromOther();
+
+    /**
+     * Ustawia teksturę względem kierunku ruchu.
+     */
+    void flipTextureToMoveDirection ();
+
+
 };
 
 

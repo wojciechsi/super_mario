@@ -2,25 +2,35 @@
 
 const void Level::createTestLevel() {
     for (int i = 0; i < 500; i++) {
-        groundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 24, texturesStorage.soilTexture));
-        lowerTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8, texturesStorage.soilTexture));
-
+        groundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 24, TexturesStorage::getInsatnce()->getSoilTexture()));
+        lowerTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8, TexturesStorage::getInsatnce()->getSoilTexture()));
     }
-    groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 40, texturesStorage.soilTexture));
-    groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 56, texturesStorage.soilTexture));
 
-    groundTiles.emplace_back(Item(25 * 16, SCREEN_HEIGHT - 40, texturesStorage.soilTexture));
-    groundTiles.emplace_back(Item(25 * 16, SCREEN_HEIGHT - 56, texturesStorage.soilTexture));
-    groundTiles.emplace_back(Item(18 * 16, SCREEN_HEIGHT - 72, texturesStorage.soilTexture));
+    groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInsatnce()->getSoilTexture()));
+    groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInsatnce()->getSoilTexture()));
 
-    gumbas.emplace_back(Gumba (450,40));
+    groundTiles.emplace_back(Item(40 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInsatnce()->getSoilTexture()));
+    groundTiles.emplace_back(Item(40 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInsatnce()->getSoilTexture()));
+
+    //groundTiles.emplace_back(Item(25 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInsatnce()->getSoilTexture()));
+    //groundTiles.emplace_back(Item(25 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInsatnce()->getSoilTexture()));
+
+    groundTiles.emplace_back(Item(30 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInsatnce()->getSoilTexture()));
+    groundTiles.emplace_back(Item(30 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInsatnce()->getSoilTexture()));
+
+    groundTiles.emplace_back(Item(18 * 16, SCREEN_HEIGHT - 72, TexturesStorage::getInsatnce()->getSoilTexture()));
+
+    //gumbas.emplace_back(Gumba (22*16,SCREEN_HEIGHT - 50));
     gumbas.emplace_back(Gumba (580,60));
-    gumbas[0].setTexture(texturesStorage.gumbaTexture);
-    gumbas[1].setTexture(texturesStorage.gumbaTexture);
+    gumbas[0].setTexture(TexturesStorage::getInsatnce()->getGumbaTexture());
+    //gumbas[1].setTexture(texturesStorage.gumbaTexture);
+    turtles.emplace_back(Turtle (23*16,SCREEN_HEIGHT - 50));
+    turtles[0].setTexture(TexturesStorage::getInsatnce()->getTurtleWalkingTexture());
+
 }
 
 Level::Level() {
-    loadTexturesToStorage();
+    TexturesStorage::getInsatnce()->loadTexturesToStorage();
     createTestLevel();
     }
 
@@ -62,14 +72,18 @@ void Level::updateEnemiesPositions() {
         for (auto &gumba: gumbas)
             if (gumba.isOnScreen()) {
                 generateCollisions(gumba);
+                checkCollisionsBetweenEnemies(gumba);
                 gumba.update();
             }
 
     });
     std::jthread turtleThread ([&](){
         for (auto &turtle: turtles)
-            if (turtle.isOnScreen())
+            if (turtle.isOnScreen()) {
+                generateCollisions(turtle);
+                checkCollisionsBetweenEnemies(turtle);
                 turtle.update();
+            }
     });
 }
 
@@ -77,16 +91,16 @@ void Level::generateCollisions(MovingItem& movingItem) {
     Collisons newCollisions;
     Bonduaries b = movingItem.getBonduariesBoxes();
 
-    std::jthread leftThread([&](){
+    std::thread leftThread([&](){
         if(checkStillCollisons(b.leftBonduary)) newCollisions.left = true;
     });
-    std::jthread rightThread([&](){
+    std::thread rightThread([&](){
         if(checkStillCollisons(b.rightBonduary)) newCollisions.right = true;
     });
-    std::jthread topThread ([&](){
+    std::thread topThread ([&](){
         if(checkStillCollisons(b.topBonduary)) newCollisions.up = true;
     });
-    std::jthread bottomThread ([&](){
+    std::thread bottomThread ([&](){
         if(checkStillCollisons(b.bottomBonduary)) newCollisions.down = true;
     });
 
@@ -108,6 +122,7 @@ bool Level::checkStillCollisons(const sf::FloatRect& rectangle) {
 }
 
 bool Level::chceckEnemiesCollisions(const sf::FloatRect &rectangle, bool killing) {
+    marioJumpOnTurtleFlag = false;
     for(auto it=gumbas.begin(); it!= gumbas.end(); it++) {
         if ((*it).isOnScreen()){
             if ((*it).getSprite().getGlobalBounds().intersects(rectangle)) {
@@ -115,13 +130,27 @@ bool Level::chceckEnemiesCollisions(const sf::FloatRect &rectangle, bool killing
                     (*it).die();
                     gumbas.erase(it);
                 }
-                return true; //todo this a Item class method
+                return true; //todo this a TURTLE and GUMBA method
             }
 
         }
     }
-    for(auto& turtle : turtles) {
+    for(auto it=turtles.begin(); it!= turtles.end(); it++) {
+        if ((*it).isOnScreen()){
+            if ((*it).getSprite().getGlobalBounds().intersects(rectangle)) {
+                if(killing) {
+                    (*it).die();
+                    if((*it).isRunning())
+                        turtles.erase(it);
+                    else {
+                        marioJumpOnTurtleFlag = true;
+                        return false;
+                    }
+                }
+                return true;
+            }
 
+        }
     }
     return false;
 }
@@ -129,11 +158,44 @@ bool Level::chceckEnemiesCollisions(const sf::FloatRect &rectangle, bool killing
 void Level::generateCollisionsWithEnemies(MovingItem &mario) {
     Bonduaries b = mario.getBonduariesBoxes();
     chceckEnemiesCollisions(b.bottomBonduary, true);
+    if (marioJumpOnTurtleFlag == true) return;
     if (chceckEnemiesCollisions(b.leftBonduary) or chceckEnemiesCollisions(b.rightBonduary))
         mario.die();
 }
 
-void Level::loadTexturesToStorage() {
-    texturesStorage.gumbaTexture.get()->loadFromFile("../src/resources/gumba.png");
-    texturesStorage.soilTexture->loadFromFile("../src/resources/soil.png");
+void Level::checkCollisionsBetweenEnemies(Enemy& enemy) {
+    Bonduaries b = enemy.getBonduariesBoxes();
+    bool newLeft = false, newRight = false;
+    bool enemyIsGumba = true; //ASSUMING ELSE: is a Turtle
+    if (typeid(enemy) == typeid(Turtle))
+        enemyIsGumba = false;
+    std::thread gumbasThread ([&](){
+        for (auto& gumba: gumbas) {
+            if (gumba.isOnScreen()) {
+                if (!enemyIsGumba or gumba != enemy) {
+                    if (gumba.getSprite().getGlobalBounds().intersects(b.leftBonduary))
+                        newLeft = true;
+                    if (gumba.getSprite().getGlobalBounds().intersects(b.rightBonduary))
+                        newRight = true;
+                }
+            }
+        }
+    });
+    std::thread turtlesThread ([&](){
+        for (auto& turtle: turtles) {
+            if (turtle.isOnScreen()) {
+                if (enemyIsGumba or turtle != enemy) {
+                    if (turtle.getSprite().getGlobalBounds().intersects(b.leftBonduary))
+                        newLeft = true;
+                    if (turtle.getSprite().getGlobalBounds().intersects(b.rightBonduary))
+                        newRight = true;
+                }
+            }
+        }
+    });
+
+    gumbasThread.join();
+    turtlesThread.join();
+
+    enemy.setLeftAndRightCollisons(newLeft, newRight);
 }
