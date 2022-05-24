@@ -17,7 +17,7 @@ constexpr float JUMP_VELOCITY = -5.0f;
 
 constexpr float GRAVITY_FACTOR = 2.0f;
 
-constexpr float BASIC_ENEMY_SPEED = -0.8f;
+constexpr float BASIC_ENEMY_SPEED = -0.6f;
 
 constexpr float ITEM_COLL_WIDTH = 2.0f;
 constexpr float ITEM_COLL_OFFSET = 3.0f; //to avoid sticking to the walls

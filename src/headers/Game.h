@@ -25,6 +25,7 @@ private:
     Window window;
     Mario mario;
     Level level;
+    Menu menu;
     bool gameON = true;
 
 
@@ -52,11 +53,6 @@ private:
      * Wyszukuje możliwość i wyzwala śmierci wrogów lub gracza.
      */
     void updateWhatMarioWithEnemiesDo ();
-
-    /**
-     * Wczytuje tekstury z plików.
-     */
-    void loadTexturesToStorage ();
 };
 
 #endif //SUPER_MARIO_GAME_H

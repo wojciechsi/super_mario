@@ -46,7 +46,7 @@ Bonduaries Item::getBonduariesBoxes() {
 
 void Item::setTexture(std::shared_ptr<sf::Texture> t) {
     pTexture = t;
-    sprite.setTexture(*pTexture.lock());
+    sprite.setTexture(*pTexture.lock(), true);
     size = texture.getSize();
     sprite.setOrigin(size.x / 2, size.y / 2);
 }

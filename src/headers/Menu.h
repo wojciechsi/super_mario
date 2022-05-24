@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Window.h"
+#include "defs.h"
 
 #define Max_main_menu 5
 /**
@@ -10,6 +11,7 @@
  */
 class Menu {
 public:
+    Menu() : Menu(SCREEN_WIDTH, SCREEN_HEIGHT) {}
     Menu(float width, float height);
     void draw(sf::RenderWindow& window);
     void Up();

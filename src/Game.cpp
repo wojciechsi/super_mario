@@ -1,8 +1,22 @@
 #include "headers/Game.h"
 
 void Game::run() {
-
     window.initialize();
+    /*
+    bool cos = false;
+    while(window.isOpen()) {
+        handleEvents();
+        menu.draw(window.getRenderWindow());
+        window.display();
+        if(cos == false) {
+            menu.Down();
+            menu.Down();
+            cos = true;
+        }
+        window.flush();
+    }
+     */
+    window.flush();
     while(window.isOpen()) {
         handleEvents();
         updateGame();
@@ -21,8 +35,6 @@ void Game::updateGame() {
 
 void Game::processRelations() {
     level.generateCollisions(mario);
-    //@todo gumba odwala jak wyjdzie za ekran
-    //todo mario ma nic nie umieć podczas umierania
     mario.update();
     level.updateEnemiesPositions();
     updateWhatMarioWithEnemiesDo();
