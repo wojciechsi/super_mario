@@ -35,7 +35,7 @@ public:
      */
     void move(const float x, const float y);
 
-    virtual void die ();
+    virtual void die () = 0;
 private:
     /**
      * Przemieszcza obiekt o stałą grawitacji dla klatki.

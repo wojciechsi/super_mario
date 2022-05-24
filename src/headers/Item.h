@@ -52,6 +52,14 @@ public:
      * @return czy analiza danego elementu ma sens
      */
     inline bool isOnScreen() {if (x > -SCREEN_LOAD_OFFSET and x < (SCREEN_WIDTH + SCREEN_LOAD_OFFSET)) return true; else return false;}
+    inline bool isAround(float ix) {if (x > ix -20 and x < ix +20 ) return true; else return false;}
+    inline bool isNearbyX(const Item& other) {
+        if (abs(this->x - other.x) < 20)
+            return true;
+        else return false;
+    }
+    //----------x-------------------
+    //-----------ix---------------
 
 protected:
 

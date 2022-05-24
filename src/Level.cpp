@@ -2,35 +2,35 @@
 
 const void Level::createTestLevel() {
     for (int i = 0; i < 500; i++) {
-        groundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 24, TexturesStorage::getInsatnce()->getSoilTexture()));
-        lowerTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8, TexturesStorage::getInsatnce()->getSoilTexture()));
+        groundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 24, TexturesStorage::getInstance()->getSoilTexture()));
+        lowerTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8, TexturesStorage::getInstance()->getSoilTexture()));
     }
 
-    groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInsatnce()->getSoilTexture()));
-    groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInsatnce()->getSoilTexture()));
+    groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInstance()->getSoilTexture()));
+    groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInstance()->getSoilTexture()));
 
-    groundTiles.emplace_back(Item(40 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInsatnce()->getSoilTexture()));
-    groundTiles.emplace_back(Item(40 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInsatnce()->getSoilTexture()));
+    groundTiles.emplace_back(Item(40 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInstance()->getSoilTexture()));
+    groundTiles.emplace_back(Item(40 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInstance()->getSoilTexture()));
 
-    //groundTiles.emplace_back(Item(25 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInsatnce()->getSoilTexture()));
-    //groundTiles.emplace_back(Item(25 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInsatnce()->getSoilTexture()));
+    //groundTiles.emplace_back(Item(25 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInstance()->getSoilTexture()));
+    //groundTiles.emplace_back(Item(25 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInstance()->getSoilTexture()));
 
-    groundTiles.emplace_back(Item(30 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInsatnce()->getSoilTexture()));
-    groundTiles.emplace_back(Item(30 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInsatnce()->getSoilTexture()));
+    groundTiles.emplace_back(Item(30 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInstance()->getSoilTexture()));
+    groundTiles.emplace_back(Item(30 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInstance()->getSoilTexture()));
 
-    groundTiles.emplace_back(Item(18 * 16, SCREEN_HEIGHT - 72, TexturesStorage::getInsatnce()->getSoilTexture()));
+    groundTiles.emplace_back(Item(18 * 16, SCREEN_HEIGHT - 72, TexturesStorage::getInstance()->getSoilTexture()));
 
-    //gumbas.emplace_back(Gumba (22*16,SCREEN_HEIGHT - 50));
+    gumbas.emplace_back(Gumba (22*16,SCREEN_HEIGHT - 50));
     gumbas.emplace_back(Gumba (580,60));
-    gumbas[0].setTexture(TexturesStorage::getInsatnce()->getGumbaTexture());
-    //gumbas[1].setTexture(texturesStorage.gumbaTexture);
+    gumbas[0].setTexture(TexturesStorage::getInstance()->getGumbaTexture());
+    gumbas[1].setTexture(TexturesStorage::getInstance()->getGumbaTexture());
     turtles.emplace_back(Turtle (23*16,SCREEN_HEIGHT - 50));
-    turtles[0].setTexture(TexturesStorage::getInsatnce()->getTurtleWalkingTexture());
+    turtles[0].setTexture(TexturesStorage::getInstance()->getTurtleWalkingTexture());
 
 }
 
 Level::Level() {
-    TexturesStorage::getInsatnce()->loadTexturesToStorage();
+    TexturesStorage::getInstance()->loadTexturesToStorage();
     createTestLevel();
     }
 
@@ -114,7 +114,7 @@ void Level::generateCollisions(MovingItem& movingItem) {
 
 bool Level::checkStillCollisons(const sf::FloatRect& rectangle) {
     for (auto& item : groundTiles) {
-        if(item.isOnScreen())
+        if(item.isAround(rectangle.left))
             if (item.getSprite().getGlobalBounds().intersects(rectangle))
                 return true;
     }
@@ -130,7 +130,7 @@ bool Level::chceckEnemiesCollisions(const sf::FloatRect &rectangle, bool killing
                     (*it).die();
                     gumbas.erase(it);
                 }
-                return true; //todo this a TURTLE and GUMBA method
+                return true;
             }
 
         }
@@ -166,24 +166,29 @@ void Level::generateCollisionsWithEnemies(MovingItem &mario) {
 void Level::checkCollisionsBetweenEnemies(Enemy& enemy) {
     Bonduaries b = enemy.getBonduariesBoxes();
     bool newLeft = false, newRight = false;
-    bool enemyIsGumba = true; //ASSUMING ELSE: is a Turtle
+    bool enemyIsGumba = true;
     if (typeid(enemy) == typeid(Turtle))
-        enemyIsGumba = false;
+        enemyIsGumba = false; //ASSUMING ELSE: is a Turtle
     std::thread gumbasThread ([&](){
-        for (auto& gumba: gumbas) {
-            if (gumba.isOnScreen()) {
-                if (!enemyIsGumba or gumba != enemy) {
-                    if (gumba.getSprite().getGlobalBounds().intersects(b.leftBonduary))
+        for (auto it = gumbas.begin(); it != gumbas.end(); it++) {
+            if ((*it).isNearbyX(enemy)) {
+                if (!enemyIsGumba or (*it) != enemy) {
+                    if ((*it).getSprite().getGlobalBounds().intersects(b.leftBonduary))
                         newLeft = true;
-                    if (gumba.getSprite().getGlobalBounds().intersects(b.rightBonduary))
+                    if ((*it).getSprite().getGlobalBounds().intersects(b.rightBonduary))
                         newRight = true;
+                    if(!enemyIsGumba) //A TURTLE
+                        if(newLeft or newRight) { //WHO COLLIDED WITH GUMBA
+                            if(!dynamic_cast<Turtle*>(&enemy)->isRunning()) //AND IS RUNNING
+                                gumbas.erase(it); //KILLS IT
+                        }
                 }
             }
         }
     });
     std::thread turtlesThread ([&](){
         for (auto& turtle: turtles) {
-            if (turtle.isOnScreen()) {
+            if (turtle.isNearbyX(enemy)) {
                 if (enemyIsGumba or turtle != enemy) {
                     if (turtle.getSprite().getGlobalBounds().intersects(b.leftBonduary))
                         newLeft = true;

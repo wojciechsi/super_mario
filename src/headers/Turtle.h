@@ -18,6 +18,7 @@ public:
     Turtle(int x, int y);
     void die();
     bool isRunning ();
+    void foo() {}
 };
 
 

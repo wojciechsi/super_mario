@@ -12,6 +12,8 @@ public:
     Gumba ();
     Gumba (int iX, int iY);
     void die();
+    //bool isRunning() {}
+    void foo() {}
 };
 
 

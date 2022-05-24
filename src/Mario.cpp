@@ -46,7 +46,6 @@ void Mario::die() {
     MovingItem::die();
     deadProcessCtr = DIE_TIME;
     jump();
-    std::cout << "MARIODIE ";
 }
 
 void Mario::addPoints(int addedPoints) {

@@ -28,11 +28,10 @@ const std::shared_ptr<sf::Texture> &TexturesStorage::getTurtleRunningTexture() c
     return turtleRunningTexture;
 }
 
-std::shared_ptr<TexturesStorage> TexturesStorage::getInsatnce() {
+std::shared_ptr<TexturesStorage> TexturesStorage::getInstance() {
     std::lock_guard<std::mutex> lock(mutex);
     if (instance == 0) {
         instance = std::make_shared<TexturesStorage>();
-        std::cout<<"created";
     }
     return instance;
 

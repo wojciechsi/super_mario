@@ -22,12 +22,16 @@ public:
 
     bool operator==(const Enemy& rEnemy);
 
+    virtual void foo() = 0;
+
     /**
     * Ustawia lewą i prawą kolizję
     * @param left lewa kolizja
     * @param right prawa kolizja
     */
     void setLeftAndRightCollisons (bool left, bool right);
+
+    //virtual bool isRunning() = 0;
 private:
     /**
      * Odbija od ewentualnych przeszkód

@@ -12,9 +12,9 @@ Turtle::Turtle(int x, int y) : Turtle() {
 void Turtle::die() {
     if (turtlemode == TurtleMode::walking) {
         turtlemode = TurtleMode::running;
-        this->setTexture(TexturesStorage::getInsatnce()->getTurtleRunningTexture());
+        this->setTexture(TexturesStorage::getInstance()->getTurtleRunningTexture());
         velocity = BASIC_ENEMY_SPEED * 2;
-        move(velocity, 16.0f);
+        move(velocity, 0.0f);
     }
     else {
         MovingItem::die();

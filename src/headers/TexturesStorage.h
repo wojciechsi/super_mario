@@ -27,7 +27,7 @@ public:
 
     void operator=(const TexturesStorage&) = delete;
 
-    static std::shared_ptr<TexturesStorage> getInsatnce();
+    static std::shared_ptr<TexturesStorage> getInstance();
 
     const std::shared_ptr<sf::Texture> &getSoilTexture() const;
 

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.21)
 project(super_mario)
 
 set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -O3")
 
 IF(WIN32)
     set(SFML_ROOT "C:\\Pliki\\SFML_CLION\\SFML-2.5.1")
