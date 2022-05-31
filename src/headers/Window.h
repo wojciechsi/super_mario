@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "defs.h"
-#include "Menu.h"
+
 /**
  * Klasa wyzwalająca i obsługująca okno
  */

@@ -16,18 +16,20 @@ public:
     void draw(sf::RenderWindow& window);
     void Up();
     void Down();
-
+    void handleKeyboardInput(sf::RenderWindow &window);
 
     int Pressed()
     {
         return selected;
     }
-    void Display(sf::RenderWindow& window);
     ~Menu();
 private:
     int selected;
     sf::Font font;
     sf::Text mainMenu[Max_main_menu];
+    float cooldown = 15.f;
+    float cooldownmin = 0.f;
+    float cooldownmax = 15.f;
 };
 
 

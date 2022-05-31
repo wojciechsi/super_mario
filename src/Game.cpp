@@ -2,20 +2,16 @@
 
 void Game::run() {
     window.initialize();
-    /*
+
     bool cos = false;
     while(window.isOpen()) {
         handleEvents();
+        menu.handleKeyboardInput(window.getRenderWindow());
         menu.draw(window.getRenderWindow());
         window.display();
-        if(cos == false) {
-            menu.Down();
-            menu.Down();
-            cos = true;
-        }
         window.flush();
     }
-     */
+
     window.flush();
     while(window.isOpen()) {
         handleEvents();

@@ -58,14 +58,13 @@ void Menu::draw(sf::RenderWindow &window) {
 }
 
 void Menu::Up() {
-    if(selected -1 >=0)
+    if(selected >= 0)
     {
         mainMenu[selected].setFillColor(sf::Color::White);
         selected--;
-
         if(selected == -1)
         {
-        selected = Max_main_menu - 1;
+        selected = Max_main_menu -1;
         }
         mainMenu[selected].setFillColor(sf::Color::Red);
     }
@@ -85,23 +84,25 @@ void Menu::Down()
     }
 }
 
-void Menu::Display(sf::RenderWindow &window)
-{
-    //Game game;
-    sf::Event event;
-    Menu mainMenu(window.getSize().x, window.getSize().y);
-    while(true)
-    {
-        int chosen = mainMenu.Pressed();
-        if (sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter) {
-            if (chosen == 0)
-            {
-                break;
-            }
-            else if (chosen == 1)
-            {
 
-            }
-        }
+void Menu::handleKeyboardInput(sf::RenderWindow &window)
+{
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) && cooldown == 0.f)
+    {
+        Menu::Up();
+        cooldown = cooldownmax;
+
     }
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) && cooldown == 0.f)
+    {
+        Menu::Down();
+        cooldown = cooldownmax;
+
+    }
+    if(cooldown > 0)
+    {
+        cooldown -= 1.f;
+    }
+
+
 }
