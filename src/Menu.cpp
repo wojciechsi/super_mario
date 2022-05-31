@@ -13,41 +13,46 @@ Menu::Menu(float width, float height)
     mainMenu[0].setFont(font);
     mainMenu[0].setFillColor(sf::Color::White);
     mainMenu[0].setString("Nowa Gra");
-    mainMenu[0].setCharacterSize(7);
+    mainMenu[0].setCharacterSize(0.06*SCREEN_WIDTH);
     mainMenu[0].setPosition(0.5*SCREEN_WIDTH, 0.3*SCREEN_HEIGHT);
 
     //continue
     mainMenu[1].setFont(font);
     mainMenu[1].setFillColor(sf::Color::White);
     mainMenu[1].setString("Kontynuuj");
-    mainMenu[1].setCharacterSize(7);
+    mainMenu[1].setCharacterSize(0.06*SCREEN_WIDTH);
     mainMenu[1].setPosition(0.5*SCREEN_WIDTH, 0.4*SCREEN_HEIGHT);
 
     //options
     mainMenu[2].setFont(font);
     mainMenu[2].setFillColor(sf::Color::White);
     mainMenu[2].setString("Opcje");
-    mainMenu[2].setCharacterSize(7);
+    mainMenu[2].setCharacterSize(0.06*SCREEN_WIDTH);
     mainMenu[2].setPosition(0.5*SCREEN_WIDTH, 0.5*SCREEN_HEIGHT);
 
     //Creators
     mainMenu[3].setFont(font);
     mainMenu[3].setFillColor(sf::Color::White);
     mainMenu[3].setString("Tworcy");
-    mainMenu[3].setCharacterSize(7);
+    mainMenu[3].setCharacterSize(0.06*SCREEN_WIDTH);
     mainMenu[3].setPosition(0.5*SCREEN_WIDTH, 0.6*SCREEN_HEIGHT);
 
     //exit game
     mainMenu[4].setFont(font);
     mainMenu[4].setFillColor(sf::Color::White);
     mainMenu[4].setString("Wyjdz z gry");
-    mainMenu[4].setCharacterSize(7);
+    mainMenu[4].setCharacterSize(0.06*SCREEN_WIDTH);
     mainMenu[4].setPosition(0.5*SCREEN_WIDTH, 0.7*SCREEN_HEIGHT);
 
     selected = -1;
 }
 Menu::~Menu() {
 
+}
+
+bool Menu::getEnd()
+{
+    return end;
 }
 
 void Menu::draw(sf::RenderWindow &window) {
@@ -57,7 +62,7 @@ void Menu::draw(sf::RenderWindow &window) {
     }
 }
 
-void Menu::Up() {
+void Menu::up() {
     if(selected >= 0)
     {
         mainMenu[selected].setFillColor(sf::Color::White);
@@ -70,7 +75,7 @@ void Menu::Up() {
     }
 }
 
-void Menu::Down()
+void Menu::down()
 {
     if(selected + 1 <= Max_main_menu)
     {
@@ -85,20 +90,50 @@ void Menu::Down()
 }
 
 
+
 void Menu::handleKeyboardInput(sf::RenderWindow &window)
 {
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) && cooldown == 0.f)
     {
-        Menu::Up();
+        Menu::up();
         cooldown = cooldownmax;
 
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) && cooldown == 0.f)
     {
-        Menu::Down();
+        Menu::down();
         cooldown = cooldownmax;
 
     }
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter) && cooldown == 0.f)
+    {
+        mainMenu[selected].setFillColor(sf::Color::White);
+        if(selected == 0)
+        {
+            end = true;
+        }
+        else if(selected == 1)
+        {
+            end = true;
+        }
+        else if(selected == 2)
+        {
+
+        }
+        else if(selected == 3)
+        {
+
+        }
+        else if(selected == 4)
+        {
+            window.close();
+        }
+        std::cout << "Dziala\n";
+        cooldown = cooldownmax;
+        Pressed();
+
+    }
+
     if(cooldown > 0)
     {
         cooldown -= 1.f;

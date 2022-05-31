@@ -3,13 +3,25 @@
 void Game::run() {
     window.initialize();
 
-    bool cos = false;
+    //bool cos = false;
+    sf::RectangleShape background;
+    background.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
+    sf::Texture backgroundTexture;
+    backgroundTexture.loadFromFile("../src/resources/background.png");
+    background.setTexture(&backgroundTexture);
+
+
     while(window.isOpen()) {
+        window.getRenderWindow().draw(background);
         handleEvents();
         menu.handleKeyboardInput(window.getRenderWindow());
         menu.draw(window.getRenderWindow());
         window.display();
         window.flush();
+        if(menu.getEnd() == true)
+        {
+            break;
+        }
     }
 
     window.flush();

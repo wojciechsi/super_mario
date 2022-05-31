@@ -14,10 +14,11 @@ public:
     Menu() : Menu(SCREEN_WIDTH, SCREEN_HEIGHT) {}
     Menu(float width, float height);
     void draw(sf::RenderWindow& window);
-    void Up();
-    void Down();
+    void up();
+    void down();
+    bool getEnd();
+    void select();
     void handleKeyboardInput(sf::RenderWindow &window);
-
     int Pressed()
     {
         return selected;
@@ -30,6 +31,7 @@ private:
     float cooldown = 15.f;
     float cooldownmin = 0.f;
     float cooldownmax = 15.f;
+    bool end = false;
 };
 
 
