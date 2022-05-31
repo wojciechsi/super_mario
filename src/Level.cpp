@@ -9,8 +9,8 @@ const void Level::createTestLevel() {
     groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInstance()->getSoilTexture()));
     groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInstance()->getSoilTexture()));
 
-    groundTiles.emplace_back(Item(40 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInstance()->getSoilTexture()));
-    groundTiles.emplace_back(Item(40 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInstance()->getSoilTexture()));
+    //groundTiles.emplace_back(Item(40 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInstance()->getSoilTexture()));
+    //groundTiles.emplace_back(Item(40 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInstance()->getSoilTexture()));
 
     //groundTiles.emplace_back(Item(25 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInstance()->getSoilTexture()));
     //groundTiles.emplace_back(Item(25 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInstance()->getSoilTexture()));
@@ -26,6 +26,11 @@ const void Level::createTestLevel() {
     gumbas[1].setTexture(TexturesStorage::getInstance()->getGumbaTexture());
     turtles.emplace_back(Turtle (23*16,SCREEN_HEIGHT - 50));
     turtles[0].setTexture(TexturesStorage::getInstance()->getTurtleWalkingTexture());
+
+    bricks.emplace_back(Brick(40 * 16, SCREEN_HEIGHT - 40));
+    bricks.emplace_back(Brick(40 * 16, SCREEN_HEIGHT - 56));
+    bricks.emplace_back(Brick(18 * 16, SCREEN_HEIGHT - 72));
+    bricks.emplace_back(Brick(17 * 16, SCREEN_HEIGHT - 72));
 
 }
 
@@ -48,6 +53,10 @@ void Level::printLevelContent(sf::RenderWindow &iwindow) {
     for (auto &gumba : gumbas) {
         gumba.draw(iwindow);
     }
+    for(auto &brick : bricks) {
+        brick.draw(iwindow);
+    }
+    //@todo others in future
 }
 
 void Level::updateLevelPositionsWhileWalk() {
@@ -63,6 +72,9 @@ void Level::updateLevelPositionsWhileWalk() {
     }
     for (auto &gumba : gumbas) {
         gumba.moveOneStepLeft();
+    }
+    for (auto &brick : bricks) {
+        brick.moveOneStepLeft();
     }
     //@todo others in future
 }
@@ -85,6 +97,7 @@ void Level::updateEnemiesPositions() {
                 turtle.update();
             }
     });
+    processBrickJumps();
 }
 
 void Level::generateCollisions(MovingItem& movingItem) {
@@ -98,7 +111,7 @@ void Level::generateCollisions(MovingItem& movingItem) {
         if(checkStillCollisons(b.rightBonduary)) newCollisions.right = true;
     });
     std::thread topThread ([&](){
-        if(checkStillCollisons(b.topBonduary)) newCollisions.up = true;
+        if(checkStillCollisons(b.topBonduary, true)) newCollisions.up = true;
     });
     std::thread bottomThread ([&](){
         if(checkStillCollisons(b.bottomBonduary)) newCollisions.down = true;
@@ -112,11 +125,19 @@ void Level::generateCollisions(MovingItem& movingItem) {
     movingItem.setCollisions(newCollisions);
     }
 
-bool Level::checkStillCollisons(const sf::FloatRect& rectangle) {
+bool Level::checkStillCollisons(const sf::FloatRect& rectangle, bool canActWithHead) {
     for (auto& item : groundTiles) {
         if(item.isAround(rectangle.left))
             if (item.getSprite().getGlobalBounds().intersects(rectangle))
                 return true;
+    }
+    for (auto& item : bricks) {
+        if(item.isAround(rectangle.left))
+            if (item.getSprite().getGlobalBounds().intersects(rectangle)) {
+                if(canActWithHead)
+                    item.kickUp();
+                return true;
+            }
     }
     return false;
 }
@@ -203,4 +224,10 @@ void Level::checkCollisionsBetweenEnemies(Enemy& enemy) {
     turtlesThread.join();
 
     enemy.setLeftAndRightCollisons(newLeft, newRight);
+}
+
+void Level::processBrickJumps() {
+    for (auto &brick : bricks) {
+        brick.jumpProcess();
+    }
 }

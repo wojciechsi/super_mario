@@ -5,6 +5,7 @@
 #include "Gumba.h"
 #include "Turtle.h"
 #include "defs.h"
+#include "Brick.h"
 #include "Mario.h"
 #include <iostream>
 #include <thread>
@@ -51,6 +52,7 @@ public:
     bool shouldMarioJump () {return marioJumpOnTurtleFlag;}
 
 private:
+    std::vector<Brick> bricks;
     std::vector<Gumba> gumbas;
     std::vector<Turtle> turtles;
     std::vector<Item> groundTiles;
@@ -65,7 +67,9 @@ private:
      * @param rectangle prostokąt, który jest sprawdzany
      * @return czy jest kolizja
      */
-    bool checkStillCollisons (const sf::FloatRect& rectangle);
+
+
+    bool checkStillCollisons (const sf::FloatRect& rectangle, bool canActWithHead = false);
 
     /**
      * Sprawdza kolizję z wrogami.
@@ -83,7 +87,10 @@ private:
      * Sprawdza kolizję pomiędzy wrogami.
      */
     void checkCollisionsBetweenEnemies (Enemy& enemy);
+
+    void processBrickJumps();
 };
+
 
 
 #endif //SUPER_MARIO_LEVEL_H

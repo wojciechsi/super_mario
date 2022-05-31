@@ -10,6 +10,7 @@ private:
     std::shared_ptr<sf::Texture> gumbaTexture = std::make_shared<sf::Texture>();
     std::shared_ptr<sf::Texture> turtleWalkingTexture = std::make_shared<sf::Texture>();
     std::shared_ptr<sf::Texture> turtleRunningTexture = std::make_shared<sf::Texture>();
+    std::shared_ptr<sf::Texture> brickTexture = std::make_shared<sf::Texture>();
 
     static std::mutex mutex;
     static std::shared_ptr<TexturesStorage> instance;
@@ -22,6 +23,8 @@ public:
     * Wczytuje tekstury z dysku
     */
     void loadTexturesToStorage();
+
+    const std::shared_ptr<sf::Texture> &getBrickTexture() const;
 
     TexturesStorage(TexturesStorage& other) = delete;
 
