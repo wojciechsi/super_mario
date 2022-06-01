@@ -7,6 +7,7 @@
 class Brick : public Item{
 private:
     int jumpCtr = 0, landCtr = 0;
+    bool hasCoin;
 public:
     Brick(float x, float y) : Item(x,y) {this->setTexture(TexturesStorage::getInstance()->getBrickTexture());}
 
@@ -25,6 +26,8 @@ public:
     void kickUp() {
         jumpCtr += 10;
     }
+
+    bool ifHasCoin() {return hasCoin;}
 };
 
 

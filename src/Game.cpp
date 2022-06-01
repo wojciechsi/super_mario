@@ -3,7 +3,6 @@
 void Game::run() {
     window.initialize();
 
-    //bool cos = false;
     sf::RectangleShape background;
     background.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
     sf::Texture backgroundTexture;
@@ -28,6 +27,7 @@ void Game::run() {
     while(window.isOpen()) {
         handleEvents();
         updateGame();
+        std::cout<<mario.getPoints();
     }
     window.close();
 }
@@ -46,6 +46,8 @@ void Game::processRelations() {
     mario.update();
     level.updateEnemiesPositions();
     updateWhatMarioWithEnemiesDo();
+    mario.addPoints(level.getPointsToAdd());
+    level.clearPointsToAdd();
 }
 
 void Game::updateWhatMarioWithEnemiesDo() {

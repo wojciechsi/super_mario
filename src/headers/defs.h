@@ -23,5 +23,6 @@ constexpr float ITEM_COLL_WIDTH = 2.0f;
 constexpr float ITEM_COLL_OFFSET = 3.0f; //to avoid sticking to the walls
 
 constexpr int GUMBA_KILLING = 10;
+constexpr int COIN = 1;
 
 constexpr int DIE_TIME = 2 * MAX_JUMP;

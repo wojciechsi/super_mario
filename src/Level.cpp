@@ -18,7 +18,7 @@ const void Level::createTestLevel() {
     groundTiles.emplace_back(Item(30 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInstance()->getSoilTexture()));
     groundTiles.emplace_back(Item(30 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInstance()->getSoilTexture()));
 
-    groundTiles.emplace_back(Item(18 * 16, SCREEN_HEIGHT - 72, TexturesStorage::getInstance()->getSoilTexture()));
+    //groundTiles.emplace_back(Item(18 * 16, SCREEN_HEIGHT - 72, TexturesStorage::getInstance()->getSoilTexture()));
 
     gumbas.emplace_back(Gumba (22*16,SCREEN_HEIGHT - 50));
     gumbas.emplace_back(Gumba (580,60));
@@ -134,8 +134,10 @@ bool Level::checkStillCollisons(const sf::FloatRect& rectangle, bool canActWithH
     for (auto& item : bricks) {
         if(item.isAround(rectangle.left))
             if (item.getSprite().getGlobalBounds().intersects(rectangle)) {
-                if(canActWithHead)
+                if(canActWithHead) {
                     item.kickUp();
+                    addCoinPoints();
+                }
                 return true;
             }
     }
@@ -231,3 +233,4 @@ void Level::processBrickJumps() {
         brick.jumpProcess();
     }
 }
+

@@ -51,6 +51,10 @@ public:
 
     bool shouldMarioJump () {return marioJumpOnTurtleFlag;}
 
+    void clearPointsToAdd() {pointsToAdd = 0;}
+
+    int getPointsToAdd() {return pointsToAdd;}
+
 private:
     std::vector<Brick> bricks;
     std::vector<Gumba> gumbas;
@@ -58,7 +62,7 @@ private:
     std::vector<Item> groundTiles;
     std::vector<Item> lowerTiles; //unused in collisions
 
-
+    int pointsToAdd = 0;
 
     bool marioJumpOnTurtleFlag = false;
 
@@ -89,6 +93,10 @@ private:
     void checkCollisionsBetweenEnemies (Enemy& enemy);
 
     void processBrickJumps();
+
+
+
+    void addCoinPoints() {pointsToAdd += COIN;}
 };
 
 
