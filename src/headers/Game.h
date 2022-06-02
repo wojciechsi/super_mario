@@ -27,6 +27,10 @@ private:
     Level level;
     Menu menu;
     bool gameON = true;
+    bool paused = false;
+    float gameCooldown = 15.f;
+    float gameCooldownmin = 0.f;
+    float gameCooldownmax = 15.f;
 
 
     /**
@@ -53,6 +57,10 @@ private:
      * Wyszukuje możliwość i wyzwala śmierci wrogów lub gracza.
      */
     void updateWhatMarioWithEnemiesDo ();
+
+    void pause();
+
+    void unpause();
 };
 
 #endif //SUPER_MARIO_GAME_H

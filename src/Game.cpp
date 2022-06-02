@@ -17,21 +17,24 @@ void Game::run() {
     window.flush();
     if(!menu.doWantToLeave()) {
         while (window.isOpen()) {
-            handleEvents();
-            updateGame();
+                handleEvents();
+                updateGame();
         }
     }
     window.close();
 }
 
 void Game::updateGame() {
-    if (gameON) {
-        window.flush();
-        processRelations();
-        renderContent();
-        window.display();
+        if (gameON) {
+            window.flush();
+            if(!this->paused) {
+                processRelations();
+            }
+            renderContent();
+            window.display();
+        }
     }
-}
+
 
 void Game::processRelations() {
     level.generateCollisions(mario);
@@ -64,4 +67,30 @@ void Game::handleEvents() {
         if (event.type == sf::Event::Closed)
             window.getRenderWindow().close();
     }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape) && gameCooldown == 0.f)
+    {
+        if(!this->paused)
+        {
+            pause();
+            gameCooldown = gameCooldownmax;
+        }
+        else
+        {
+            unpause();
+            gameCooldown = gameCooldownmax;
+        }
+    }
+
+    if(gameCooldown > 0)
+    {
+        gameCooldown -= 1.f;
+    }
+}
+
+void Game::pause() {
+    this->paused = true;
+}
+
+void Game::unpause() {
+    this->paused = false;
 }
