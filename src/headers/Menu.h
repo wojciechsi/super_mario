@@ -2,8 +2,10 @@
 #define SUPER_MARIO_MENU_H
 
 #include <SFML/Graphics.hpp>
+#include <memory>
 #include "Window.h"
 #include "defs.h"
+#include "TexturesStorage.h"
 
 #define Max_main_menu 5
 /**
@@ -23,15 +25,19 @@ public:
     {
         return selected;
     }
-    ~Menu();
 private:
+    sf::RectangleShape background;
     int selected;
-    sf::Font font;
+    //sf::Font font;
+    std::shared_ptr<sf::Font> font = std::make_shared<sf::Font>();
     sf::Text mainMenu[Max_main_menu];
     float cooldown = 15.f;
     float cooldownmin = 0.f;
     float cooldownmax = 15.f;
     bool end = false;
+    bool wantLeave = false;
+public:
+    bool doWantToLeave() const;
 };
 
 

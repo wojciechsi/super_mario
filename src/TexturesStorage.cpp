@@ -9,6 +9,7 @@ void TexturesStorage::loadTexturesToStorage() {
         turtleWalkingTexture->loadFromFile("../src/resources/turtleWalking.png");
         turtleRunningTexture->loadFromFile("../src/resources/turtleRunning.png");
         brickTexture->loadFromFile("../src/resources/brick.png");
+        backgroundTexture->loadFromFile("../src/resources/background.png");
 }
 
 const std::shared_ptr<sf::Texture> &TexturesStorage::getSoilTexture() const {
@@ -38,6 +39,10 @@ std::shared_ptr<TexturesStorage> TexturesStorage::getInstance() {
     }
     return instance;
 
+}
+
+const std::shared_ptr<sf::Texture> &TexturesStorage::getBackgroundTexture() const {
+    return backgroundTexture;
 }
 
 

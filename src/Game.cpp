@@ -2,32 +2,24 @@
 
 void Game::run() {
     window.initialize();
-
-    sf::RectangleShape background;
-    background.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
-    sf::Texture backgroundTexture;
-    backgroundTexture.loadFromFile("../src/resources/background.png");
-    background.setTexture(&backgroundTexture);
-
-
-    while(window.isOpen()) {
-        window.getRenderWindow().draw(background);
+    //MENU
+    bool proceed = false;
+    while (window.isOpen() and proceed == false) {
         handleEvents();
         menu.handleKeyboardInput(window.getRenderWindow());
         menu.draw(window.getRenderWindow());
         window.display();
         window.flush();
-        if(menu.getEnd() == true)
-        {
-            break;
-        }
+        if (menu.getEnd() == true)
+            proceed = true;
     }
-
+    //GAME
     window.flush();
-    while(window.isOpen()) {
-        handleEvents();
-        updateGame();
-        std::cout<<mario.getPoints();
+    if(!menu.doWantToLeave()) {
+        while (window.isOpen()) {
+            handleEvents();
+            updateGame();
+        }
     }
     window.close();
 }

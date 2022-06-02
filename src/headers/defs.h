@@ -15,14 +15,14 @@ constexpr float SCREEN_LOAD_OFFSET = 25;
 constexpr int MAX_JUMP = 20;
 constexpr float JUMP_VELOCITY = -5.0f;
 
-constexpr float GRAVITY_FACTOR = 2.0f;
+constexpr float GRAVITY_FACTOR = 1.8f;
 
 constexpr float BASIC_ENEMY_SPEED = -0.6f;
 
 constexpr float ITEM_COLL_WIDTH = 2.0f;
 constexpr float ITEM_COLL_OFFSET = 3.0f; //to avoid sticking to the walls
 
-constexpr int GUMBA_KILLING = 10;
+constexpr int GUMBA = 10;
 constexpr int COIN = 1;
 
 constexpr int DIE_TIME = 2 * MAX_JUMP;

@@ -97,6 +97,7 @@ private:
 
 
     void addCoinPoints() {pointsToAdd += COIN;}
+    void addKillingPoints() {pointsToAdd += GUMBA;}
 };
 
 

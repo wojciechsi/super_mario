@@ -11,6 +11,11 @@ private:
     std::shared_ptr<sf::Texture> turtleWalkingTexture = std::make_shared<sf::Texture>();
     std::shared_ptr<sf::Texture> turtleRunningTexture = std::make_shared<sf::Texture>();
     std::shared_ptr<sf::Texture> brickTexture = std::make_shared<sf::Texture>();
+    std::shared_ptr<sf::Texture> backgroundTexture = std::make_shared<sf::Texture>();
+public:
+    const std::shared_ptr<sf::Texture> &getBackgroundTexture() const;
+
+private:
 
     static std::mutex mutex;
     static std::shared_ptr<TexturesStorage> instance;
