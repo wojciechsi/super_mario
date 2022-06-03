@@ -57,8 +57,13 @@ void Game::updateWhatMarioWithEnemiesDo() {
 }
 
 void Game::renderContent() {
+
     level.printLevelContent(window.getRenderWindow());
     mario.draw(window.getRenderWindow());
+    if (paused) {
+        pauseMenu.blur(window.getRenderWindow());
+        pauseMenu.draw(window.getRenderWindow());
+    }
 }
 
 void Game::handleEvents() {
@@ -80,6 +85,18 @@ void Game::handleEvents() {
             gameCooldown = gameCooldownmax;
         }
     }
+
+    if(paused)
+    {
+        pauseMenu.handleInput();
+        if(pauseMenu.getexitStatus())
+        {
+            unpause();
+            pauseMenu.changeExitStatus();
+        }
+    }
+
+
 
     if(gameCooldown > 0)
     {

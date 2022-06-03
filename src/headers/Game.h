@@ -8,6 +8,8 @@
 #include "Level.h"
 #include "Window.h"
 #include "TexturesStorage.h"
+#include "PauseMenu.h"
+
 
 /**
  * Silnik gry
@@ -26,11 +28,14 @@ private:
     Mario mario;
     Level level;
     Menu menu;
+    PauseMenu pauseMenu;
     bool gameON = true;
     bool paused = false;
     float gameCooldown = 15.f;
     float gameCooldownmin = 0.f;
     float gameCooldownmax = 15.f;
+
+
 
 
     /**

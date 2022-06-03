@@ -1,4 +1,5 @@
 #include "headers/TexturesStorage.h"
+#include <iostream>
 
 std::shared_ptr<TexturesStorage> TexturesStorage::instance = 0;
 std::mutex TexturesStorage::mutex;
@@ -10,6 +11,7 @@ void TexturesStorage::loadTexturesToStorage() {
         turtleRunningTexture->loadFromFile("../src/resources/turtleRunning.png");
         brickTexture->loadFromFile("../src/resources/brick.png");
         backgroundTexture->loadFromFile("../src/resources/background.png");
+
 }
 
 const std::shared_ptr<sf::Texture> &TexturesStorage::getSoilTexture() const {
