@@ -87,7 +87,7 @@ void PauseMenu::handleInput() {
             }
             else
             {
-
+                back = true;
             }
         }
     if(cooldown > 0)
@@ -104,4 +104,8 @@ bool PauseMenu::getexitStatus()
 void PauseMenu::changeExitStatus()
 {
     exit = false;
+}
+
+bool PauseMenu::getBackStatus() {
+    return back;
 }

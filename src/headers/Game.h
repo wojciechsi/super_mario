@@ -31,6 +31,7 @@ private:
     PauseMenu pauseMenu;
     bool gameON = true;
     bool paused = false;
+    bool getBackToMenu = false;
     float gameCooldown = 15.f;
     float gameCooldownmin = 0.f;
     float gameCooldownmax = 15.f;
@@ -66,6 +67,8 @@ private:
     void pause();
 
     void unpause();
+
+    void displayMenu();
 };
 
 #endif //SUPER_MARIO_GAME_H

@@ -3,24 +3,20 @@
 void Game::run() {
     window.initialize();
     //MENU
-    bool proceed = false;
-    while (window.isOpen() and proceed == false) {
-        handleEvents();
-        menu.handleKeyboardInput(window.getRenderWindow());
-        menu.draw(window.getRenderWindow());
-        window.display();
+    displayMenu();
+        //GAME
         window.flush();
-        if (menu.getEnd() == true)
-            proceed = true;
-    }
-    //GAME
-    window.flush();
-    if(!menu.doWantToLeave()) {
-        while (window.isOpen()) {
+        if (!menu.doWantToLeave()) {
+            while (window.isOpen() && !getBackToMenu) {
                 handleEvents();
                 updateGame();
+                if(getBackToMenu)
+                {
+                    window.flush();
+                }
+            }
         }
-    }
+    displayMenu();
     window.close();
 }
 
@@ -94,6 +90,11 @@ void Game::handleEvents() {
             unpause();
             pauseMenu.changeExitStatus();
         }
+        else if(pauseMenu.getBackStatus())
+        {
+            unpause();
+            getBackToMenu = true;
+        }
     }
 
 
@@ -110,4 +111,17 @@ void Game::pause() {
 
 void Game::unpause() {
     this->paused = false;
+}
+
+void Game::displayMenu() {
+    bool proceed = false;
+    while (window.isOpen() and proceed == false) {
+        handleEvents();
+        menu.handleKeyboardInput(window.getRenderWindow());
+        menu.draw(window.getRenderWindow());
+        window.display();
+        window.flush();
+        if (menu.getEnd() == true)
+            proceed = true;
+    }
 }

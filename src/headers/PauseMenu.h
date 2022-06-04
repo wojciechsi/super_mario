@@ -11,6 +11,7 @@
 #include "TexturesStorage.h"
 
 
+
 class PauseMenu{
 private:
     sf::Texture blurTexture;
@@ -26,6 +27,7 @@ public:
     void handleInput();
     bool getexitStatus();
     void changeExitStatus();
+    bool getBackStatus();
 
 private:
     std::shared_ptr<sf::Font> font = std::make_shared<sf::Font>();
@@ -35,6 +37,7 @@ private:
     float cooldownmin = 0.f;
     float cooldownmax = 15.f;
     bool exit = false;
+    bool back = false;
 };
 
 
