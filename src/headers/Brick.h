@@ -24,7 +24,8 @@ public:
     }
 
     void kickUp() {
-        jumpCtr += 10;
+        if (jumpCtr == 0)
+            jumpCtr += 10;
     }
 
     bool ifHasCoin() {return hasCoin;}

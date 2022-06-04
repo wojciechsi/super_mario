@@ -2,6 +2,7 @@
 
 Turtle::Turtle() : Enemy(0, 0) {
     velocity = BASIC_ENEMY_SPEED * 0.7;
+    this->setTexture(TexturesStorage::getInstance()->getTurtleWalkingTexture());
 }
 
 Turtle::Turtle(int x, int y) : Turtle() {

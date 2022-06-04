@@ -2,6 +2,7 @@
 #define SUPER_MARIO_GUMBA_H
 
 #include "Enemy.h"
+#include "TexturesStorage.h"
 
 /**
  * Klasa reprezentuje przeciwnika "Gumba"

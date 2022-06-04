@@ -22,6 +22,9 @@ public:
 
     bool operator==(const Enemy& rEnemy);
 
+    /**
+     * Pusta metoda definiująca niniejszą klasę jako abstrakcyjną.
+     */
     virtual void foo() = 0;
 
     /**

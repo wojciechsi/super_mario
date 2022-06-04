@@ -28,7 +28,6 @@ public:
 private:
     sf::RectangleShape background;
     int selected;
-    //sf::Font font;
     std::shared_ptr<sf::Font> font = std::make_shared<sf::Font>();
     sf::Text mainMenu[Max_main_menu];
     float cooldown = 15.f;

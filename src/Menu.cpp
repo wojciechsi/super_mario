@@ -1,14 +1,9 @@
 #include <iostream>
 #include "headers/Menu.h"
-#include "headers/Game.h"
 
 Menu::Menu(float width, float height)
 {
     font->loadFromFile("../src/resources/SuperMario256.ttf");
-    //if(!font.loadFromFile("../src/resources/SuperMario256.ttf"))
-    //{
-    //    std::cout << "Font error";
-    //}
 
     background.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
     background.setTexture(TexturesStorage::getInstance()->getBackgroundTexture().get());
@@ -147,8 +142,6 @@ void Menu::handleKeyboardInput(sf::RenderWindow &window)
     {
         cooldown -= 1.f;
     }
-
-
 }
 
 bool Menu::doWantToLeave() const {

@@ -9,29 +9,18 @@ const void Level::createTestLevel() {
     groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInstance()->getSoilTexture()));
     groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInstance()->getSoilTexture()));
 
-    //groundTiles.emplace_back(Item(40 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInstance()->getSoilTexture()));
-    //groundTiles.emplace_back(Item(40 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInstance()->getSoilTexture()));
-
-    //groundTiles.emplace_back(Item(25 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInstance()->getSoilTexture()));
-    //groundTiles.emplace_back(Item(25 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInstance()->getSoilTexture()));
-
     groundTiles.emplace_back(Item(30 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInstance()->getSoilTexture()));
     groundTiles.emplace_back(Item(30 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInstance()->getSoilTexture()));
 
-    //groundTiles.emplace_back(Item(18 * 16, SCREEN_HEIGHT - 72, TexturesStorage::getInstance()->getSoilTexture()));
-
     gumbas.emplace_back(Gumba (22*16,SCREEN_HEIGHT - 50));
     gumbas.emplace_back(Gumba (580,60));
-    gumbas[0].setTexture(TexturesStorage::getInstance()->getGumbaTexture());
-    gumbas[1].setTexture(TexturesStorage::getInstance()->getGumbaTexture());
+
     turtles.emplace_back(Turtle (23*16,SCREEN_HEIGHT - 50));
-    turtles[0].setTexture(TexturesStorage::getInstance()->getTurtleWalkingTexture());
 
     bricks.emplace_back(Brick(40 * 16, SCREEN_HEIGHT - 40));
     bricks.emplace_back(Brick(40 * 16, SCREEN_HEIGHT - 56));
     bricks.emplace_back(Brick(18 * 16, SCREEN_HEIGHT - 72));
     bricks.emplace_back(Brick(17 * 16, SCREEN_HEIGHT - 72));
-
 }
 
 Level::Level() {
