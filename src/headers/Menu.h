@@ -25,6 +25,7 @@ public:
     {
         return selected;
     }
+    void setEnd();
 private:
     sf::RectangleShape background;
     int selected;

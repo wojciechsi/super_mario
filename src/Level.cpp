@@ -23,9 +23,37 @@ const void Level::createTestLevel() {
     bricks.emplace_back(Brick(17 * 16, SCREEN_HEIGHT - 72));
 }
 
+const void Level::createFirstLevel()
+{
+    for (int i = 0; i < 70; i++) {
+        groundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 24, TexturesStorage::getInstance()->getSoilTexture()));
+        lowerTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8, TexturesStorage::getInstance()->getSoilTexture()));
+    }
+
+    for (int i = 72; i < 87; i++) {
+        groundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 24, TexturesStorage::getInstance()->getSoilTexture()));
+        lowerTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8, TexturesStorage::getInstance()->getSoilTexture()));
+    }
+
+    for (int i = 91; i < 155; i++) {
+        groundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 24, TexturesStorage::getInstance()->getSoilTexture()));
+        lowerTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8, TexturesStorage::getInstance()->getSoilTexture()));
+    }
+
+    for (int i = 157; i < 200; i++) {
+        groundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 24, TexturesStorage::getInstance()->getSoilTexture()));
+        lowerTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8, TexturesStorage::getInstance()->getSoilTexture()));
+    }
+
+    bricks.emplace_back(Brick(21 * 16, SCREEN_HEIGHT - 71));
+    bricks.emplace_back(Brick(23 * 16, SCREEN_HEIGHT - 71));
+    bricks.emplace_back(Brick(25 * 16, SCREEN_HEIGHT - 71));
+}
+
 Level::Level() {
     TexturesStorage::getInstance()->loadTexturesToStorage();
-    createTestLevel();
+    //createTestLevel();
+    createFirstLevel();
     }
 
 void Level::printLevelContent(sf::RenderWindow &iwindow) {

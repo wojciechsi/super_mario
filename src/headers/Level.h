@@ -12,6 +12,7 @@
 #include <ranges>
 #include "TexturesStorage.h"
 
+
 /**
  * Klasa zawiera aktualny poziom gry
  */
@@ -23,6 +24,10 @@ public:
      * Renderuje elementy poziomu na ekranie
      * @param iwindow okno
      */
+
+    const void createFirstLevel();
+
+
     void printLevelContent (sf::RenderWindow &iwindow);
 
     /**
@@ -61,6 +66,7 @@ private:
     std::vector<Turtle> turtles;
     std::vector<Item> groundTiles;
     std::vector<Item> lowerTiles; //unused in collisions
+
 
     int pointsToAdd = 0;
 

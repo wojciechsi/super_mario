@@ -7,22 +7,27 @@ void Game::run() {
         //GAME
         window.flush();
         if (!menu.doWantToLeave()) {
-            while (window.isOpen() && !getBackToMenu) {
+
+            while (window.isOpen() && !getBackToMenu && !menu.doWantToLeave()) {
                 handleEvents();
                 updateGame();
                 if(getBackToMenu)
                 {
                     window.flush();
+                    menu.setEnd();
+                    displayMenu();
+                    getBackToMenu = false;
                 }
             }
         }
-    displayMenu();
+
     window.close();
 }
 
 void Game::updateGame() {
         if (gameON) {
-            window.flush();
+            //window.flush();
+            window.getRenderWindow().clear(sf::Color(92, 148, 252));
             if(!this->paused) {
                 processRelations();
             }

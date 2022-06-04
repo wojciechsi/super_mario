@@ -147,3 +147,7 @@ void Menu::handleKeyboardInput(sf::RenderWindow &window)
 bool Menu::doWantToLeave() const {
     return wantLeave;
 }
+
+void Menu::setEnd() {
+    end = false;
+}
