@@ -152,8 +152,8 @@ bool Level::checkStillCollisons(const sf::FloatRect& rectangle, bool canActWithH
         if(item.isAround(rectangle.left))
             if (item.getSprite().getGlobalBounds().intersects(rectangle)) {
                 if(canActWithHead) {
+                    if (item.ifHasCoin()) addCoinPoints();
                     item.kickUp();
-                    addCoinPoints();
                 }
                 return true;
             }

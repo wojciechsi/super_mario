@@ -1,5 +1,4 @@
 #include "headers/TexturesStorage.h"
-#include <iostream>
 
 std::shared_ptr<TexturesStorage> TexturesStorage::instance = 0;
 std::mutex TexturesStorage::mutex;

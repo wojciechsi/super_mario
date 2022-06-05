@@ -15,7 +15,15 @@ class Menu {
 public:
     Menu() : Menu(SCREEN_WIDTH, SCREEN_HEIGHT) {}
     Menu(float width, float height);
+
+    /**
+     * Metoda wyświetla menu na ekranie.
+     */
     void draw(sf::RenderWindow& window);
+
+    /**
+     * Do góry...
+     */
     void up();
     void down();
     bool getEnd();

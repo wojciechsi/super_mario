@@ -15,7 +15,7 @@ void Item::draw(sf::RenderWindow &iWindow) {
 
 Item::Item(int iX, int iY) : x(iX), y(iY) {}
 
-void Item::setTexture(std::string s) {
+void Item::setTexture(const std::string& s) {
     texture.loadFromFile(s);
     sprite.setTexture(texture);
     size = texture.getSize();
@@ -44,7 +44,7 @@ Bonduaries Item::getBonduariesBoxes() {
     return b;
 }
 
-void Item::setTexture(std::shared_ptr<sf::Texture> t) {
+void Item::setTexture(const std::shared_ptr<sf::Texture>& t) {
     pTexture = t;
     sprite.setTexture(*pTexture.lock(), true);
     size = texture.getSize();

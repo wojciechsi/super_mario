@@ -12,8 +12,15 @@ public:
     Gumba(const Gumba&) = default;
     Gumba ();
     Gumba (int iX, int iY);
+
+    /**
+     * Zabija gumbę.
+     */
     void die();
-    //bool isRunning() {}
+
+    /**
+     * Implementacja interfejsu Enemy "pro forma"
+     */
     void foo() {}
 };
 

@@ -11,6 +11,9 @@ private:
 public:
     Brick(float x, float y) : Item(x,y) {this->setTexture(TexturesStorage::getInstance()->getBrickTexture());}
 
+    /**
+     * Przetwarza ewentualne podrzucenie.
+     */
     void jumpProcess() {
         if (jumpCtr > 0) {
             this->y--;
@@ -23,11 +26,19 @@ public:
         }
     }
 
+    /**
+     * Wyzwala podrzucenie po uderzeniu weń głową gracza.
+     */
     void kickUp() {
         if (jumpCtr == 0)
             jumpCtr += 10;
+        hasCoin = false;
     }
 
+    /**
+     * Zwraca informacje o przechowywaniu monety.
+     * @todo animacja
+     */
     bool ifHasCoin() {return hasCoin;}
 };
 

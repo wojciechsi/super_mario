@@ -2,7 +2,7 @@
 
 Menu::Menu(float width, float height)
 {
-    font->loadFromFile("../src/resources/SuperMario256.ttf");
+    font->loadFromFile("../src/resources/SuperMario256.ttf"); //@todo put this to storage
 
     background.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
     background.setTexture(TexturesStorage::getInstance()->getBackgroundTexture().get());
@@ -59,9 +59,9 @@ bool Menu::getEnd()
 void Menu::draw(sf::RenderWindow &window) {
     window.draw(background);
     mainMenu[selected].setFillColor(sf::Color::Red);
-    for(int i=0; i< Max_main_menu; i++)
+    for(const auto & i : mainMenu)
     {
-        window.draw(mainMenu[i]);
+        window.draw(i);
     }
 }
 

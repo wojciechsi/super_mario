@@ -54,10 +54,19 @@ public:
      */
     void generateCollisionsWithEnemies (MovingItem& mario);
 
+    /**
+     * Metoda sprawdzająca, czy Mario powinien być podrzucony do góry.
+     */
     bool shouldMarioJump () {return marioJumpOnTurtleFlag;}
 
+    /**
+     * Metoda czyszcząca bufor punktów z analizy w obecnej klatce.
+     */
     void clearPointsToAdd() {pointsToAdd = 0;}
 
+    /**
+     * Metoda zwracająca punkty zdobyte w danej klatce.
+     */
     int getPointsToAdd() {return pointsToAdd;}
 
 private:
@@ -91,6 +100,9 @@ private:
      */
     bool chceckEnemiesCollisions (const sf::FloatRect& rectangle, bool killing = false);
 
+    /**
+     * Tworzy testowy poziom.
+     */
     const void createTestLevel ();
 
     /**
@@ -98,11 +110,19 @@ private:
      */
     void checkCollisionsBetweenEnemies (Enemy& enemy);
 
+    /**
+     * Przetwarza ewentualne podrzucenia cegieł.
+     */
     void processBrickJumps();
 
-
-
+    /**
+     * Dodaje punkty o wartości jednej monety.
+     */
     void addCoinPoints() {pointsToAdd += COIN;}
+
+    /**
+     * Dodaje punkty o wartości zabicia.
+     */
     void addKillingPoints() {pointsToAdd += GUMBA;}
 };
 

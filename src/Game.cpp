@@ -2,46 +2,39 @@
 
 void Game::run() {
     window.initialize();
-    //MENU
-    font->loadFromFile("../src/resources/SuperMario256.ttf");
-    scoreDisplayText.setFont(*font);
-    scoreDisplayText.setCharacterSize(0.6*SCREEN_WIDTH);
-    scoreDisplayText.setScale(0.07, 0.07);
-
     displayMenu();
-        //GAME
-        window.flush();
-        if (!menu.doWantToLeave()) {
-
-            while (window.isOpen() && !getBackToMenu && !menu.doWantToLeave()) {
-                handleEvents();
-                updateGame();
-                if(getBackToMenu)
-                {
-                    window.flush();
-                    menu.setEnd();
-                    displayMenu();
-                    getBackToMenu = false;
-                }
-            }
-        }
-
+    window.flush();
+    displayGame();
     window.close();
 }
 
-void Game::updateGame() {
-        if (gameON) {
-            //window.flush();
-            window.getRenderWindow().clear(sf::Color(92, 148, 252));
-            if(!this->paused) {
-                processRelations();
+void Game::displayGame() {
+    if (!menu.doWantToLeave()) {
+        while (window.isOpen() and !getBackToMenu and !menu.doWantToLeave()) {
+            handleEvents();
+            updateGame();
+            if(getBackToMenu)
+            {
+                window.flush();
+                menu.setEnd();
+                displayMenu();
+                getBackToMenu = false;
             }
-
-            renderContent();
-            window.display();
-
         }
     }
+}
+
+void Game::updateGame() {
+    if (gameON) {
+        window.getRenderWindow().clear(sf::Color(92, 148, 252));
+        if(!this->paused) {
+            processRelations();
+        }
+        renderContent();
+        window.display();
+
+    }
+}
 
 
 void Game::processRelations() {
@@ -78,14 +71,22 @@ void Game::renderContent() {
 }
 
 void Game::handleEvents() {
+    handleWindowExit();
+    handlePauseEvent();
+}
+
+void Game::handleWindowExit() {
     sf::Event event;
     while (window.getRenderWindow().pollEvent(event)) {
         if (event.type == sf::Event::Closed)
             window.getRenderWindow().close();
     }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape) && gameCooldown == 0.f)
+}
+
+void Game::handlePauseEvent() {
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) && gameCooldown == 0.f)
     {
-        if(!this->paused)
+        if(!paused)
         {
             pause();
             gameCooldown = gameCooldownmax;
@@ -96,7 +97,6 @@ void Game::handleEvents() {
             gameCooldown = gameCooldownmax;
         }
     }
-
     if(paused)
     {
         pauseMenu.handleInput();
@@ -140,4 +140,12 @@ void Game::displayMenu() {
         if (menu.isNewGame())
             this->restartGame();
     }
+}
+
+Game::Game() {
+    mario = Mario();
+    font->loadFromFile("../src/resources/SuperMario256.ttf");
+    scoreDisplayText.setFont(*font);
+    scoreDisplayText.setCharacterSize(0.6*SCREEN_WIDTH);
+    scoreDisplayText.setScale(0.07, 0.07);
 }

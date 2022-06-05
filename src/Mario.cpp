@@ -15,13 +15,15 @@ void Mario::update()
 }
 
 void Mario::handleKeyboardInputs() {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
-        moveLeft();
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
-        moveRight();
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
-        jump();
+    if(this->isAlive()) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
+            moveLeft();
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
+            moveRight();
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
+            jump();
+        }
     }
 }
 

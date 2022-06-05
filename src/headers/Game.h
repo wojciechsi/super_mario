@@ -16,7 +16,7 @@
  */
 class Game {
 public:
-    Game() = default;
+    Game();
 
     /**
      * Głowna pętla programu
@@ -29,18 +29,17 @@ private:
     Level level;
     Menu menu;
     PauseMenu pauseMenu;
+
     bool gameON = true;
     bool paused = false;
     bool getBackToMenu = false;
     float gameCooldown = 15.f;
     float gameCooldownmin = 0.f;
     float gameCooldownmax = 15.f;
-    sf::Text scoreDisplayText;
+
+    sf::Text scoreDisplayText; //@todo ScoreBar class
     sf::Text gameOverText[3];
     std::shared_ptr<sf::Font> font = std::make_shared<sf::Font>();
-
-
-
 
     /**
      * Aktualizuje stan gry i przetwarza informaje.
@@ -67,16 +66,40 @@ private:
      */
     void updateWhatMarioWithEnemiesDo ();
 
+    /**
+     * Wstrzymuje grę.
+     */
     void pause();
 
+    /**
+     * Wznawia grę/
+     */
     void unpause();
 
+    /**
+     * Wyświetla menu główne.
+     */
     void displayMenu();
 
     /**
      * Rozpoczyna grę od początku;
      */
     void restartGame() {mario = Mario(); level = Level();}
+
+    /**
+     * Przechwytuje wezwanie pauzy.
+     */
+    void handlePauseEvent();
+
+    /**
+     * Przechwytuje wezwanie do zamknięcia okna.
+     */
+    void handleWindowExit();
+
+    /**
+     * Wyświetla grę na ekranie.
+     */
+    void displayGame();
 };
 
 #endif //SUPER_MARIO_GAME_H

@@ -15,11 +15,15 @@ public:
     Enemy (const Enemy& other) = default;
 
     Enemy (int iX, int iY) : MovingItem(iX, iY) {};
+
     /**
      * Rozszerza metodę klasy MovingItem o automatyczny ruch i odbicia
      */
     void update ();
 
+    /**
+     * Operator porównania. Bierze pod uwagę tylko pozycję.
+     */
     bool operator==(const Enemy& rEnemy);
 
     /**
@@ -34,7 +38,6 @@ public:
     */
     void setLeftAndRightCollisons (bool left, bool right);
 
-    //virtual bool isRunning() = 0;
 private:
     /**
      * Odbija od ewentualnych przeszkód
@@ -45,8 +48,6 @@ private:
      * Ustawia teksturę względem kierunku ruchu.
      */
     void flipTextureToMoveDirection ();
-
-
 };
 
 

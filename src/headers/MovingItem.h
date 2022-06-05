@@ -33,7 +33,7 @@ public:
      * @param x przesunięcie poziome
      * @param y przesunięcie pionowe
      */
-    void move(const float x, const float y);
+    void move(float x, float y);
 
     virtual void die ();
 private:
@@ -60,7 +60,7 @@ public:
     */
     void update();
 
-    bool isAlive () {return alive;}
+    bool isAlive () const {return alive;}
 };
 
 

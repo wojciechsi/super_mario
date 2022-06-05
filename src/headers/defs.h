@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DEFS_H
+#define DEFS_H
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
@@ -26,3 +27,4 @@ constexpr int COIN = 1;
 
 constexpr int DIE_TIME = 2 * MAX_JUMP;
 
+#endif

@@ -36,10 +36,18 @@ public:
      * Po zadaniu tekstury ustawia też wymiary i środek.
      * @param s ścieżka do tekstury
      */
-    void setTexture (std::string s);
+    void setTexture (const std::string& s);
 
-    void setTexture(std::shared_ptr<sf::Texture> t);
+    /**
+     * Po zadaniu tekstury ustawia też wymiary i środek.
+     * @param t wskaźnik na teksturę
+     */
+    void setTexture(const std::shared_ptr<sf::Texture>& t);
 
+    /**
+     * Wyświetla element we wskazanym oknie.
+     * @param iWindow okno
+     */
     void draw(sf::RenderWindow& iWindow);
 
     /**
@@ -48,31 +56,49 @@ public:
     void moveOneStepLeft ();
 
     /**
-     * Funkcja filtrująca iteracje
+     * Metoda filtrująca iteracje
      * @return czy analiza danego elementu ma sens
      */
     inline bool isOnScreen() {if (x > -SCREEN_LOAD_OFFSET and x < (SCREEN_WIDTH + SCREEN_LOAD_OFFSET)) return true; else return false;}
+
+    /**
+     * Metoda zwracająca informację, czy element znajduje się w otoczeniu punktu.
+     * @param ix położenie na osi poziomej
+     */
     inline bool isAround(float ix) {if (x > ix -20 and x < ix +20 ) return true; else return false;}
+
+    /**
+     * Metoda zwracająca informację, czy wskazany element znajduje się w pobliżu this->.
+     * Porównywana jest wartość położenia na osi poziomej.
+     * @param other inny element
+     */
     inline bool isNearbyX(const Item& other) {
         if (abs(this->x - other.x) < 20)
             return true;
         else return false;
     }
-    //----------x-------------------
-    //-----------ix---------------
 
 protected:
-
     float x{}, y{}; //pozycja
 
     sf::Vector2u size; //rozmiar na mapie
 
     sf::Sprite sprite;
 public:
+    /**
+     * Zwraca sprite.
+     */
     const sf::Sprite &getSprite() const;
 
+    /**
+    * Zwraca sprite.
+    */
     sf::Sprite getSprite() {return sprite;}
 
+    /**
+     * Zwraca prostokąty obwiedni do kontroli.
+     * @return
+     */
     Bonduaries getBonduariesBoxes();
 
 private:
