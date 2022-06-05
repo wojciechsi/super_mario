@@ -72,6 +72,11 @@ private:
     void unpause();
 
     void displayMenu();
+
+    /**
+     * Rozpoczyna grę od początku;
+     */
+    void restartGame() {mario = Mario(); level = Level();}
 };
 
 #endif //SUPER_MARIO_GAME_H

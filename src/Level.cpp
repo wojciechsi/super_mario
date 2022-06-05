@@ -180,13 +180,13 @@ bool Level::chceckEnemiesCollisions(const sf::FloatRect &rectangle, bool killing
         if ((*it).isOnScreen()){
             if ((*it).getSprite().getGlobalBounds().intersects(rectangle)) {
                 if(killing) {
-                    (*it).die();
                     if((*it).isRunning()) {
-                        turtles.erase(it);
                         addKillingPoints();
+                        turtles.erase(it);
                     }
                     else {
                         marioJumpOnTurtleFlag = true;
+                        (*it).die();
                         return false;
                     }
                 }
@@ -222,8 +222,9 @@ void Level::checkCollisionsBetweenEnemies(Enemy& enemy) {
                         newRight = true;
                     if(!enemyIsGumba) //A TURTLE
                         if(newLeft or newRight) { //WHO COLLIDED WITH GUMBA
-                            if(!dynamic_cast<Turtle*>(&enemy)->isRunning()) { //AND IS RUNNING
+                            if(dynamic_cast<Turtle*>(&enemy)->isRunning()) { //AND IS RUNNING
                                 gumbas.erase(it); //KILLS IT
+                                addKillingPoints();
                                 addKillingPoints();
                             }
                         }

@@ -6,6 +6,11 @@
 
 class TexturesStorage {
 private:
+    std::shared_ptr<sf::Texture> marioTexture = std::make_shared<sf::Texture>();
+public:
+    const std::shared_ptr<sf::Texture> &getMarioTexture() const;
+
+private:
     std::shared_ptr<sf::Texture> soilTexture = std::make_shared<sf::Texture>();
     std::shared_ptr<sf::Texture> gumbaTexture = std::make_shared<sf::Texture>();
     std::shared_ptr<sf::Texture> turtleWalkingTexture = std::make_shared<sf::Texture>();

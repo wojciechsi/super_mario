@@ -10,6 +10,5 @@ Gumba::Gumba(int iX, int iY) : Gumba() {
 }
 
 void Gumba::die() {
-    MovingItem::die();
-    std::cout << "GUMBA";
+
 }

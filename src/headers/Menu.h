@@ -36,6 +36,10 @@ private:
     float cooldownmax = 15.f;
     bool end = false;
     bool wantLeave = false;
+    bool newGame = false;
+public:
+    bool isNewGame() const;
+
 public:
     bool doWantToLeave() const;
 };

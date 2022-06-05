@@ -2,7 +2,7 @@
 
 Mario::Mario() : MovingItem(0.5f * SCREEN_WIDTH,
                             0.5f * SCREEN_HEIGHT) {
-    setTexture("../src/resources/smallMario.png");
+    setTexture(TexturesStorage::getInstance()->getMarioTexture());
 }
 
 void Mario::update()

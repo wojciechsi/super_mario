@@ -3,6 +3,7 @@
 
 #include "defs.h"
 #include "MovingItem.h"
+#include "TexturesStorage.h"
 
 /**
  * Klasa przechowuje dane o głównej postaci gry

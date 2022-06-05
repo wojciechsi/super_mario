@@ -2,7 +2,6 @@
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-#include <iostream>
 
 constexpr unsigned short SCREEN_HEIGHT = 256;
 constexpr unsigned short SCREEN_WIDTH = 240;

@@ -11,7 +11,7 @@ Turtle::Turtle(int x, int y) : Turtle() {
 
 
 void Turtle::die() {
-    if (turtlemode == TurtleMode::walking) {
+    if (!this->isRunning()) {
         turtlemode = TurtleMode::running;
         this->setTexture(TexturesStorage::getInstance()->getTurtleRunningTexture());
         velocity = BASIC_ENEMY_SPEED * 2;
@@ -24,9 +24,9 @@ void Turtle::die() {
 
 bool Turtle::isRunning() {
     if (this->turtlemode == TurtleMode::running)
-        return false;
-    else
         return true;
+    else
+        return false;
 }
 
 

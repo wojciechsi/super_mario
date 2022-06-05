@@ -135,7 +135,9 @@ void Game::displayMenu() {
         menu.draw(window.getRenderWindow());
         window.display();
         window.flush();
-        if (menu.getEnd() == true)
+        if (menu.getEnd())
             proceed = true;
+        if (menu.isNewGame())
+            this->restartGame();
     }
 }

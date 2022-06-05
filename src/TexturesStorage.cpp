@@ -5,6 +5,7 @@ std::shared_ptr<TexturesStorage> TexturesStorage::instance = 0;
 std::mutex TexturesStorage::mutex;
 
 void TexturesStorage::loadTexturesToStorage() {
+        marioTexture->loadFromFile("../src/resources/smallMario.png");
         gumbaTexture->loadFromFile("../src/resources/gumba.png");
         soilTexture->loadFromFile("../src/resources/soil.png");
         turtleWalkingTexture->loadFromFile("../src/resources/turtleWalking.png");
@@ -45,6 +46,10 @@ std::shared_ptr<TexturesStorage> TexturesStorage::getInstance() {
 
 const std::shared_ptr<sf::Texture> &TexturesStorage::getBackgroundTexture() const {
     return backgroundTexture;
+}
+
+const std::shared_ptr<sf::Texture> &TexturesStorage::getMarioTexture() const {
+    return marioTexture;
 }
 
 

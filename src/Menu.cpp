@@ -1,4 +1,3 @@
-#include <iostream>
 #include "headers/Menu.h"
 
 Menu::Menu(float width, float height)
@@ -96,6 +95,7 @@ void Menu::down()
 
 void Menu::handleKeyboardInput(sf::RenderWindow &window)
 {
+    newGame = false;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) && cooldown == 0.f)
     {
         Menu::up();
@@ -113,6 +113,7 @@ void Menu::handleKeyboardInput(sf::RenderWindow &window)
         mainMenu[selected].setFillColor(sf::Color::White);
         if(selected == 0)
         {
+            newGame = true;
             end = true;
         }
         else if(selected == 1)
@@ -132,7 +133,6 @@ void Menu::handleKeyboardInput(sf::RenderWindow &window)
             wantLeave = true;
             end = true;
         }
-        std::cout << "Dziala\n";
         cooldown = cooldownmax;
         Pressed();
 
@@ -150,4 +150,8 @@ bool Menu::doWantToLeave() const {
 
 void Menu::setEnd() {
     end = false;
+}
+
+bool Menu::isNewGame() const {
+    return newGame;
 }
