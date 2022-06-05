@@ -48,7 +48,6 @@ private:
     bool goesRight = false;
     int points = 0;
 public:
-
     int getPoints() const {
         return points;
     }

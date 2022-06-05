@@ -7,7 +7,7 @@
 class Brick : public Item{
 private:
     int jumpCtr = 0, landCtr = 0;
-    bool hasCoin;
+    bool hasCoin = true;
 public:
     Brick(float x, float y) : Item(x,y) {this->setTexture(TexturesStorage::getInstance()->getBrickTexture());}
 
