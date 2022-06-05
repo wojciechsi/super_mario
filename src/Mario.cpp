@@ -61,3 +61,8 @@ void Mario::jumpProcess() {
 void Mario::deadProcess() {
     if (deadProcessCtr > 0) deadProcessCtr--;
 }
+
+int Mario::getPoints()
+{
+    return points;
+}

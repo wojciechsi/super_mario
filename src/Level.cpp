@@ -52,8 +52,8 @@ const void Level::createFirstLevel()
 
 Level::Level() {
     TexturesStorage::getInstance()->loadTexturesToStorage();
-    //createTestLevel();
-    createFirstLevel();
+    createTestLevel();
+    //createFirstLevel();
     }
 
 void Level::printLevelContent(sf::RenderWindow &iwindow) {

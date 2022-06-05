@@ -35,6 +35,8 @@ private:
     float gameCooldown = 15.f;
     float gameCooldownmin = 0.f;
     float gameCooldownmax = 15.f;
+    sf::Text scoreDisplayText;
+    std::shared_ptr<sf::Font> font = std::make_shared<sf::Font>();
 
 
 

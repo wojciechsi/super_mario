@@ -3,6 +3,12 @@
 void Game::run() {
     window.initialize();
     //MENU
+    font->loadFromFile("../src/resources/SuperMario256.ttf");
+    scoreDisplayText.setFont(*font);
+    scoreDisplayText.setString("Score: " + std::to_string(mario.getPoints()));
+    scoreDisplayText.setCharacterSize(0.6*SCREEN_WIDTH);
+    scoreDisplayText.setScale(0.07, 0.07);
+
     displayMenu();
         //GAME
         window.flush();
@@ -44,6 +50,7 @@ void Game::processRelations() {
     updateWhatMarioWithEnemiesDo();
     mario.addPoints(level.getPointsToAdd());
     level.clearPointsToAdd();
+    window.getRenderWindow().draw(scoreDisplayText);
 }
 
 void Game::updateWhatMarioWithEnemiesDo() {
