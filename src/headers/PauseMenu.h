@@ -28,6 +28,7 @@ public:
     bool getexitStatus();
     void changeExitStatus();
     bool getBackStatus();
+    void changeBackStatus();
 
 private:
     std::shared_ptr<sf::Font> font = std::make_shared<sf::Font>();

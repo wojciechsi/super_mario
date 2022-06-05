@@ -106,6 +106,11 @@ void PauseMenu::changeExitStatus()
     exit = false;
 }
 
+void PauseMenu::changeBackStatus()
+{
+    back = false;
+}
+
 bool PauseMenu::getBackStatus() {
     return back;
 }

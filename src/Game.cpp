@@ -99,6 +99,7 @@ void Game::handleEvents() {
         {
             unpause();
             getBackToMenu = true;
+            pauseMenu.changeBackStatus();
         }
     }
 
