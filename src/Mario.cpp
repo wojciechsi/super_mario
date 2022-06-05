@@ -46,6 +46,7 @@ void Mario::die() {
     MovingItem::die();
     deadProcessCtr = DIE_TIME;
     jump();
+    dead = true;
 }
 
 void Mario::addPoints(int addedPoints) {
@@ -65,4 +66,8 @@ void Mario::deadProcess() {
 int Mario::getPoints()
 {
     return points;
+}
+
+bool Mario::getDeadStatus() {
+    return dead;
 }

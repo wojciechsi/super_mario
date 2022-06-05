@@ -5,7 +5,6 @@ void Game::run() {
     //MENU
     font->loadFromFile("../src/resources/SuperMario256.ttf");
     scoreDisplayText.setFont(*font);
-
     scoreDisplayText.setCharacterSize(0.6*SCREEN_WIDTH);
     scoreDisplayText.setScale(0.07, 0.07);
 
@@ -37,6 +36,7 @@ void Game::updateGame() {
             if(!this->paused) {
                 processRelations();
             }
+
             renderContent();
             window.display();
 
@@ -51,8 +51,7 @@ void Game::processRelations() {
     updateWhatMarioWithEnemiesDo();
     mario.addPoints(level.getPointsToAdd());
     level.clearPointsToAdd();
-    window.getRenderWindow().draw(scoreDisplayText);
-    scoreDisplayText.setString("Score: " + std::to_string(mario.getPoints()));
+
 }
 
 void Game::updateWhatMarioWithEnemiesDo() {
@@ -74,6 +73,8 @@ void Game::renderContent() {
         pauseMenu.blur(window.getRenderWindow());
         pauseMenu.draw(window.getRenderWindow());
     }
+    window.getRenderWindow().draw(scoreDisplayText);
+    scoreDisplayText.setString("Score: " + std::to_string(mario.getPoints()));
 }
 
 void Game::handleEvents() {
@@ -111,8 +112,6 @@ void Game::handleEvents() {
             pauseMenu.changeBackStatus();
         }
     }
-
-
 
     if(gameCooldown > 0)
     {

@@ -27,6 +27,8 @@ public:
      */
     void die();
 
+    bool getDeadStatus();
+
     /**
      * Wykrywanie kolizji po prawej stronie
      * @return
@@ -47,6 +49,7 @@ private:
     bool isBig = false;
     bool goesRight = false;
     int points = 0;
+    bool dead = false;
 public:
     int getPoints() const {
         return points;
