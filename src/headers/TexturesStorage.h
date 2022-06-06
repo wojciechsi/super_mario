@@ -17,6 +17,22 @@ private:
     std::shared_ptr<sf::Texture> turtleRunningTexture = std::make_shared<sf::Texture>();
     std::shared_ptr<sf::Texture> brickTexture = std::make_shared<sf::Texture>();
     std::shared_ptr<sf::Texture> backgroundTexture = std::make_shared<sf::Texture>();
+
+    std::shared_ptr<sf::Texture> kominLeft = std::make_shared<sf::Texture>();
+public:
+    const std::shared_ptr<sf::Texture> &getKominLeft() const;
+
+    const std::shared_ptr<sf::Texture> &getKominLeftTop() const;
+
+    const std::shared_ptr<sf::Texture> &getKominRight() const;
+
+    const std::shared_ptr<sf::Texture> &getKominRightTop() const;
+
+private:
+    std::shared_ptr<sf::Texture> kominLeftTop = std::make_shared<sf::Texture>();
+    std::shared_ptr<sf::Texture> kominRight = std::make_shared<sf::Texture>();
+    std::shared_ptr<sf::Texture> kominRightTop = std::make_shared<sf::Texture>();
+
     std::shared_ptr<sf::Shader> blurShader = std::make_shared<sf::Shader>();
 public:
     const std::shared_ptr<sf::Texture> &getBackgroundTexture() const;

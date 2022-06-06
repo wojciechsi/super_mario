@@ -28,15 +28,21 @@ void Mario::handleKeyboardInputs() {
 }
 
 void Mario::moveRight() {
-    this->sprite.setScale(1.0f, 1.0f);
-    if (this->sprite.getPosition().x < SCREEN_WIDTH / 2)
+    if (this->sprite.getScale() != sf::Vector2f (1.0f, 1.0f)) {
+        this->sprite.setScale(1.0f, 1.0f);
+        this->move(-16.0f, 0.0);
+    }
+    else if (this->sprite.getPosition().x < SCREEN_WIDTH / 2)
         this->move(1.0f, 0);
     else goesRight = true;
 }
 
 void Mario::moveLeft() {
-    this->sprite.setScale(-1.0f, 1.0f);
-    if (this->sprite.getPosition().x < (this->size.x) / 2) return;
+    if (this->sprite.getScale() != sf::Vector2f (-1.0f, 1.0f)) {
+        this->sprite.setScale(-1.0f, 1.0f);
+        this->move(16.0f, 0.0);
+    }
+    else if (this->sprite.getPosition().x < (this->size.x) / 2) return;
     else this->move(-1.0f, 0);
 }
 

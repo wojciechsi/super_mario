@@ -21,6 +21,11 @@ const void Level::createTestLevel() {
     bricks.emplace_back(Brick(40 * 16, SCREEN_HEIGHT - 56));
     bricks.emplace_back(Brick(18 * 16, SCREEN_HEIGHT - 72));
     bricks.emplace_back(Brick(17 * 16, SCREEN_HEIGHT - 72));
+
+    groundTiles.emplace_back(50 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInstance()->getKominLeft());
+    groundTiles.emplace_back(51 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInstance()->getKominRight());
+    groundTiles.emplace_back(50 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInstance()->getKominLeftTop());
+    groundTiles.emplace_back(51 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInstance()->getKominRightTop());
 }
 
 const void Level::createFirstLevel()

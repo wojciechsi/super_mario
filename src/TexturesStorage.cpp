@@ -11,6 +11,10 @@ void TexturesStorage::loadTexturesToStorage() {
         turtleRunningTexture->loadFromFile("../src/resources/turtleRunning.png");
         brickTexture->loadFromFile("../src/resources/brick.png");
         backgroundTexture->loadFromFile("../src/resources/background.png");
+        kominLeft->loadFromFile("../src/resources/kominLeft.png");
+        kominLeftTop->loadFromFile("../src/resources/kominLeftTop.png");
+        kominRight->loadFromFile("../src/resources/kominRight.png");
+        kominRightTop->loadFromFile("../src/resources/kominRightTop.png");
 
 }
 
@@ -49,6 +53,22 @@ const std::shared_ptr<sf::Texture> &TexturesStorage::getBackgroundTexture() cons
 
 const std::shared_ptr<sf::Texture> &TexturesStorage::getMarioTexture() const {
     return marioTexture;
+}
+
+const std::shared_ptr<sf::Texture> &TexturesStorage::getKominLeft() const {
+    return kominLeft;
+}
+
+const std::shared_ptr<sf::Texture> &TexturesStorage::getKominLeftTop() const {
+    return kominLeftTop;
+}
+
+const std::shared_ptr<sf::Texture> &TexturesStorage::getKominRight() const {
+    return kominRight;
+}
+
+const std::shared_ptr<sf::Texture> &TexturesStorage::getKominRightTop() const {
+    return kominRightTop;
 }
 
 
