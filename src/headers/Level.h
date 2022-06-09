@@ -10,6 +10,8 @@
 #include <iostream>
 #include <thread>
 #include <ranges>
+#include <fstream>
+#include <string>
 #include "TexturesStorage.h"
 
 
@@ -26,6 +28,7 @@ public:
      */
 
     const void createFirstLevel();
+    void createLevelFromFile();
 
 
     void printLevelContent (sf::RenderWindow &iwindow);

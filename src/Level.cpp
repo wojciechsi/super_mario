@@ -5,6 +5,11 @@ const void Level::createTestLevel() {
         groundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 24, TexturesStorage::getInstance()->getSoilTexture()));
         lowerTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8, TexturesStorage::getInstance()->getSoilTexture()));
     }
+   /* for(int i =2; i<16; i++)
+    {
+        groundTiles.emplace_back(Item( 16, SCREEN_HEIGHT - i *16, TexturesStorage::getInstance()->getSoilTexture()));
+    }*/
+   // groundTiles.emplace_back(Item( * 16, SCREEN_HEIGHT - 32, TexturesStorage::getInstance()->getSoilTexture()));
 
     groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInstance()->getSoilTexture()));
     groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInstance()->getSoilTexture()));
@@ -26,6 +31,14 @@ const void Level::createTestLevel() {
     groundTiles.emplace_back(51 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInstance()->getKominRight());
     groundTiles.emplace_back(50 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInstance()->getKominLeftTop());
     groundTiles.emplace_back(51 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInstance()->getKominRightTop());
+
+    groundTiles.emplace_back(60*16, SCREEN_HEIGHT - 40, TexturesStorage::getInstance() ->getKominLeft());
+    groundTiles.emplace_back(61*16, SCREEN_HEIGHT -40, TexturesStorage::getInstance()->getKominRight());
+    groundTiles.emplace_back(60 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInstance()->getKominLeft());
+    groundTiles.emplace_back(61 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInstance()->getKominRight());
+    groundTiles.emplace_back(60 * 16, SCREEN_HEIGHT - 72, TexturesStorage::getInstance()->getKominLeftTop());
+    groundTiles.emplace_back(61 * 16, SCREEN_HEIGHT - 72, TexturesStorage::getInstance()->getKominRightTop());
+
 }
 
 const void Level::createFirstLevel()
@@ -57,8 +70,9 @@ const void Level::createFirstLevel()
 
 Level::Level() {
     TexturesStorage::getInstance()->loadTexturesToStorage();
-    createTestLevel();
+    //createTestLevel();
     //createFirstLevel();
+    createLevelFromFile();
     }
 
 void Level::printLevelContent(sf::RenderWindow &iwindow) {
@@ -259,6 +273,56 @@ void Level::checkCollisionsBetweenEnemies(Enemy& enemy) {
 void Level::processBrickJumps() {
     for (auto &brick : bricks) {
         brick.jumpProcess();
+    }
+}
+
+void Level::createLevelFromFile() {
+std::fstream file;
+std::vector<std::string> lineVector;
+std::string line;
+file.open("../src/resources/test.txt");
+if(!file.is_open())
+{
+    std::cerr<<"Open file failure\n";
+    return;
+}
+while(std::getline(file, line))
+{
+    lineVector.push_back(line);
+}
+file.close();
+
+for(int i=0; i<lineVector.size(); i++)
+{
+    for(int j=0; j<lineVector[i].size(); j++) {
+        if (lineVector[i][j] == 'p') {
+            groundTiles.emplace_back(
+                    Item(j * 16,  i * 16, TexturesStorage::getInstance()->getSoilTexture()));
+        } else if (lineVector[i][j] == 'b') {
+            bricks.emplace_back(Brick(j * 16, i * 16));
+        } else if (lineVector[i][j] == '1') {
+            groundTiles.emplace_back(j * 16, i * 16, TexturesStorage::getInstance()->getKominLeft());
+        } else if (lineVector[i][j] == '2') {
+            groundTiles.emplace_back(j * 16,  i * 16, TexturesStorage::getInstance()->getKominRight());
+
+        }
+        else if (lineVector[i][j] == '3') {
+            groundTiles.emplace_back(j * 16,  i * 16, TexturesStorage::getInstance()->getKominLeftTop());
+        }
+        else if(lineVector[i][j] == '4')
+        {
+            groundTiles.emplace_back(j * 16,  i * 16, TexturesStorage::getInstance()->getKominRightTop());
+        }
+        else if(lineVector[i][j] == 'g')
+        {
+            gumbas.emplace_back(Gumba (j*16,i * 16-16));
+        }
+        else if(lineVector[i][j] == 't')
+        {
+            turtles.emplace_back(Turtle (j*16,i*16-16));
+        }
+    }
+
     }
 }
 
