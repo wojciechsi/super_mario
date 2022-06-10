@@ -7,10 +7,8 @@
 constexpr unsigned short SCREEN_HEIGHT = 256;
 constexpr unsigned short SCREEN_WIDTH = 240;
 
-constexpr unsigned short MAX_LEVEL_SIZE = 1000;
-
 constexpr unsigned int FRAMES = 80;
-constexpr float SCREEN_LOAD_OFFSET = 25;
+constexpr float SCREEN_LOAD_OFFSET = 5;
 
 constexpr int MAX_JUMP = 20;
 constexpr float JUMP_VELOCITY = -5.0f;

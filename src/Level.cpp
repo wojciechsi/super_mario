@@ -136,7 +136,7 @@ void Level::updateEnemiesPositions() {
     processBrickJumps();
 }
 
-void Level::generateCollisions(MovingItem& movingItem) {
+void Level::generateCollisions(MovingItem& movingItem, bool headFlag) {
     Collisons newCollisions;
     Bonduaries b = movingItem.getBonduariesBoxes();
 
@@ -147,7 +147,7 @@ void Level::generateCollisions(MovingItem& movingItem) {
         if(checkStillCollisons(b.rightBonduary)) newCollisions.right = true;
     });
     std::thread topThread ([&](){
-        if(checkStillCollisons(b.topBonduary, true)) newCollisions.up = true;
+        if(checkStillCollisons(b.topBonduary, headFlag)) newCollisions.up = true;
     });
     std::thread bottomThread ([&](){
         if(checkStillCollisons(b.bottomBonduary)) newCollisions.down = true;

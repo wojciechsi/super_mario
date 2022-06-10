@@ -38,7 +38,7 @@ void Game::updateGame() {
 
 
 void Game::processRelations() {
-    level.generateCollisions(mario);
+    level.generateCollisions(mario, true);
     mario.update();
     level.updateEnemiesPositions();
     updateWhatMarioWithEnemiesDo();
@@ -143,7 +143,6 @@ void Game::displayMenu() {
 }
 
 Game::Game() {
-    mario = Mario();
     font->loadFromFile("../src/resources/SuperMario256.ttf");
     scoreDisplayText.setFont(*font);
     scoreDisplayText.setCharacterSize(0.6*SCREEN_WIDTH);

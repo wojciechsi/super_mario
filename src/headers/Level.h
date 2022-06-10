@@ -47,8 +47,9 @@ public:
     /**
      * Ustawia parametry kolizji dla danego obiektu względem pozostałych elementów
      * @param movingItem modyfikowany obiekt
+     * @param headFlag czy powinien wykonać akcję głową
      */
-    void generateCollisions (MovingItem& movingItem);
+    void generateCollisions (MovingItem& movingItem, bool headFlag = false);
 
     /**
      * Wyzwala akcję zwoiązane z kolizjami Maria z wrogami.
