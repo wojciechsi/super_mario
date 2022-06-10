@@ -6,6 +6,7 @@
 
 constexpr unsigned short SCREEN_HEIGHT = 256;
 constexpr unsigned short SCREEN_WIDTH = 240;
+constexpr int TILE = 16;
 
 constexpr unsigned int FRAMES = 80;
 constexpr float SCREEN_LOAD_OFFSET = 5;

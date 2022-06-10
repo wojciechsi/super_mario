@@ -297,29 +297,29 @@ for(int i=0; i<lineVector.size(); i++)
     for(int j=0; j<lineVector[i].size(); j++) {
         if (lineVector[i][j] == 'p') {
             groundTiles.emplace_back(
-                    Item(j * 16,  i * 16, TexturesStorage::getInstance()->getSoilTexture()));
+                    Item(j * TILE,  i * TILE, TexturesStorage::getInstance()->getSoilTexture()));
         } else if (lineVector[i][j] == 'b') {
-            bricks.emplace_back(Brick(j * 16, i * 16));
+            bricks.emplace_back(Brick(j * TILE, i * TILE));
         } else if (lineVector[i][j] == '1') {
-            groundTiles.emplace_back(j * 16, i * 16, TexturesStorage::getInstance()->getKominLeft());
+            groundTiles.emplace_back(j * TILE, i * TILE, TexturesStorage::getInstance()->getKominLeft());
         } else if (lineVector[i][j] == '2') {
-            groundTiles.emplace_back(j * 16,  i * 16, TexturesStorage::getInstance()->getKominRight());
+            groundTiles.emplace_back(j * TILE,  i * TILE, TexturesStorage::getInstance()->getKominRight());
 
         }
         else if (lineVector[i][j] == '3') {
-            groundTiles.emplace_back(j * 16,  i * 16, TexturesStorage::getInstance()->getKominLeftTop());
+            groundTiles.emplace_back(j * TILE,  i * TILE, TexturesStorage::getInstance()->getKominLeftTop());
         }
         else if(lineVector[i][j] == '4')
         {
-            groundTiles.emplace_back(j * 16,  i * 16, TexturesStorage::getInstance()->getKominRightTop());
+            groundTiles.emplace_back(j * TILE,  i * TILE, TexturesStorage::getInstance()->getKominRightTop());
         }
         else if(lineVector[i][j] == 'g')
         {
-            gumbas.emplace_back(Gumba (j*16,i * 16-16));
+            gumbas.emplace_back(Gumba (j*TILE, (i * TILE)-(TILE/2)));
         }
         else if(lineVector[i][j] == 't')
         {
-            turtles.emplace_back(Turtle (j*16,i*16-16));
+            turtles.emplace_back(Turtle (j*TILE, (i * TILE)-(TILE/2)));
         }
     }
 
