@@ -34,3 +34,6 @@ bool Enemy::operator==(const Enemy &rEnemy) {
         return true;
     else return false;
 }
+
+
+

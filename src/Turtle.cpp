@@ -18,7 +18,7 @@ void Turtle::die() {
         move(velocity, 0.0f);
     }
     else {
-        MovingItem::die();
+        Enemy::die();
     }
 }
 

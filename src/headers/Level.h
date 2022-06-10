@@ -12,6 +12,10 @@
 #include <ranges>
 #include <fstream>
 #include <string>
+#include <list>
+#include <barrier>
+#include <stack>
+
 #include "TexturesStorage.h"
 
 
@@ -22,15 +26,13 @@ class Level {
 public:
     Level();
 
+    const void createFirstLevel();
+    void createLevelFromFile();
+
     /**
      * Renderuje elementy poziomu na ekranie
      * @param iwindow okno
      */
-
-    const void createFirstLevel();
-    void createLevelFromFile();
-
-
     void printLevelContent (sf::RenderWindow &iwindow);
 
     /**
@@ -75,10 +77,11 @@ public:
 
 private:
     std::vector<Brick> bricks;
-    std::vector<Gumba> gumbas;
-    std::vector<Turtle> turtles;
+    std::list<Gumba> gumbas;
+    std::list<Turtle> turtles;
     std::vector<Item> groundTiles;
     std::vector<Item> lowerTiles; //unused in collisions
+
 
 
     int pointsToAdd = 0;

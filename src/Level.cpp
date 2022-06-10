@@ -84,10 +84,12 @@ void Level::printLevelContent(sf::RenderWindow &iwindow) {
         tile1.draw(iwindow);
     }
     for (auto &turtle : turtles) {
-        turtle.draw(iwindow);
+        if(turtle.isAlive())
+            turtle.draw(iwindow);
     }
     for (auto &gumba : gumbas) {
-        gumba.draw(iwindow);
+        if(gumba.isAlive())
+            gumba.draw(iwindow);
     }
     for(auto &brick : bricks) {
         brick.draw(iwindow);
@@ -116,23 +118,19 @@ void Level::updateLevelPositionsWhileWalk() {
 }
 
 void Level::updateEnemiesPositions() {
-    std::jthread gumbaThread ([&]() {
-        for (auto &gumba: gumbas)
-            if (gumba.isOnScreen()) {
-                generateCollisions(gumba);
-                checkCollisionsBetweenEnemies(gumba);
-                gumba.update();
-            }
-
-    });
-    std::jthread turtleThread ([&](){
-        for (auto &turtle: turtles)
-            if (turtle.isOnScreen()) {
-                generateCollisions(turtle);
-                checkCollisionsBetweenEnemies(turtle);
-                turtle.update();
-            }
-    });
+     for (auto it=gumbas.begin(); it!= gumbas.end(); it++) {
+         if ((*it).isOnScreen()) {
+             generateCollisions(*it);
+             checkCollisionsBetweenEnemies(*it);
+             (*it).update();
+         }
+     }
+     for (auto &turtle: turtles)
+         if (turtle.isOnScreen()) {
+             generateCollisions(turtle);
+             checkCollisionsBetweenEnemies(turtle);
+             turtle.update();
+         }
     processBrickJumps();
 }
 
@@ -192,7 +190,6 @@ bool Level::chceckEnemiesCollisions(const sf::FloatRect &rectangle, bool killing
                 }
                 return true;
             }
-
         }
     }
     for(auto it=turtles.begin(); it!= turtles.end(); it++) {
@@ -231,7 +228,6 @@ void Level::checkCollisionsBetweenEnemies(Enemy& enemy) {
     bool enemyIsGumba = true;
     if (typeid(enemy) == typeid(Turtle))
         enemyIsGumba = false; //ASSUMING ELSE: is a Turtle
-    std::thread gumbasThread ([&](){
         for (auto it = gumbas.begin(); it != gumbas.end(); it++) {
             if ((*it).isNearbyX(enemy)) {
                 if (!enemyIsGumba or (*it) != enemy) {
@@ -242,7 +238,8 @@ void Level::checkCollisionsBetweenEnemies(Enemy& enemy) {
                     if(!enemyIsGumba) //A TURTLE
                         if(newLeft or newRight) { //WHO COLLIDED WITH GUMBA
                             if(dynamic_cast<Turtle*>(&enemy)->isRunning()) { //AND IS RUNNING
-                                gumbas.erase(it); //KILLS IT
+                                (*it).die();
+                                //gumbas.erase(it); //KILLS IT
                                 addKillingPoints();
                                 addKillingPoints();
                             }
@@ -250,8 +247,6 @@ void Level::checkCollisionsBetweenEnemies(Enemy& enemy) {
                 }
             }
         }
-    });
-    std::thread turtlesThread ([&](){
         for (auto& turtle: turtles) {
             if (turtle.isNearbyX(enemy)) {
                 if (enemyIsGumba or turtle != enemy) {
@@ -262,10 +257,6 @@ void Level::checkCollisionsBetweenEnemies(Enemy& enemy) {
                 }
             }
         }
-    });
-
-    gumbasThread.join();
-    turtlesThread.join();
 
     enemy.setLeftAndRightCollisons(newLeft, newRight);
 }
@@ -325,4 +316,6 @@ for(int i=0; i<lineVector.size(); i++)
 
     }
 }
+
+
 

@@ -14,11 +14,6 @@ public:
     Gumba (int iX, int iY);
 
     /**
-     * Zabija gumbę.
-     */
-    void die();
-
-    /**
      * Implementacja interfejsu Enemy "pro forma"
      */
     void foo() {}

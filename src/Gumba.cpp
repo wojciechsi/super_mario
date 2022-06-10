@@ -9,6 +9,3 @@ Gumba::Gumba(int iX, int iY) : Gumba() {
     move(iX, iY);
 }
 
-void Gumba::die() {
-
-}

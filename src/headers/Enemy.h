@@ -17,6 +17,11 @@ public:
     Enemy (int iX, int iY) : MovingItem(iX, iY) {};
 
     /**
+     * Zwraca informację, czy dany wróg powinien umrzeć.
+     * Należy wykorzystać przy iteracji w kolejnej klatce.
+     */
+
+    /**
      * Rozszerza metodę klasy MovingItem o automatyczny ruch i odbicia
      */
     void update ();
