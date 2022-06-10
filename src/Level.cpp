@@ -315,11 +315,11 @@ for(int i=0; i<lineVector.size(); i++)
         }
         else if(lineVector[i][j] == 'g')
         {
-            gumbas.emplace_back(Gumba (j*TILE, (i * TILE)-(TILE/2)));
+            gumbas.emplace_back(Gumba (j*TILE, i * TILE - TILE/2));
         }
         else if(lineVector[i][j] == 't')
         {
-            turtles.emplace_back(Turtle (j*TILE, (i * TILE)-(TILE/2)));
+            turtles.emplace_back(Turtle (j*TILE, i * TILE - TILE/2));
         }
     }
 
