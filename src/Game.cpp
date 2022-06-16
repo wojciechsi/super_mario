@@ -2,8 +2,10 @@
 
 void Game::run() {
     window.initialize();
+    menuMusic.play();
     displayMenu();
     window.flush();
+    menuMusic.stop();
     gameMusic.play();
     displayGame();
     window.close();
@@ -19,8 +21,10 @@ void Game::displayGame() {
                 gameMusic.stop();
                 window.flush();
                 menu.setEnd();
+                menuMusic.play();
                 displayMenu();
                 getBackToMenu = false;
+                menuMusic.stop();
             }
         }
     }
@@ -165,6 +169,7 @@ Game::Game() {
     {
         std::cerr<<"Background music load error\n";
     }
+    if(menuMusic.openFromFile("../src/resources/menuMusic.ogg"))
     scoreDisplayText.setFont(*font);
     scoreDisplayText.setCharacterSize(0.6*SCREEN_WIDTH);
     scoreDisplayText.setScale(0.07, 0.07);

@@ -32,6 +32,7 @@ private:
     OptionsMenu optionsMenu;
     PauseMenu pauseMenu;
     sf::Music gameMusic;
+    sf::Music menuMusic;
 
     bool gameON = true;
     bool paused = false;
