@@ -2,8 +2,10 @@
 #define SUPER_MARIO_MARIO_H
 
 #include "defs.h"
+#include "SFML/Audio.hpp"
 #include "MovingItem.h"
 #include "TexturesStorage.h"
+#include <iostream>
 
 /**
  * Klasa przechowuje dane o głównej postaci gry
@@ -51,6 +53,9 @@ private:
     bool goesRight = false;
     int points = 0;
     bool dead = false;
+    sf::Sound marioSound;
+    sf::SoundBuffer jumpSound;
+    sf::SoundBuffer deathSound;
 public:
     int getPoints() const {
         return points;
@@ -62,7 +67,15 @@ private:
     /**
      * Wyzwala skok
      */
-    void jump() {if (this->hasDownCollision()) jumpCtr = MAX_JUMP;}
+    void jump() {
+        if (this->hasDownCollision()) {
+            if(!dead) {
+                marioSound.setBuffer(jumpSound);
+                marioSound.play();
+            }
+            jumpCtr = MAX_JUMP;
+        }
+    }
 
     /**
      * Przetwarza skok, jeśli jest

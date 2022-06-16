@@ -31,6 +31,7 @@ private:
     Menu menu;
     OptionsMenu optionsMenu;
     PauseMenu pauseMenu;
+    sf::Music gameMusic;
 
     bool gameON = true;
     bool paused = false;
@@ -86,7 +87,7 @@ private:
     /**
      * Rozpoczyna grę od początku;
      */
-    void restartGame() {mario = Mario(); level = Level();}
+    void restartGame() {mario = Mario(); level = Level(); gameMusic.play();}
 
     /**
      * Przechwytuje wezwanie pauzy.

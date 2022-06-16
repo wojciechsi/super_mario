@@ -3,6 +3,14 @@
 Mario::Mario() : MovingItem(0.5f * SCREEN_WIDTH,
                             0.5f * SCREEN_HEIGHT) {
     setTexture(TexturesStorage::getInstance()->getMarioTexture());
+    if(!jumpSound.loadFromFile("../src/resources/jump.wav"))
+    {
+        std::cerr << "Jump sound loading error\n";
+    }
+    if(!deathSound.loadFromFile("../src/resources/death.wav"))
+    {
+        std::cerr <<"Death sound loading error\n";
+    }
 }
 
 void Mario::update()
@@ -51,10 +59,13 @@ bool Mario::isGoesRight() const {
 }
 
 void Mario::die() {
+    marioSound.setBuffer(deathSound);
+    marioSound.play();
     MovingItem::die();
+    dead = true;
     deadProcessCtr = DIE_TIME;
     jump();
-    dead = true;
+
 }
 
 void Mario::addPoints(int addedPoints) {

@@ -4,6 +4,7 @@ void Game::run() {
     window.initialize();
     displayMenu();
     window.flush();
+    gameMusic.play();
     displayGame();
     window.close();
 }
@@ -15,6 +16,7 @@ void Game::displayGame() {
             updateGame();
             if(getBackToMenu)
             {
+                gameMusic.stop();
                 window.flush();
                 menu.setEnd();
                 displayMenu();
@@ -159,6 +161,10 @@ void Game::displayMenu() {
 
 Game::Game() {
     font->loadFromFile("../src/resources/SuperMario256.ttf");
+    if(gameMusic.openFromFile("../src/resources/music.ogg"))
+    {
+        std::cerr<<"Background music load error\n";
+    }
     scoreDisplayText.setFont(*font);
     scoreDisplayText.setCharacterSize(0.6*SCREEN_WIDTH);
     scoreDisplayText.setScale(0.07, 0.07);
