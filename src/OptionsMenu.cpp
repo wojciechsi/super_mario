@@ -9,7 +9,7 @@ OptionsMenu::OptionsMenu(float width, float height)
 
     optionsMenu[0].setFont(*font);
     optionsMenu[0].setFillColor(sf::Color::White);
-    optionsMenu[0].setString("Podaj nazwe pliku z mapa: ");
+    optionsMenu[0].setString("Podaj nazwe pliku z mapa");
     optionsMenu[0].setCharacterSize(0.6*SCREEN_WIDTH);
     optionsMenu[0].setScale(0.05, 0.05);
     optionsMenu[0].setPosition(0.4*SCREEN_WIDTH, 0.3*SCREEN_HEIGHT);
@@ -22,6 +22,8 @@ OptionsMenu::OptionsMenu(float width, float height)
     optionsMenu[1].setPosition(0.4*SCREEN_WIDTH, 0.5*SCREEN_HEIGHT);
 
     selected = 0;
+
+    inputTextBox.setPosition({0.4*SCREEN_WIDTH, 0.4*SCREEN_HEIGHT});
 }
 
 void OptionsMenu::draw(sf::RenderWindow &window) {
@@ -76,7 +78,11 @@ void OptionsMenu::handleKeyboardInput(sf::RenderWindow &window)
         optionsMenu[selected].setFillColor(sf::Color::White);
         if(selected == 0)
         {
+            while(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter))
+            {
+                inputTextBox.draw(window);
 
+            }
         }
         else if(selected == 1)
         {

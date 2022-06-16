@@ -9,6 +9,7 @@
 #include "Window.h"
 #include "defs.h"
 #include "TexturesStorage.h"
+#include "TextBox.h"
 
 #define Max_options_menu 2
 
@@ -31,6 +32,7 @@ public:
     void setReturn();
     bool getReturn();
 private:
+    TextBox inputTextBox = TextBox::createTextBox();
     sf::RectangleShape background;
     int selected;
     std::shared_ptr<sf::Font> font = std::make_shared<sf::Font>();
@@ -39,6 +41,7 @@ private:
     float cooldownmin = 0.f;
     float cooldownmax = 15.f;
     bool wantReturn = false;
+
 
 
 };
