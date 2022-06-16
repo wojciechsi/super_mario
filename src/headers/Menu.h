@@ -24,10 +24,13 @@ public:
     /**
      * Do góry...
      */
+    void drawOptions(sf::RenderWindow& window);
     void up();
     void down();
     bool getEnd();
     void select();
+    bool getOptions();
+    void setOptions();
     void handleKeyboardInput(sf::RenderWindow &window);
     int Pressed()
     {
@@ -39,12 +42,14 @@ private:
     int selected;
     std::shared_ptr<sf::Font> font = std::make_shared<sf::Font>();
     sf::Text mainMenu[Max_main_menu];
+    sf::Text optionsMenu[2];
     float cooldown = 15.f;
     float cooldownmin = 0.f;
     float cooldownmax = 15.f;
     bool end = false;
     bool wantLeave = false;
     bool newGame = false;
+    bool options = false;
 public:
     bool isNewGame() const;
 

@@ -10,7 +10,7 @@ ENDIF()
 
 add_executable(
         super_mario
-        src/headers/defs.h src/Game.cpp src/headers/Game.h src/Level.cpp src/headers/Level.h src/Menu.cpp src/headers/Menu.h src/Item.cpp src/headers/Item.h src/MovingItem.cpp src/headers/MovingItem.h src/Brick.cpp src/headers/Brick.h src/BirickQuestionMark.cpp src/headers/BirickQuestionMark.h src/Mario.cpp src/headers/Mario.h src/Enemy.cpp src/headers/Enemy.h src/Turtle.cpp src/headers/Turtle.h src/Gumba.cpp src/headers/Gumba.h src/main.cpp src/Window.cpp src/headers/Window.h src/TexturesStorage.cpp src/headers/TexturesStorage.h src/headers/PauseMenu.h src/PauseMenu.cpp)
+        src/headers/defs.h src/Game.cpp src/headers/Game.h src/Level.cpp src/headers/Level.h src/Menu.cpp src/headers/Menu.h src/Item.cpp src/headers/Item.h src/MovingItem.cpp src/headers/MovingItem.h src/Brick.cpp src/headers/Brick.h src/BirickQuestionMark.cpp src/headers/BirickQuestionMark.h src/Mario.cpp src/headers/Mario.h src/Enemy.cpp src/headers/Enemy.h src/Turtle.cpp src/headers/Turtle.h src/Gumba.cpp src/headers/Gumba.h src/main.cpp src/Window.cpp src/headers/Window.h src/TexturesStorage.cpp src/headers/TexturesStorage.h src/headers/PauseMenu.h src/PauseMenu.cpp src/headers/OptionsMenu.h src/OptionsMenu.cpp)
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")
 find_package(SFML REQUIRED system window graphics network audio)

@@ -7,6 +7,7 @@
 #include "Mario.h"
 #include "Level.h"
 #include "Window.h"
+#include "OptionsMenu.h"
 #include "TexturesStorage.h"
 #include "PauseMenu.h"
 
@@ -28,6 +29,7 @@ private:
     Mario mario;
     Level level;
     Menu menu;
+    OptionsMenu optionsMenu;
     PauseMenu pauseMenu;
 
     bool gameON = true;

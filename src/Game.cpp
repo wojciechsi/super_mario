@@ -131,14 +131,29 @@ void Game::displayMenu() {
     bool proceed = false;
     while (window.isOpen() and proceed == false) {
         handleEvents();
-        menu.handleKeyboardInput(window.getRenderWindow());
-        menu.draw(window.getRenderWindow());
-        window.display();
-        window.flush();
-        if (menu.getEnd())
-            proceed = true;
-        if (menu.isNewGame())
-            this->restartGame();
+        if(!menu.getOptions()) {
+            menu.handleKeyboardInput(window.getRenderWindow());
+            menu.draw(window.getRenderWindow());
+            window.display();
+            window.flush();
+            if (menu.getEnd())
+                proceed = true;
+            if (menu.isNewGame())
+                this->restartGame();
+        }
+        else
+        {
+            optionsMenu.handleKeyboardInput(window.getRenderWindow());
+            optionsMenu.draw(window.getRenderWindow());
+            window.display();
+            if(optionsMenu.getReturn())
+            {
+                optionsMenu.setReturn();
+                menu.setOptions();
+            }
+            window.flush();
+
+        }
     }
 }
 

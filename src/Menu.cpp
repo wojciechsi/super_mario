@@ -47,6 +47,20 @@ Menu::Menu(float width, float height)
     mainMenu[4].setScale(0.1, 0.1);
     mainMenu[4].setPosition(0.5*SCREEN_WIDTH, 0.7*SCREEN_HEIGHT);
 
+    optionsMenu[0].setFont(*font);
+    optionsMenu[0].setFillColor(sf::Color::White);
+    optionsMenu[0].setString("Podaj nazwę pliku z mapą: ");
+    optionsMenu[0].setCharacterSize(0.6*SCREEN_WIDTH);
+    optionsMenu[0].setScale(0.1, 0.1);
+    optionsMenu[0].setPosition(0.4*SCREEN_WIDTH, 0.3*SCREEN_HEIGHT);
+
+    optionsMenu[1].setFont(*font);
+    optionsMenu[1].setFillColor(sf::Color::White);
+    optionsMenu[1].setString("Powrót");
+    optionsMenu[1].setCharacterSize(0.6*SCREEN_WIDTH);
+    optionsMenu[1].setScale(0.1, 0.1);
+    optionsMenu[1].setPosition(0.4*SCREEN_WIDTH, 0.5*SCREEN_HEIGHT);
+
     selected = 0;
 }
 
@@ -64,6 +78,8 @@ void Menu::draw(sf::RenderWindow &window) {
         window.draw(i);
     }
 }
+
+
 
 void Menu::up() {
     if(selected >= 0)
@@ -122,8 +138,9 @@ void Menu::handleKeyboardInput(sf::RenderWindow &window)
         }
         else if(selected == 2)
         {
-
+            options = true;
         }
+
         else if(selected == 3)
         {
 
@@ -154,4 +171,12 @@ void Menu::setEnd() {
 
 bool Menu::isNewGame() const {
     return newGame;
+}
+
+bool Menu::getOptions() {
+    return options;
+}
+
+void Menu::setOptions() {
+    options = false;
 }
