@@ -73,6 +73,7 @@ Level::Level() {
     //createTestLevel();
     //createFirstLevel();
     createLevelFromFile();
+    LevelReader();
     }
 
 void Level::printLevelContent(sf::RenderWindow &iwindow) {

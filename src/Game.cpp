@@ -169,9 +169,9 @@ void Game::displayMenu() {
 
                 while(optionsMenu.ifTextbox()) {
                     while(window.getRenderWindow().pollEvent(textEvent)) {
-                        switch (textEvent.type) {
-                            case sf::Event::TextEntered:
-                                inputTextBox.typed(textEvent);
+                        if(textEvent.type == sf::Event::TextEntered)
+                        {
+                            inputTextBox.typed(textEvent);
                         }
                     }
                     optionsMenu.draw(window.getRenderWindow());
