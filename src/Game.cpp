@@ -166,8 +166,26 @@ void Game::displayMenu() {
             }
             else if(optionsMenu.ifTextbox())
             {
-                inputTextBox.typed(ifTextEntered);
-               inputTextBox.draw(window.getRenderWindow());
+
+                while(optionsMenu.ifTextbox()) {
+                    while(window.getRenderWindow().pollEvent(textEvent)) {
+                        switch (textEvent.type) {
+                            case sf::Event::TextEntered:
+                                inputTextBox.typed(textEvent);
+                        }
+                    }
+                    optionsMenu.draw(window.getRenderWindow());
+                    inputTextBox.draw(window.getRenderWindow());
+                    window.display();
+                    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
+                    {
+                        levelName = inputTextBox.getText();
+                        optionsMenu.setTextBox();
+                        break;
+                    }
+                    window.flush();
+
+                }
             }
             window.display();
             window.flush();

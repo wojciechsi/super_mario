@@ -42,7 +42,7 @@ private:
     sf::Text optionsMenu[Max_options_menu];
     float cooldown = 15.f;
     float cooldownmin = 0.f;
-    float cooldownmax = 15.f;
+    float cooldownmax = 30.f;
     bool wantReturn = false;
 
 

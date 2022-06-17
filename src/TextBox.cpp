@@ -1,7 +1,8 @@
 #include "headers/TextBox.h"
 TextBox::TextBox() {
     font->loadFromFile("../src/resources/SuperMario256.ttf"); //@todo put this to storage
-    textBox.setCharacterSize(15);
+    textBox.setCharacterSize(0.6*SCREEN_WIDTH);
+    textBox.setScale(0.1, 0.1);
     textBox.setFillColor(sf::Color::White);
     textBox.setFont(*font);
     isSelected = true;

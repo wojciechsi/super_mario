@@ -35,7 +35,9 @@ private:
     sf::Music gameMusic;
     sf::Music menuMusic;
     TextBox inputTextBox;
-    sf::Event ifTextEntered;
+    sf::Event textEvent;
+    std::string levelName;
+
 
     bool gameON = true;
     bool paused = false;
