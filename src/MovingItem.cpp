@@ -28,10 +28,6 @@ void MovingItem::die() {
     alive = false;
 }
 
-bool MovingItem::isProtected() {
-    return false;
-}
-
 void MovingItem::setCollisions(Collisons newCollisons) {
     collisions = newCollisons;
 }

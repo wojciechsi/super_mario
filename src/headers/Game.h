@@ -88,7 +88,7 @@ private:
     /**
      * Rozpoczyna grę od początku;
      */
-    void restartGame() {mario = Mario(); level = Level(); gameMusic.play();}
+    void restartGame(int lives = 3) {mario = Mario(lives); level = Level(); gameMusic.play();}
 
     /**
      * Przechwytuje wezwanie pauzy.

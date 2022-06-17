@@ -6,5 +6,5 @@ void Window::initialize() {
 }
 
 void Window::flush() {
-    renderWindow.clear(sf::Color::Black);
+    renderWindow.clear(sf::Color(92, 148, 252));
 }

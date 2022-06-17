@@ -32,12 +32,15 @@ void Game::displayGame() {
 
 void Game::updateGame() {
     if (gameON) {
-        window.getRenderWindow().clear(sf::Color(92, 148, 252));
+        window.flush();
         if(!this->paused) {
             processRelations();
         }
         renderContent();
         window.display();
+        if(mario.checkLostLife()) {
+            restartGame(mario.getLives());
+        }
 
     }
 }
@@ -55,8 +58,7 @@ void Game::processRelations() {
 
 void Game::updateWhatMarioWithEnemiesDo() {
     if(mario.isAlive()) {
-        if(!mario.isProtected())
-            level.generateCollisionsWithEnemies(mario);
+        level.generateCollisionsWithEnemies(mario);
         if (mario.isGoesRight())
             if (!mario.hasRightCollision())
                 level.updateLevelPositionsWhileWalk();
@@ -173,7 +175,7 @@ Game::Game() {
 }
 
 void Game::loadSoundAndText() {
-    if(gameMusic.openFromFile("../src/resources/music.ogg"))
+    if(!gameMusic.openFromFile("../src/resources/music.ogg"))
     {
         std::cerr<<"Background music load error\n";
     }

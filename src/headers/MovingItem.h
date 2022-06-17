@@ -37,7 +37,6 @@ public:
 
     virtual void die ();
 
-    virtual bool isProtected();
 private:
     /**
      * Przemieszcza obiekt o stałą grawitacji dla klatki.
@@ -57,7 +56,7 @@ public:
     void setCollisions (Collisons newCollisons);
 
 
-   /**
+    virtual /**
     * Aktualizuje położenie i stan
     */
     void update();

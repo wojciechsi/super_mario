@@ -14,10 +14,12 @@ class Mario : virtual public MovingItem{
 public:
     Mario();
 
+    explicit Mario(int prevLives) : Mario() {lives = prevLives;}
+
     /**
      * Aktualizuje stan - metoda najwyższego poziomu abstrakcji dla klasy.
      */
-    void update();
+    void update() override;
 
     /**
      * Zwraca informację o ewentualnym ruchu w prawo, za połowę ekranu.
@@ -28,7 +30,7 @@ public:
     /**
      * Rozpoczyna proces umierania gracza
      */
-    void die();
+    void die() override;
 
     bool getDeadStatus();
 
@@ -46,36 +48,23 @@ public:
 
     int getPoints();
 
-    void jumpWithinConditions () {this->move(0.0f, -50.0f); /*jumpCtr = MAX_JUMP*/;}
+    void jumpWithinConditions () {this->move(0.0f, -50.0f);}
 
-    /**
-    * Zwraca informację  o ewentualnym stanie ochronnym po u
-    * @return
-    */
-    bool isProtected () override;
+    int getLives() const;
+
+    bool checkLostLife ();
 private:
     int deadProcessCtr = 0;
     bool isBig = false;
     bool goesRight = false;
     int points = 0;
     int lives = 3;
-public:
-    int getLives() const;
-
-private:
+    bool lostLife = false;
     bool dead = false;
-    int protectedCtr = 0;
     sf::Sound marioSound;
     sf::SoundBuffer jumpSound;
     sf::SoundBuffer deathSound;
     int jumpCtr = 0;
-public:
-    int getPoints() const {
-        return points;
-    }
-
-private:
-
 
     /**
      * Wyzwala skok
