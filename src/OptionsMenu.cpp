@@ -78,7 +78,7 @@ void OptionsMenu::handleKeyboardInput(sf::RenderWindow &window)
         optionsMenu[selected].setFillColor(sf::Color::White);
         if(selected == 0)
         {
-            ifTextbox();
+           displayTextBox = true;
 
         }
         else if(selected == 1)
@@ -111,7 +111,7 @@ void OptionsMenu::setReturn() {
 }
 
 bool OptionsMenu::ifTextbox() {
-    displayTextBox = true;
+    return displayTextBox;
 }
 
 void OptionsMenu::setTextBox()

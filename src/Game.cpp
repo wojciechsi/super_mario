@@ -156,6 +156,7 @@ void Game::displayMenu() {
         }
         else
         {
+
             optionsMenu.handleKeyboardInput(window.getRenderWindow());
             optionsMenu.draw(window.getRenderWindow());
             if(optionsMenu.getReturn())
@@ -165,7 +166,8 @@ void Game::displayMenu() {
             }
             else if(optionsMenu.ifTextbox())
             {
-                inputTextBox.draw(window.getRenderWindow());
+                inputTextBox.typed(ifTextEntered);
+               inputTextBox.draw(window.getRenderWindow());
             }
             window.display();
             window.flush();

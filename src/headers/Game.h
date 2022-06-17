@@ -35,6 +35,7 @@ private:
     sf::Music gameMusic;
     sf::Music menuMusic;
     TextBox inputTextBox;
+    sf::Event ifTextEntered;
 
     bool gameON = true;
     bool paused = false;

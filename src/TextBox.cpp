@@ -5,6 +5,14 @@ TextBox::TextBox() {
     textBox.setFillColor(sf::Color::White);
     textBox.setFont(*font);
     isSelected = true;
+    if(isSelected)
+    {
+        textBox.setString("_");
+    }
+    else
+    {
+        textBox.setString("");
+    }
 }
 
 
