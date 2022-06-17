@@ -111,6 +111,8 @@ private:
     void displayLives();
 
     void displayScore();
+
+    void loadSoundAndText();
 };
 
 #endif //SUPER_MARIO_GAME_H

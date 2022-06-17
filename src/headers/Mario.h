@@ -47,6 +47,12 @@ public:
     int getPoints();
 
     void jumpWithinConditions () {this->move(0.0f, -50.0f); /*jumpCtr = MAX_JUMP*/;}
+
+    /**
+    * Zwraca informację  o ewentualnym stanie ochronnym po u
+    * @return
+    */
+    bool isProtected () override;
 private:
     int deadProcessCtr = 0;
     bool isBig = false;
@@ -109,11 +115,7 @@ private:
      */
     void moveRight();
 
-    /**
-     * Zwraca informację  o ewentualnym stanie ochronnym po u
-     * @return
-     */
-    bool isProtected () override;
+
 
 };
 

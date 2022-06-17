@@ -55,7 +55,8 @@ void Game::processRelations() {
 
 void Game::updateWhatMarioWithEnemiesDo() {
     if(mario.isAlive()) {
-        level.generateCollisionsWithEnemies(mario);
+        if(!mario.isProtected())
+            level.generateCollisionsWithEnemies(mario);
         if (mario.isGoesRight())
             if (!mario.hasRightCollision())
                 level.updateLevelPositionsWhileWalk();
@@ -168,14 +169,18 @@ void Game::displayMenu() {
 }
 
 Game::Game() {
-    font->loadFromFile("../src/resources/SuperMario256.ttf");
+    loadSoundAndText();
+}
+
+void Game::loadSoundAndText() {
     if(gameMusic.openFromFile("../src/resources/music.ogg"))
     {
         std::cerr<<"Background music load error\n";
     }
-    if(menuMusic.openFromFile("../src/resources/menuMusic.ogg"))
+    menuMusic.openFromFile("../src/resources/menuMusic.ogg");
+    font->loadFromFile("../src/resources/SuperMario256.ttf");
     scoreDisplayText.setFont(*font);
-    scoreDisplayText.setCharacterSize(0.6*SCREEN_WIDTH);
+    scoreDisplayText.setCharacterSize(0.6 * SCREEN_WIDTH);
     scoreDisplayText.setScale(0.07, 0.07);
 }
 
