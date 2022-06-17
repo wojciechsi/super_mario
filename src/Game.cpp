@@ -65,13 +65,17 @@ void Game::updateWhatMarioWithEnemiesDo() {
 }
 
 void Game::renderContent() {
-
     level.printLevelContent(window.getRenderWindow());
     mario.draw(window.getRenderWindow());
     if (paused) {
         pauseMenu.blur(window.getRenderWindow());
         pauseMenu.draw(window.getRenderWindow());
     }
+    displayScore();
+    displayLives();
+}
+
+void Game::displayScore() {
     window.getRenderWindow().draw(scoreDisplayText);
     scoreDisplayText.setString("Score: " + std::to_string(mario.getPoints()));
 }
@@ -173,4 +177,13 @@ Game::Game() {
     scoreDisplayText.setFont(*font);
     scoreDisplayText.setCharacterSize(0.6*SCREEN_WIDTH);
     scoreDisplayText.setScale(0.07, 0.07);
+}
+
+void Game::displayLives() {
+    for (int i = 0; i < mario.getLives(); i++) {
+        sf::Sprite heart;
+        heart.setTexture(*TexturesStorage::getInstance()->getHeartTexture());
+        heart.setPosition(SCREEN_WIDTH - 20*(i+1), 0);
+        window.getRenderWindow().draw(heart);
+    }
 }

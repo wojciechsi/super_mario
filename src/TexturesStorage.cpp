@@ -15,7 +15,7 @@ void TexturesStorage::loadTexturesToStorage() {
         kominLeftTop->loadFromFile("../src/resources/kominLeftTop.png");
         kominRight->loadFromFile("../src/resources/kominRight.png");
         kominRightTop->loadFromFile("../src/resources/kominRightTop.png");
-
+        heartTexture->loadFromFile("../src/resources/heart.png");
 }
 
 const std::shared_ptr<sf::Texture> &TexturesStorage::getSoilTexture() const {
@@ -69,6 +69,10 @@ const std::shared_ptr<sf::Texture> &TexturesStorage::getKominRight() const {
 
 const std::shared_ptr<sf::Texture> &TexturesStorage::getKominRightTop() const {
     return kominRightTop;
+}
+
+const std::shared_ptr<sf::Texture> &TexturesStorage::getHeartTexture() const {
+    return heartTexture;
 }
 
 

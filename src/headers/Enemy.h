@@ -43,6 +43,8 @@ public:
     */
     void setLeftAndRightCollisons (bool left, bool right);
 
+
+
 private:
     /**
      * Odbija od ewentualnych przeszkód

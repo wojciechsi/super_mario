@@ -104,6 +104,13 @@ private:
      * Wyświetla grę na ekranie.
      */
     void displayGame();
+
+    /**
+     * Wyświetla ilość pozostałych żyć.
+     */
+    void displayLives();
+
+    void displayScore();
 };
 
 #endif //SUPER_MARIO_GAME_H

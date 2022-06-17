@@ -15,7 +15,11 @@ Mario::Mario() : MovingItem(0.5f * SCREEN_WIDTH,
 
 void Mario::update()
 {
-    MovingItem::update();
+    if(protectedCtr == 0)
+        MovingItem::update();
+    else {
+        protectedCtr--;
+    }
     goesRight = false;
     handleKeyboardInputs();
     jumpProcess();
@@ -61,10 +65,18 @@ bool Mario::isGoesRight() const {
 void Mario::die() {
     marioSound.setBuffer(deathSound);
     marioSound.play();
-    MovingItem::die();
-    dead = true;
-    deadProcessCtr = DIE_TIME;
-    jump();
+    if(protectedCtr == 0)
+        lives--;
+    if (lives == 0) {
+        MovingItem::die();
+        dead = true;
+        deadProcessCtr = DIE_TIME;
+        jump();
+    }
+    else {
+        protectedCtr = PROTECTED_TIME;
+
+    }
 
 }
 
@@ -89,4 +101,13 @@ int Mario::getPoints()
 
 bool Mario::getDeadStatus() {
     return dead;
+}
+
+bool Mario::isProtected() {
+    if (this->protectedCtr > 0) return true;
+    else return false;
+}
+
+int Mario::getLives() const {
+    return lives;
 }

@@ -19,6 +19,16 @@ private:
     std::shared_ptr<sf::Texture> backgroundTexture = std::make_shared<sf::Texture>();
 
     std::shared_ptr<sf::Texture> kominLeft = std::make_shared<sf::Texture>();
+    std::shared_ptr<sf::Texture> kominLeftTop = std::make_shared<sf::Texture>();
+    std::shared_ptr<sf::Texture> kominRight = std::make_shared<sf::Texture>();
+    std::shared_ptr<sf::Texture> kominRightTop = std::make_shared<sf::Texture>();
+
+    std::shared_ptr<sf::Shader> blurShader = std::make_shared<sf::Shader>();
+
+    std::shared_ptr<sf::Texture> heartTexture = std::make_shared<sf::Texture>();
+public:
+    const std::shared_ptr<sf::Texture> &getHeartTexture() const;
+
 public:
     const std::shared_ptr<sf::Texture> &getKominLeft() const;
 
@@ -28,12 +38,6 @@ public:
 
     const std::shared_ptr<sf::Texture> &getKominRightTop() const;
 
-private:
-    std::shared_ptr<sf::Texture> kominLeftTop = std::make_shared<sf::Texture>();
-    std::shared_ptr<sf::Texture> kominRight = std::make_shared<sf::Texture>();
-    std::shared_ptr<sf::Texture> kominRightTop = std::make_shared<sf::Texture>();
-
-    std::shared_ptr<sf::Shader> blurShader = std::make_shared<sf::Shader>();
 public:
     const std::shared_ptr<sf::Texture> &getBackgroundTexture() const;
 

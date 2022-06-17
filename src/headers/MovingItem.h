@@ -36,6 +36,8 @@ public:
     void move(float x, float y);
 
     virtual void die ();
+
+    virtual bool isProtected();
 private:
     /**
      * Przemieszcza obiekt o stałą grawitacji dla klatki.
@@ -52,7 +54,7 @@ public:
      */
     bool hasDownCollision() const;
 
-    void setCollisions (Collisons newCollisons) {collisions = newCollisons;}
+    void setCollisions (Collisons newCollisons);
 
 
    /**

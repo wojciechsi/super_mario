@@ -52,17 +52,24 @@ private:
     bool isBig = false;
     bool goesRight = false;
     int points = 0;
+    int lives = 3;
+public:
+    int getLives() const;
+
+private:
     bool dead = false;
+    int protectedCtr = 0;
     sf::Sound marioSound;
     sf::SoundBuffer jumpSound;
     sf::SoundBuffer deathSound;
+    int jumpCtr = 0;
 public:
     int getPoints() const {
         return points;
     }
 
 private:
-    int jumpCtr = 0;
+
 
     /**
      * Wyzwala skok
@@ -101,6 +108,13 @@ private:
      * Wyzwala ruch w prawo.
      */
     void moveRight();
+
+    /**
+     * Zwraca informację  o ewentualnym stanie ochronnym po u
+     * @return
+     */
+    bool isProtected () override;
+
 };
 
 
