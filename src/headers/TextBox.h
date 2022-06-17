@@ -24,7 +24,7 @@ public:
     std::string getText();
     void draw(sf::RenderWindow& window);
     void typed(sf::Event ev);
-    static TextBox createTextBox();
+   // static TextBox createTextBox();
 
 
 private:

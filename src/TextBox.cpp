@@ -1,6 +1,10 @@
 #include "headers/TextBox.h"
 TextBox::TextBox() {
-
+    font->loadFromFile("../src/resources/SuperMario256.ttf"); //@todo put this to storage
+    textBox.setCharacterSize(15);
+    textBox.setFillColor(sf::Color::White);
+    textBox.setFont(*font);
+    isSelected = true;
 }
 
 
@@ -107,6 +111,6 @@ void TextBox::typed(sf::Event input) {
     }
 }
 
-TextBox TextBox::createTextBox() {
-    return TextBox(15, sf::Color::White, false);
-}
+/*TextBox TextBox::createTextBox() {
+    return TextBox(15, sf::Color::White, true);
+}*/

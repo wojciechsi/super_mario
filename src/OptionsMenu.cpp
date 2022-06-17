@@ -23,7 +23,7 @@ OptionsMenu::OptionsMenu(float width, float height)
 
     selected = 0;
 
-    inputTextBox.setPosition({0.4*SCREEN_WIDTH, 0.4*SCREEN_HEIGHT});
+
 }
 
 void OptionsMenu::draw(sf::RenderWindow &window) {
@@ -78,11 +78,8 @@ void OptionsMenu::handleKeyboardInput(sf::RenderWindow &window)
         optionsMenu[selected].setFillColor(sf::Color::White);
         if(selected == 0)
         {
-            while(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter))
-            {
-                inputTextBox.draw(window);
+            ifTextbox();
 
-            }
         }
         else if(selected == 1)
         {
@@ -111,4 +108,13 @@ bool OptionsMenu::getReturn() {
 
 void OptionsMenu::setReturn() {
     wantReturn = false;
+}
+
+bool OptionsMenu::ifTextbox() {
+    displayTextBox = true;
+}
+
+void OptionsMenu::setTextBox()
+{
+    displayTextBox = false;
 }

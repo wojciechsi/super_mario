@@ -10,6 +10,7 @@
 #include "OptionsMenu.h"
 #include "TexturesStorage.h"
 #include "PauseMenu.h"
+#include "TextBox.h"
 
 
 /**
@@ -33,6 +34,7 @@ private:
     PauseMenu pauseMenu;
     sf::Music gameMusic;
     sf::Music menuMusic;
+    TextBox inputTextBox;
 
     bool gameON = true;
     bool paused = false;

@@ -9,7 +9,7 @@
 #include "Window.h"
 #include "defs.h"
 #include "TexturesStorage.h"
-#include "TextBox.h"
+
 
 #define Max_options_menu 2
 
@@ -31,8 +31,11 @@ public:
     void returnToMenu();
     void setReturn();
     bool getReturn();
+    bool displayTextBox = false;
+    bool ifTextbox();
+    void setTextBox();
 private:
-    TextBox inputTextBox = TextBox::createTextBox();
+
     sf::RectangleShape background;
     int selected;
     std::shared_ptr<sf::Font> font = std::make_shared<sf::Font>();

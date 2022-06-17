@@ -158,12 +158,16 @@ void Game::displayMenu() {
         {
             optionsMenu.handleKeyboardInput(window.getRenderWindow());
             optionsMenu.draw(window.getRenderWindow());
-            window.display();
             if(optionsMenu.getReturn())
             {
                 optionsMenu.setReturn();
                 menu.setOptions();
             }
+            else if(optionsMenu.ifTextbox())
+            {
+                inputTextBox.draw(window.getRenderWindow());
+            }
+            window.display();
             window.flush();
 
         }
@@ -184,6 +188,7 @@ void Game::loadSoundAndText() {
     scoreDisplayText.setFont(*font);
     scoreDisplayText.setCharacterSize(0.6 * SCREEN_WIDTH);
     scoreDisplayText.setScale(0.07, 0.07);
+    inputTextBox.setPosition({0.4*SCREEN_WIDTH, 0.4*SCREEN_HEIGHT});
 }
 
 void Game::displayLives() {
