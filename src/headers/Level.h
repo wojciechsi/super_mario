@@ -29,7 +29,7 @@ public:
     Level();
 
     void createFirstLevel();
-    void createLevelFromFile(const std::string& path = "../src/resources/test.txt");
+    void createLevelFromFile(std::string& path);
 
     /**
      * Renderuje elementy poziomu na ekranie
@@ -77,13 +77,14 @@ public:
      */
     int getPointsToAdd() {return pointsToAdd;}
 
+    void loadlevel();
+
 private:
     std::vector<Brick> bricks;
     std::list<Gumba> gumbas;
     std::list<Turtle> turtles;
     std::vector<Item> groundTiles;
     std::vector<Item> lowerTiles; //unused in collisions
-
     int pointsToAdd = 0;
     bool marioJumpOnTurtleFlag = false;
 

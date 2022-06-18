@@ -70,8 +70,16 @@ void Level::createFirstLevel()
 
 Level::Level() {
     TexturesStorage::getInstance()->loadTexturesToStorage();
-    createLevelFromFile();
-    LevelReader();
+    if(ReadingSystem::getInstance()->ifFirstRun())
+    {
+        ReadingSystem::getInstance()->levelReader();
+        ReadingSystem::getInstance()->findFilePath();
+       ReadingSystem::getInstance()->changeFirstRun();
+
+    }
+    std::string filePath = ReadingSystem::getInstance()->getFilePath();
+    createLevelFromFile(filePath);
+   // LevelReader();
     }
 
 void Level::printLevelContent(sf::RenderWindow &iwindow) {
@@ -266,7 +274,7 @@ void Level::processBrickJumps() {
     }
 }
 
-void Level::createLevelFromFile(const std::string& path) {
+void Level::createLevelFromFile(std::string& path) {
 std::fstream file;
 std::vector<std::string> lineVector;
 std::string line;

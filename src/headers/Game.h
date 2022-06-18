@@ -13,6 +13,7 @@
 #include "TextBox.h"
 
 
+
 /**
  * Silnik gry
  */
@@ -37,7 +38,7 @@ private:
     TextBox inputTextBox;
     sf::Event textEvent;
     std::string levelName;
-
+    std::regex fileInputRegex;
 
     bool gameON = true;
     bool paused = false;

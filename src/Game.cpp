@@ -179,9 +179,15 @@ void Game::displayMenu() {
                     window.display();
                     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
                     {
-                        levelName = inputTextBox.getText();
+                        if(!inputTextBox.getText().empty() && std::regex_match(inputTextBox.getText(), fileInputRegex))
+                        {
+                            levelName = inputTextBox.getText();
+                            ReadingSystem::getInstance() -> changeUserInputFlag();
+                            ReadingSystem::getInstance() -> captureUserInput(levelName);
+
+                        }
                         optionsMenu.setTextBox();
-                        break;
+                       break;
                     }
                     window.flush();
 
@@ -209,6 +215,9 @@ void Game::loadSoundAndText() {
     scoreDisplayText.setCharacterSize(0.6 * SCREEN_WIDTH);
     scoreDisplayText.setScale(0.07, 0.07);
     inputTextBox.setPosition({0.4*SCREEN_WIDTH, 0.4*SCREEN_HEIGHT});
+    fileInputRegex = ".+\\.txt";
+
+
 }
 
 void Game::displayLives() {
