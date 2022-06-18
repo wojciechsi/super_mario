@@ -28,8 +28,8 @@ class Level {
 public:
     Level();
 
-    const void createFirstLevel();
-    void createLevelFromFile();
+    void createFirstLevel();
+    void createLevelFromFile(const std::string& path = "../src/resources/test.txt");
 
     /**
      * Renderuje elementy poziomu na ekranie
@@ -84,10 +84,7 @@ private:
     std::vector<Item> groundTiles;
     std::vector<Item> lowerTiles; //unused in collisions
 
-
-
     int pointsToAdd = 0;
-
     bool marioJumpOnTurtleFlag = false;
 
     /**
@@ -95,8 +92,6 @@ private:
      * @param rectangle prostokąt, który jest sprawdzany
      * @return czy jest kolizja
      */
-
-
     bool checkStillCollisons (const sf::FloatRect& rectangle, bool canActWithHead = false);
 
     /**
@@ -112,7 +107,7 @@ private:
     /**
      * Tworzy testowy poziom.
      */
-    const void createTestLevel ();
+    void createTestLevel ();
 
     /**
      * Sprawdza kolizję pomiędzy wrogami.
@@ -133,6 +128,11 @@ private:
      * Dodaje punkty o wartości zabicia.
      */
     void addKillingPoints() {pointsToAdd += GUMBA;}
+
+    /**
+     * Czyści poziom ze wszystkich elementów
+     */
+    void clearLevel();
 };
 
 

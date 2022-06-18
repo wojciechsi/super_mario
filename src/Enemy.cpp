@@ -29,10 +29,10 @@ void Enemy::setLeftAndRightCollisons(bool left, bool right) {
     if (right) this->collisions.right = right;
 }
 
-bool Enemy::operator==(const Enemy &rEnemy) {
+bool Enemy::operator!=(const Enemy &rEnemy) {
     if (this->x == rEnemy.x and this->y == rEnemy.y)
-        return true;
-    else return false;
+        return false;
+    else return true;
 }
 
 

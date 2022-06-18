@@ -83,7 +83,7 @@ void Mario::jumpProcess() {
 
 void Mario::deadProcess() {
     if (deadProcessCtr > 0) deadProcessCtr--;
-    if(this->x > SCREEN_HEIGHT) this->die();
+    if (this->y > SCREEN_HEIGHT) this->die();
 }
 
 int Mario::getPoints()

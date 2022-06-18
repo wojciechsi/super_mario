@@ -1,6 +1,6 @@
 #include "headers/Level.h"
 
-const void Level::createTestLevel() {
+void Level::createTestLevel() {
     for (int i = 0; i < 500; i++) {
         groundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 24, TexturesStorage::getInstance()->getSoilTexture()));
         lowerTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8, TexturesStorage::getInstance()->getSoilTexture()));
@@ -41,7 +41,7 @@ const void Level::createTestLevel() {
 
 }
 
-const void Level::createFirstLevel()
+void Level::createFirstLevel()
 {
     for (int i = 0; i < 70; i++) {
         groundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 24, TexturesStorage::getInstance()->getSoilTexture()));
@@ -70,8 +70,6 @@ const void Level::createFirstLevel()
 
 Level::Level() {
     TexturesStorage::getInstance()->loadTexturesToStorage();
-    //createTestLevel();
-    //createFirstLevel();
     createLevelFromFile();
     LevelReader();
     }
@@ -119,11 +117,11 @@ void Level::updateLevelPositionsWhileWalk() {
 }
 
 void Level::updateEnemiesPositions() {
-     for (auto it=gumbas.begin(); it!= gumbas.end(); it++) {
-         if ((*it).isOnScreen()) {
-             generateCollisions(*it);
-             checkCollisionsBetweenEnemies(*it);
-             (*it).update();
+     for (auto & gumba : gumbas) {
+         if (gumba.isOnScreen()) {
+             generateCollisions(gumba);
+             checkCollisionsBetweenEnemies(gumba);
+             gumba.update();
          }
      }
      for (auto &turtle: turtles)
@@ -218,7 +216,7 @@ bool Level::chceckEnemiesCollisions(const sf::FloatRect &rectangle, bool killing
 void Level::generateCollisionsWithEnemies(MovingItem &mario) {
     Bonduaries b = mario.getBonduariesBoxes();
     chceckEnemiesCollisions(b.bottomBonduary, true);
-    if (marioJumpOnTurtleFlag == true) return;
+    if (marioJumpOnTurtleFlag) return;
     if (chceckEnemiesCollisions(b.leftBonduary) or chceckEnemiesCollisions(b.rightBonduary))
         mario.die();
 }
@@ -229,17 +227,17 @@ void Level::checkCollisionsBetweenEnemies(Enemy& enemy) {
     bool enemyIsGumba = true;
     if (typeid(enemy) == typeid(Turtle))
         enemyIsGumba = false; //ASSUMING ELSE: is a Turtle
-        for (auto it = gumbas.begin(); it != gumbas.end(); it++) {
-            if ((*it).isNearbyX(enemy)) {
-                if (!enemyIsGumba or (*it) != enemy) {
-                    if ((*it).getSprite().getGlobalBounds().intersects(b.leftBonduary))
+        for (auto & gumba : gumbas) {
+            if (gumba.isNearbyX(enemy)) {
+                if (!enemyIsGumba or gumba != enemy) {
+                    if (gumba.getSprite().getGlobalBounds().intersects(b.leftBonduary))
                         newLeft = true;
-                    if ((*it).getSprite().getGlobalBounds().intersects(b.rightBonduary))
+                    if (gumba.getSprite().getGlobalBounds().intersects(b.rightBonduary))
                         newRight = true;
                     if(!enemyIsGumba) //A TURTLE
                         if(newLeft or newRight) { //WHO COLLIDED WITH GUMBA
                             if(dynamic_cast<Turtle*>(&enemy)->isRunning()) { //AND IS RUNNING
-                                (*it).die();
+                                gumba.die();
                                 //gumbas.erase(it); //KILLS IT
                                 addKillingPoints();
                                 addKillingPoints();
@@ -268,11 +266,11 @@ void Level::processBrickJumps() {
     }
 }
 
-void Level::createLevelFromFile() {
+void Level::createLevelFromFile(const std::string& path) {
 std::fstream file;
 std::vector<std::string> lineVector;
 std::string line;
-file.open("../src/resources/test.txt");
+file.open(path);
 if(!file.is_open())
 {
     std::cerr<<"Open file failure\n";
@@ -316,6 +314,16 @@ for(int i=0; i<lineVector.size(); i++)
     }
 
     }
+}
+
+void Level::clearLevel() {
+    bricks.clear();
+    gumbas.clear();
+    turtles.clear();
+    groundTiles.clear();
+    lowerTiles.clear();
+    pointsToAdd = 0;
+    marioJumpOnTurtleFlag = false;
 }
 
 

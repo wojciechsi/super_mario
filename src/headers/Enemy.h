@@ -29,7 +29,7 @@ public:
     /**
      * Operator porównania. Bierze pod uwagę tylko pozycję.
      */
-    bool operator==(const Enemy& rEnemy);
+    bool operator!=(const Enemy& rEnemy);
 
     /**
      * Pusta metoda definiująca niniejszą klasę jako abstrakcyjną.
