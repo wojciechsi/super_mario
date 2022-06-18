@@ -33,6 +33,7 @@ public:
         if (jumpCtr == 0)
             jumpCtr += 10;
         hasCoin = false;
+        this->sprite.setTexture(*TexturesStorage::getInstance()->getEmptyBrickTexture());
     }
 
     /**
