@@ -18,6 +18,7 @@ private:
     std::string userInput;
     static std::shared_ptr<ReadingSystem> instance;
     bool firstRun = true;
+    bool firstInput = true;
     std::string filePath;
 public:
     ReadingSystem() {};
@@ -36,6 +37,8 @@ public:
     bool ifFirstRun();
     void changeFirstRun();
     std::string getFilePath();
+    bool ifFirstInput();
+    void changeFirstInput();
 
 
 

@@ -97,7 +97,7 @@ void Game::handleWindowExit() {
 }
 
 void Game::handlePauseEvent() {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) && gameCooldown == 0.f)
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::P) && gameCooldown == 0.f)
     {
         if(!paused)
         {
@@ -166,7 +166,6 @@ void Game::displayMenu() {
             }
             else if(optionsMenu.ifTextbox())
             {
-
                 while(optionsMenu.ifTextbox()) {
                     while(window.getRenderWindow().pollEvent(textEvent)) {
                         if(textEvent.type == sf::Event::TextEntered)

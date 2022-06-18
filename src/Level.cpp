@@ -70,6 +70,12 @@ void Level::createFirstLevel()
 
 Level::Level() {
     TexturesStorage::getInstance()->loadTexturesToStorage();
+    if(ReadingSystem::getInstance()->ifUserInput() & ReadingSystem::getInstance()->ifFirstInput())
+    {
+        ReadingSystem::getInstance()->levelReader();
+        ReadingSystem::getInstance()->findFilePath();
+        ReadingSystem::getInstance()->changeFirstInput();
+    }
     if(ReadingSystem::getInstance()->ifFirstRun())
     {
         ReadingSystem::getInstance()->levelReader();
@@ -284,44 +290,37 @@ if(!file.is_open())
     std::cerr<<"Open file failure\n";
     return;
 }
-while(std::getline(file, line))
-{
-    lineVector.push_back(line);
+else {
+    while (std::getline(file, line)) {
+        lineVector.push_back(line);
+    }
+    file.close();
+
+    for (int i = 0; i < lineVector.size(); i++) {
+        for (int j = 0; j < lineVector[i].size(); j++) {
+            if (lineVector[i][j] == 'p') {
+                groundTiles.emplace_back(
+                        Item(j * TILE, i * TILE, TexturesStorage::getInstance()->getSoilTexture()));
+            } else if (lineVector[i][j] == 'b') {
+                bricks.emplace_back(Brick(j * TILE, i * TILE));
+            } else if (lineVector[i][j] == '1') {
+                groundTiles.emplace_back(j * TILE, i * TILE, TexturesStorage::getInstance()->getKominLeft());
+            } else if (lineVector[i][j] == '2') {
+                groundTiles.emplace_back(j * TILE, i * TILE, TexturesStorage::getInstance()->getKominRight());
+
+            } else if (lineVector[i][j] == '3') {
+                groundTiles.emplace_back(j * TILE, i * TILE, TexturesStorage::getInstance()->getKominLeftTop());
+            } else if (lineVector[i][j] == '4') {
+                groundTiles.emplace_back(j * TILE, i * TILE, TexturesStorage::getInstance()->getKominRightTop());
+            } else if (lineVector[i][j] == 'g') {
+                gumbas.emplace_back(Gumba(j * TILE, i * TILE - TILE / 2));
+            } else if (lineVector[i][j] == 't') {
+                turtles.emplace_back(Turtle(j * TILE, i * TILE - TILE / 2));
+            }
+        }
+
+    }
 }
-file.close();
-
-for(int i=0; i<lineVector.size(); i++)
-{
-    for(int j=0; j<lineVector[i].size(); j++) {
-        if (lineVector[i][j] == 'p') {
-            groundTiles.emplace_back(
-                    Item(j * TILE,  i * TILE, TexturesStorage::getInstance()->getSoilTexture()));
-        } else if (lineVector[i][j] == 'b') {
-            bricks.emplace_back(Brick(j * TILE, i * TILE));
-        } else if (lineVector[i][j] == '1') {
-            groundTiles.emplace_back(j * TILE, i * TILE, TexturesStorage::getInstance()->getKominLeft());
-        } else if (lineVector[i][j] == '2') {
-            groundTiles.emplace_back(j * TILE,  i * TILE, TexturesStorage::getInstance()->getKominRight());
-
-        }
-        else if (lineVector[i][j] == '3') {
-            groundTiles.emplace_back(j * TILE,  i * TILE, TexturesStorage::getInstance()->getKominLeftTop());
-        }
-        else if(lineVector[i][j] == '4')
-        {
-            groundTiles.emplace_back(j * TILE,  i * TILE, TexturesStorage::getInstance()->getKominRightTop());
-        }
-        else if(lineVector[i][j] == 'g')
-        {
-            gumbas.emplace_back(Gumba (j*TILE, i * TILE - TILE/2));
-        }
-        else if(lineVector[i][j] == 't')
-        {
-            turtles.emplace_back(Turtle (j*TILE, i * TILE - TILE/2));
-        }
-    }
-
-    }
 }
 
 void Level::clearLevel() {
