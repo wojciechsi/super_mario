@@ -6,7 +6,7 @@ void Game::run() {
     displayMenu();
     window.flush();
     menuMusic.stop();
-    gameMusic.play();
+   //gameMusic.play();
     displayGame();
     window.close();
 }
@@ -35,6 +35,24 @@ void Game::updateGame() {
         window.flush();
         if(!this->paused) {
             processRelations();
+        }
+        if(mario.checkLostLife()) {
+            if(!mario.getDeadStatus()) {
+                restartGame(mario.getLives());
+            }
+            else
+            {
+                gameMusic.stop();
+                deathMusic.play();
+            }
+        }
+        if(mario.getDeadStatus())
+        {
+            window.getRenderWindow().draw(gameOverText);
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter))
+            {
+                getBackToMenu = true;
+            }
         }
         renderContent();
         window.display();
@@ -210,14 +228,22 @@ void Game::loadSoundAndText() {
         std::cerr<<"Background music load error\n";
     }
     menuMusic.openFromFile("../src/resources/menuMusic.ogg");
+    if(!deathMusic.openFromFile("../src/resources/death.ogg"))
+    {
+        std::cerr<<"Death music load error\n";
+    }
     font->loadFromFile("../src/resources/SuperMario256.ttf");
     scoreDisplayText.setFont(*font);
     scoreDisplayText.setCharacterSize(0.6 * SCREEN_WIDTH);
     scoreDisplayText.setScale(0.07, 0.07);
+    gameOverText.setFont(*font);
+    gameOverText.setCharacterSize(0.6*SCREEN_WIDTH);
+    gameOverText.setScale(0.1, 0.1);
+    gameOverText.setString("GAME OVER");
+    gameOverText.setPosition(0.4*SCREEN_WIDTH, 0.5*SCREEN_HEIGHT);
+    gameOverText.setOutlineColor(sf::Color::White);
     inputTextBox.setPosition({0.4*SCREEN_WIDTH, 0.4*SCREEN_HEIGHT});
     fileInputRegex = ".+\\.txt";
-
-
 }
 
 void Game::displayLives() {

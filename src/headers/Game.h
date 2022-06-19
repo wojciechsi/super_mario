@@ -35,6 +35,7 @@ private:
     PauseMenu pauseMenu;
     sf::Music gameMusic;
     sf::Music menuMusic;
+    sf::Music deathMusic;
     TextBox inputTextBox;
     sf::Event textEvent;
     std::string levelName;
@@ -48,7 +49,7 @@ private:
     float gameCooldownmax = 15.f;
 
     sf::Text scoreDisplayText; //@todo ScoreBar class
-    sf::Text gameOverText[3];
+    sf::Text gameOverText;
     std::shared_ptr<sf::Font> font = std::make_shared<sf::Font>();
 
     /**
