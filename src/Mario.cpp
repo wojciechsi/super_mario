@@ -11,6 +11,7 @@ Mario::Mario() : MovingItem(0.5f * SCREEN_WIDTH,
     {
         std::cerr <<"Death sound loading error\n";
     }
+
 }
 
 void Mario::update() {
@@ -58,8 +59,8 @@ bool Mario::isGoesRight() const {
 }
 
 void Mario::die() {
-    marioSound.setBuffer(deathSound);
-    marioSound.play();
+   // marioSound.setBuffer(deathSound);
+    //marioSound.play();
     lostLife = true;
     lives--;
     if (lives == 0) {
