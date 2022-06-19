@@ -82,7 +82,7 @@ Level::Level() {
     {
         ReadingSystem::getInstance()->levelReader();
         std::jthread t0([&](){ReadingSystem::getInstance()->findFilePath();}) ;
-        std::jthread t1([&]{ReadingSystem::getInstance()->changeFirstInput();});
+        std::jthread t1([&]{ReadingSystem::getInstance()->changeFirstRun();});
 
     }
     std::string filePath = ReadingSystem::getInstance()->getFilePath();

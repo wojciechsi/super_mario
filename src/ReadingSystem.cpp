@@ -1,8 +1,10 @@
-#include "headers/LevelReader.h"
+#include "headers/ReadingSystem.h"
 
 std::shared_ptr<ReadingSystem> ReadingSystem::instance = 0;
+std::mutex ReadingSystem::mutex;
 
 std::shared_ptr<ReadingSystem> ReadingSystem::getInstance() {
+    std::lock_guard<std::mutex> lock(mutex);
     if (instance == 0) {
         instance = std::make_shared<ReadingSystem>();
     }

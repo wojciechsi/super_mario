@@ -1,5 +1,5 @@
-#ifndef SUPER_MARIO_LEVELREADER_H
-#define SUPER_MARIO_LEVELREADER_H
+#ifndef SUPER_MARIO_READINGSYSTEM_H
+#define SUPER_MARIO_READINGSYSTEM_H
 #include <string>
 #include <regex>
 #include <filesystem>
@@ -9,6 +9,7 @@
 #include <memory>
 #include <ctime>
 #include <random>
+#include <thread>
 
 class ReadingSystem
 {
@@ -22,6 +23,7 @@ private:
     bool firstInput = true;
     std::string filePath;
     std::string randomizedLevelName;
+    static std::mutex mutex;
 public:
     ReadingSystem() {};
     ~ReadingSystem() {};
@@ -45,4 +47,4 @@ public:
 
 
 };
-#endif //SUPER_MARIO_LEVELREADER_H
+#endif //SUPER_MARIO_READINGSYSTEM_H
