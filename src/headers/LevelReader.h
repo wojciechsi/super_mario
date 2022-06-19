@@ -8,6 +8,7 @@
 #include <iostream>
 #include <memory>
 #include <ctime>
+#include <random>
 
 class ReadingSystem
 {
@@ -20,12 +21,13 @@ private:
     bool firstRun = true;
     bool firstInput = true;
     std::string filePath;
+    std::string randomizedLevelName;
 public:
     ReadingSystem() {};
     ~ReadingSystem() {};
     static std::shared_ptr<ReadingSystem> getInstance();
     void levelReader();
-    std::string randomizeLevel();
+    void randomizeLevel();
     std::string getUserInput();
     void captureUserInput(std::string ui);
     bool ifUserInput();

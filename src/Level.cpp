@@ -73,14 +73,16 @@ Level::Level() {
     if(ReadingSystem::getInstance()->ifUserInput() & ReadingSystem::getInstance()->ifFirstInput())
     {
         ReadingSystem::getInstance()->levelReader();
-        ReadingSystem::getInstance()->findFilePath();
-        ReadingSystem::getInstance()->changeFirstInput();
+
+       std::jthread t0([&](){ReadingSystem::getInstance()->findFilePath();}) ;
+       std::jthread t1([&]{ReadingSystem::getInstance()->changeFirstInput();});
+
     }
     if(ReadingSystem::getInstance()->ifFirstRun())
     {
         ReadingSystem::getInstance()->levelReader();
-        ReadingSystem::getInstance()->findFilePath();
-       ReadingSystem::getInstance()->changeFirstRun();
+        std::jthread t0([&](){ReadingSystem::getInstance()->findFilePath();}) ;
+        std::jthread t1([&]{ReadingSystem::getInstance()->changeFirstInput();});
 
     }
     std::string filePath = ReadingSystem::getInstance()->getFilePath();

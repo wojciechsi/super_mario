@@ -31,12 +31,14 @@ void ReadingSystem::levelReader()
         };
         std::for_each(std::ranges::begin(filenames), std::ranges::end(filenames), filter);
     }
+
    //Funkcja testowa
    for(int i=0; i<validLevelNames.size(); i++)
    {
        std::cout << validLevelNames[i] << std::endl;
    }
     levelNames = validLevelNames;
+    randomizeLevel();
 }
 
 bool ReadingSystem::ifUserInput()
@@ -58,10 +60,15 @@ void ReadingSystem::captureUserInput(std::string ui) {
     userInput = ui;
 }
 
-std::string ReadingSystem::randomizeLevel() {
+void ReadingSystem::randomizeLevel() {
    /* std::srand(time(0));
     int levelNumber = rand() % levelNames.size();*/
-    return levelNames[0];
+    std::random_device r;
+    std::default_random_engine e(r());
+    std::uniform_int_distribution<int> uniform_dist(0, levelNames.size()-1);
+    int randomNumber = uniform_dist(e);
+    randomizedLevelName = levelNames[randomNumber];
+    return;
 
 }
 
@@ -69,7 +76,7 @@ void ReadingSystem::findFilePath()
 {
     for(auto& p: std::filesystem::recursive_directory_iterator("../src"))
     {
-        if(p.path().filename().string() == randomizeLevel())
+        if(p.path().filename().string() == randomizedLevelName)
         {
             filePath = p.path().string();
             return;
