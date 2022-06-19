@@ -6,7 +6,6 @@ void Game::run() {
     displayMenu();
     window.flush();
     menuMusic.stop();
-   //gameMusic.play();
     displayGame();
     window.close();
 }
@@ -16,52 +15,52 @@ void Game::displayGame() {
         while (window.isOpen() and !getBackToMenu and !menu.doWantToLeave()) {
             handleEvents();
             updateGame();
-            if(getBackToMenu)
-            {
-                gameMusic.stop();
-                window.flush();
-                menu.setEnd();
-                menuMusic.play();
-                displayMenu();
-                getBackToMenu = false;
-                menuMusic.stop();
+            if(getBackToMenu) {
+                processMenu();
             }
         }
     }
 }
 
+void Game::processMenu() {
+    gameMusic.stop();
+    window.flush();
+    menu.setEnd();
+    menuMusic.play();
+    displayMenu();
+    getBackToMenu = false;
+    menuMusic.stop();
+}
+
 void Game::updateGame() {
-    if (gameON) {
-        window.flush();
-        if(!this->paused) {
-            processRelations();
-        }
-        if(mario.checkLostLife()) {
-            if(!mario.getDeadStatus()) {
-                restartGame(mario.getLives());
-            }
-            else
-            {
-                gameMusic.stop();
-                deathMusic.play();
-            }
-        }
-        if(mario.getDeadStatus())
-        {
-            window.getRenderWindow().draw(gameOverText);
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter))
-            {
-                getBackToMenu = true;
-            }
-        }
-        renderContent();
-        window.display();
-        if(mario.checkLostLife()) {
-            restartGame(mario.getLives());
-        }
-        if (level.didFinished(mario))
-            finishGame();
+    window.flush();
+    renderContent();
+    window.display();
+    if (!this->paused) {
+        processRelations();
+        handleLifeLost();
     }
+    if (level.didFinished(mario))
+        finishGame();
+
+}
+
+void Game::handleLifeLost() {
+    if (mario.checkLostLife()) {
+        if (!mario.getTotalDeadStatus())
+            restartGame(mario.getLives());
+        else
+            processGameOver();
+    }
+}
+
+void Game::processGameOver() {
+    gameMusic.stop();
+    deathMusic.play();
+    window.getRenderWindow().draw(gameOverText);
+    window.display();
+    sf::sleep(sf::seconds(2.0f));
+    getBackToMenu = true;
 }
 
 
@@ -72,7 +71,6 @@ void Game::processRelations() {
     updateWhatMarioWithEnemiesDo();
     mario.addPoints(level.getPointsToAdd());
     level.clearPointsToAdd();
-
 }
 
 void Game::updateWhatMarioWithEnemiesDo() {
@@ -256,6 +254,23 @@ void Game::displayLives() {
 }
 
 void Game::finishGame() {
-    //@todo highscore
+    sf::Text scoreText, bestScoreText;
+    scoreText.setFont(*font);
+    scoreText.setCharacterSize(0.6*SCREEN_WIDTH);
+    scoreText.setScale(0.1, 0.1);
+    scoreText.setString("WYNIK: " + std::to_string(mario.getPoints()));
+    scoreText.setPosition(0.4*SCREEN_WIDTH, 0.5*SCREEN_HEIGHT);
+    scoreText.setOutlineColor(sf::Color::White);
+    bestScoreText = scoreText;
+    bestScoreText.setPosition(0.4*SCREEN_WIDTH, 0.7*SCREEN_HEIGHT);
+    HighScoreModule::loadHighScore();
+    bestScoreText.setString("REKORD: " + std::to_string(HighScoreModule::getHighScore()));
+    HighScoreModule::setHighScore(mario.getPoints());
+    HighScoreModule::saveHighScore();
+    window.flush();
+    window.getRenderWindow().draw(scoreText);
+    window.getRenderWindow().draw(bestScoreText);
+    window.display();
+    sf::sleep(sf::seconds(3.0f));
     getBackToMenu = true;
 }

@@ -2,7 +2,6 @@
 #define SUPER_MARIO_GAME_H
 
 #include <chrono>
-#include "defs.h"
 #include "Menu.h"
 #include "Mario.h"
 #include "Level.h"
@@ -11,6 +10,7 @@
 #include "TexturesStorage.h"
 #include "PauseMenu.h"
 #include "TextBox.h"
+#include "HighScoreModule.h"
 
 
 
@@ -127,7 +127,16 @@ private:
      */
     void loadSoundAndText();
 
+    /**
+     * Zakańcza grę
+     */
     void finishGame();
+
+    void processGameOver();
+
+    void processMenu();
+
+    void handleLifeLost();
 };
 
 #endif //SUPER_MARIO_GAME_H

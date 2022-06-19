@@ -92,7 +92,7 @@ int Mario::getPoints()
     return points;
 }
 
-bool Mario::getDeadStatus() {
+bool Mario::getTotalDeadStatus() {
     return dead;
 }
 

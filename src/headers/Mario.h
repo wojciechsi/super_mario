@@ -32,7 +32,7 @@ public:
      */
     void die() override;
 
-    bool getDeadStatus();
+    bool getTotalDeadStatus();
 
     /**
      * Wykrywanie kolizji po prawej stronie
