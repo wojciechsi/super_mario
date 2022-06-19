@@ -51,4 +51,10 @@ void Item::setTexture(const std::shared_ptr<sf::Texture>& t) {
     sprite.setOrigin(size.x / 2, size.y / 2);
 }
 
+bool Item::operator==(const Item &rItem) {
+    if (this->getSprite().getGlobalBounds().intersects(rItem.getSprite().getGlobalBounds()))
+        return true;
+    else return false;
+}
+
 

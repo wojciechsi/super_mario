@@ -5,11 +5,6 @@ void Level::createTestLevel() {
         groundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 24, TexturesStorage::getInstance()->getSoilTexture()));
         lowerTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8, TexturesStorage::getInstance()->getSoilTexture()));
     }
-   /* for(int i =2; i<16; i++)
-    {
-        groundTiles.emplace_back(Item( 16, SCREEN_HEIGHT - i *16, TexturesStorage::getInstance()->getSoilTexture()));
-    }*/
-   // groundTiles.emplace_back(Item( * 16, SCREEN_HEIGHT - 32, TexturesStorage::getInstance()->getSoilTexture()));
 
     groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInstance()->getSoilTexture()));
     groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 56, TexturesStorage::getInstance()->getSoilTexture()));
@@ -109,6 +104,9 @@ void Level::printLevelContent(sf::RenderWindow &iwindow) {
     for(auto &brick : bricks) {
         brick.draw(iwindow);
     }
+    for(auto &patykPart: patyk) {
+        patykPart.draw(iwindow);
+    }
     //@todo others in future
 }
 
@@ -128,6 +126,9 @@ void Level::updateLevelPositionsWhileWalk() {
     }
     for (auto &brick : bricks) {
         brick.moveOneStepLeft();
+    }
+    for (auto &patykPart: patyk) {
+        patykPart.moveOneStepLeft();
     }
     //@todo others in future
 }
@@ -318,7 +319,10 @@ else {
                 gumbas.emplace_back(Gumba(j * TILE, i * TILE - TILE / 2));
             } else if (lineVector[i][j] == 't') {
                 turtles.emplace_back(Turtle(j * TILE, i * TILE - TILE / 2));
-            }
+            } else if (lineVector[i][j] == '5')
+                patyk.emplace_back(j * TILE, i * TILE, TexturesStorage::getInstance()->getPatyk());
+            else if (lineVector[i][j] == '6')
+                patyk.emplace_back(j * TILE, i * TILE, TexturesStorage::getInstance()->getPatykTop());
         }
 
     }
@@ -333,6 +337,14 @@ void Level::clearLevel() {
     lowerTiles.clear();
     pointsToAdd = 0;
     marioJumpOnTurtleFlag = false;
+}
+
+bool Level::didFinished(const MovingItem &mario) {
+    for (auto& elem : patyk)
+        if (elem.isOnScreen())
+            if (elem == mario)
+                return true;
+    return false;
 }
 
 

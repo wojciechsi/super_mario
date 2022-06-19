@@ -116,9 +116,17 @@ private:
      */
     void displayLives();
 
+    /**
+     * Wyświetla wynik.
+     */
     void displayScore();
 
+    /**
+     * Wczytuje dźwięk i tekst.
+     */
     void loadSoundAndText();
+
+    void finishGame();
 };
 
 #endif //SUPER_MARIO_GAME_H

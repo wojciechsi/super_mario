@@ -41,7 +41,8 @@ void Game::updateGame() {
         if(mario.checkLostLife()) {
             restartGame(mario.getLives());
         }
-
+        if (level.didFinished(mario))
+            finishGame();
     }
 }
 
@@ -226,4 +227,9 @@ void Game::displayLives() {
         heart.setPosition(SCREEN_WIDTH - 20*(i+1), 0);
         window.getRenderWindow().draw(heart);
     }
+}
+
+void Game::finishGame() {
+    //@todo highscore
+    getBackToMenu = true;
 }

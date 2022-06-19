@@ -24,6 +24,10 @@ private:
     std::shared_ptr<sf::Texture> kominRight = std::make_shared<sf::Texture>();
     std::shared_ptr<sf::Texture> kominRightTop = std::make_shared<sf::Texture>();
 
+    std::shared_ptr<sf::Texture> patykTop = std::make_shared<sf::Texture>();
+    std::shared_ptr<sf::Texture> patyk = std::make_shared<sf::Texture>();
+
+
     std::shared_ptr<sf::Shader> blurShader = std::make_shared<sf::Shader>();
 
     std::shared_ptr<sf::Texture> heartTexture = std::make_shared<sf::Texture>();
@@ -73,6 +77,10 @@ public:
     const std::shared_ptr<sf::Texture> &getTurtleWalkingTexture() const;
 
     const std::shared_ptr<sf::Texture> &getTurtleRunningTexture() const;
+
+    const std::shared_ptr<sf::Texture> &getPatykTop() const;
+
+    const std::shared_ptr<sf::Texture> &getPatyk() const;
 };
 
 

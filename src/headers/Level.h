@@ -79,12 +79,19 @@ public:
 
     void loadlevel();
 
+    /**
+     * Zwraca informację czy poziom został ukończony
+     * @param mario gracz
+     */
+    bool didFinished (const MovingItem& mario);
+
 private:
     std::vector<Brick> bricks;
     std::list<Gumba> gumbas;
     std::list<Turtle> turtles;
     std::vector<Item> groundTiles;
     std::vector<Item> lowerTiles; //unused in collisions
+    std::vector<Item> patyk;
     int pointsToAdd = 0;
     bool marioJumpOnTurtleFlag = false;
 

@@ -33,6 +33,11 @@ public:
     Item(const Item& other);
 
     /**
+     * Zwraca informacje o zetknięciu się elementów
+     */
+    bool operator==(const Item& rItem);
+
+    /**
      * Po zadaniu tekstury ustawia też wymiary i środek.
      * @param s ścieżka do tekstury
      */
