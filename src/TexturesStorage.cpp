@@ -19,6 +19,7 @@ void TexturesStorage::loadTexturesToStorage() {
         emptyBrickTexture->loadFromFile("../src/resources/emptyBrick.png");
         patyk->loadFromFile("../src/resources/patyk.png");
         patykTop->loadFromFile("../src/resources/patykTop.png");
+        boxTexture->loadFromFile("../src/resources/box.png");
 
 }
 
@@ -89,6 +90,10 @@ const std::shared_ptr<sf::Texture> &TexturesStorage::getPatyk() const {
 
 const std::shared_ptr<sf::Texture> &TexturesStorage::getPatykTop() const {
     return patykTop;
+}
+
+const std::shared_ptr<sf::Texture> &TexturesStorage::getBoxTexture() const {
+    return boxTexture;
 }
 
 

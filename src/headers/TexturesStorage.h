@@ -18,6 +18,7 @@ private:
     std::shared_ptr<sf::Texture> brickTexture = std::make_shared<sf::Texture>();
     std::shared_ptr<sf::Texture> backgroundTexture = std::make_shared<sf::Texture>();
     std::shared_ptr<sf::Texture> emptyBrickTexture = std::make_shared<sf::Texture>();
+    std::shared_ptr<sf::Texture> boxTexture = std::make_shared<sf::Texture>();
 
     std::shared_ptr<sf::Texture> kominLeft = std::make_shared<sf::Texture>();
     std::shared_ptr<sf::Texture> kominLeftTop = std::make_shared<sf::Texture>();
@@ -81,6 +82,8 @@ public:
     const std::shared_ptr<sf::Texture> &getPatykTop() const;
 
     const std::shared_ptr<sf::Texture> &getPatyk() const;
+
+    const std::shared_ptr<sf::Texture> &getBoxTexture() const;
 };
 
 
