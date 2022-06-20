@@ -90,7 +90,7 @@ private:
     std::list<Gumba> gumbas;
     std::list<Turtle> turtles;
     std::vector<Item> groundTiles;
-    std::vector<Item> lowerTiles; //unused in collisions
+    std::vector<Item> backgroundTiles; //unused in collisions
     std::vector<Item> patyk;
     int pointsToAdd = 0;
     bool marioJumpOnTurtleFlag = false;
