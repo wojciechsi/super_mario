@@ -35,7 +35,6 @@ private:
     sf::Text pauseMenu[2];
     int selected;
     float cooldown = 15.f;
-    float cooldownmin = 0.f;
     float cooldownmax = 15.f;
     bool exit = false;
     bool back = false;

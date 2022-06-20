@@ -25,9 +25,7 @@ constexpr int GUMBA = 10;
 constexpr int COIN = 1;
 
 constexpr int DIE_TIME = 2 * MAX_JUMP;
-constexpr int PROTECTED_TIME = 100;
 
-constexpr float FINISH = 1000;
 
 
 #endif

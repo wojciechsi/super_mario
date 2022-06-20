@@ -4,7 +4,7 @@ MovingItem::MovingItem(int iX, int iY) : Item(iX, iY) {}
 
 void MovingItem::move(const float x, const float y)
 {
-    if (x > 0 and collisions.right == false)
+    if (x > 0 and !collisions.right)
         this -> x += x;
     else if (x < 0 and collisions.left == false)
         this -> x += x;

@@ -159,7 +159,7 @@ void Game::unpause() {
 
 void Game::displayMenu() {
     bool proceed = false;
-    while (window.isOpen() and proceed == false) {
+    while (window.isOpen() and !proceed) {
         handleEvents();
         if(!menu.getOptions()) {
             menu.handleKeyboardInput(window.getRenderWindow());

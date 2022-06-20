@@ -1,6 +1,6 @@
 #include "headers/TexturesStorage.h"
 
-std::shared_ptr<TexturesStorage> TexturesStorage::instance = 0;
+std::shared_ptr<TexturesStorage> TexturesStorage::instance = nullptr;
 std::mutex TexturesStorage::mutex;
 
 void TexturesStorage::loadTexturesToStorage() {
@@ -53,7 +53,7 @@ const std::shared_ptr<sf::Texture> &TexturesStorage::getBrickTexture() const {
 
 std::shared_ptr<TexturesStorage> TexturesStorage::getInstance() {
     std::lock_guard<std::mutex> lock(mutex);
-    if (instance == 0) {
+    if (instance == nullptr) {
         instance = std::make_shared<TexturesStorage>();
     }
     return instance;
@@ -98,10 +98,6 @@ const std::shared_ptr<sf::Texture> &TexturesStorage::getPatyk() const {
 
 const std::shared_ptr<sf::Texture> &TexturesStorage::getPatykTop() const {
     return patykTop;
-}
-
-const std::shared_ptr<sf::Texture> &TexturesStorage::getBoxTexture() const {
-    return boxTexture;
 }
 
 const std::shared_ptr<sf::Texture> &TexturesStorage::getKrzakLeft() const {

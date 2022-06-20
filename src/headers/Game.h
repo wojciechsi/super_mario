@@ -41,11 +41,10 @@ private:
     std::string levelName;
     std::regex fileInputRegex;
 
-    bool gameON = true;
+
     bool paused = false;
     bool getBackToMenu = false;
     float gameCooldown = 15.f;
-    float gameCooldownmin = 0.f;
     float gameCooldownmax = 15.f;
 
     sf::Text scoreDisplayText; //@todo ScoreBar class

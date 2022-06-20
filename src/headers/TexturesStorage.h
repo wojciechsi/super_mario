@@ -94,8 +94,6 @@ public:
 
     const std::shared_ptr<sf::Texture> &getPatyk() const;
 
-    const std::shared_ptr<sf::Texture> &getBoxTexture() const;
-
     const std::shared_ptr<sf::Texture> &getKrzakLeft() const;
 
     const std::shared_ptr<sf::Texture> &getKrzak() const;

@@ -16,7 +16,7 @@ public:
     /**
      * Implementacja interfejsu Enemy "pro forma"
      */
-    void foo() {}
+    void foo() override {}
 };
 
 
