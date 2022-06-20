@@ -19,7 +19,16 @@ void TexturesStorage::loadTexturesToStorage() {
         emptyBrickTexture->loadFromFile("../src/resources/emptyBrick.png");
         patyk->loadFromFile("../src/resources/patyk.png");
         patykTop->loadFromFile("../src/resources/patykTop.png");
-
+        boxTexture->loadFromFile("../src/resources/box.png");
+        krzakLeft->loadFromFile("../src/resources/krzakLeft.png");
+        krzak->loadFromFile("../src/resources/krzak.png");
+        krzakRight->loadFromFile("../src/resources/krzakRight.png");
+        chmuraTopLeft->loadFromFile("../src/resources/chmuraTopLeft.png");
+        chmuraTop->loadFromFile("../src/resources/chmuraTop.png");
+        chmuraTopRight->loadFromFile("../src/resources/chmuraTopRight.png");
+        chmuraBottomLeft->loadFromFile("../src/resources/chmuraBottomLeft.png");
+        chmuraBottom->loadFromFile("../src/resources/chmuraBottom.png");
+        chmuraBottomRight->loadFromFile("../src/resources/chmuraBottomRight.png");
 }
 
 const std::shared_ptr<sf::Texture> &TexturesStorage::getSoilTexture() const {
@@ -89,6 +98,46 @@ const std::shared_ptr<sf::Texture> &TexturesStorage::getPatyk() const {
 
 const std::shared_ptr<sf::Texture> &TexturesStorage::getPatykTop() const {
     return patykTop;
+}
+
+const std::shared_ptr<sf::Texture> &TexturesStorage::getBoxTexture() const {
+    return boxTexture;
+}
+
+const std::shared_ptr<sf::Texture> &TexturesStorage::getKrzakLeft() const {
+    return krzakLeft;
+}
+
+const std::shared_ptr<sf::Texture> &TexturesStorage::getKrzak() const {
+    return krzak;
+}
+
+const std::shared_ptr<sf::Texture> &TexturesStorage::getKrzakRight() const {
+    return krzakRight;
+}
+
+const std::shared_ptr<sf::Texture> &TexturesStorage::getChmuraTopLeft() const {
+    return chmuraTopLeft;
+}
+
+const std::shared_ptr<sf::Texture> &TexturesStorage::getChmuraTop() const {
+    return chmuraTop;
+}
+
+const std::shared_ptr<sf::Texture> &TexturesStorage::getChmuraTopRight() const {
+    return chmuraTopRight;
+}
+
+const std::shared_ptr<sf::Texture> &TexturesStorage::getChmuraBottomLeft() const {
+    return chmuraBottomLeft;
+}
+
+const std::shared_ptr<sf::Texture> &TexturesStorage::getChmuraBottom() const {
+    return chmuraBottom;
+}
+
+const std::shared_ptr<sf::Texture> &TexturesStorage::getChmuraBottomRight() const {
+    return chmuraBottomRight;
 }
 
 

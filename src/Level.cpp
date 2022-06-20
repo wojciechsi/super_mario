@@ -3,7 +3,7 @@
 void Level::createTestLevel() {
     for (int i = 0; i < 500; i++) {
         groundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 24, TexturesStorage::getInstance()->getSoilTexture()));
-        lowerTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8, TexturesStorage::getInstance()->getSoilTexture()));
+        backgroundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8, TexturesStorage::getInstance()->getSoilTexture()));
     }
 
     groundTiles.emplace_back(Item(20 * 16, SCREEN_HEIGHT - 40, TexturesStorage::getInstance()->getSoilTexture()));
@@ -40,22 +40,22 @@ void Level::createFirstLevel()
 {
     for (int i = 0; i < 70; i++) {
         groundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 24, TexturesStorage::getInstance()->getSoilTexture()));
-        lowerTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8, TexturesStorage::getInstance()->getSoilTexture()));
+        backgroundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8, TexturesStorage::getInstance()->getSoilTexture()));
     }
 
     for (int i = 72; i < 87; i++) {
         groundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 24, TexturesStorage::getInstance()->getSoilTexture()));
-        lowerTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8, TexturesStorage::getInstance()->getSoilTexture()));
+        backgroundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8, TexturesStorage::getInstance()->getSoilTexture()));
     }
 
     for (int i = 91; i < 155; i++) {
         groundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 24, TexturesStorage::getInstance()->getSoilTexture()));
-        lowerTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8, TexturesStorage::getInstance()->getSoilTexture()));
+        backgroundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8, TexturesStorage::getInstance()->getSoilTexture()));
     }
 
     for (int i = 157; i < 200; i++) {
         groundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 24, TexturesStorage::getInstance()->getSoilTexture()));
-        lowerTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8, TexturesStorage::getInstance()->getSoilTexture()));
+        backgroundTiles.emplace_back(Item(i * 16, SCREEN_HEIGHT - 8, TexturesStorage::getInstance()->getSoilTexture()));
     }
 
     bricks.emplace_back(Brick(21 * 16, SCREEN_HEIGHT - 71));
@@ -89,7 +89,7 @@ void Level::printLevelContent(sf::RenderWindow &iwindow) {
     for (auto &tile : groundTiles) {
         tile.draw(iwindow);
     }
-    for(auto &tile1 : lowerTiles)
+    for(auto &tile1 : backgroundTiles)
     {
         tile1.draw(iwindow);
     }
@@ -114,7 +114,7 @@ void Level::updateLevelPositionsWhileWalk() {
     for (auto &tile : groundTiles) {
         tile.moveOneStepLeft();
     }
-    for(auto &tile1 : lowerTiles)
+    for(auto &tile1 : backgroundTiles)
     {
         tile1.moveOneStepLeft();
     }
@@ -334,7 +334,7 @@ void Level::clearLevel() {
     gumbas.clear();
     turtles.clear();
     groundTiles.clear();
-    lowerTiles.clear();
+    backgroundTiles.clear();
     pointsToAdd = 0;
     marioJumpOnTurtleFlag = false;
 }
