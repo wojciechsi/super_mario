@@ -14,31 +14,15 @@ public:
     /**
      * Przetwarza ewentualne podrzucenie.
      */
-    void jumpProcess() {
-        if (jumpCtr > 0) {
-            this->y--;
-            jumpCtr--;
-            landCtr++;
-        }
-        if (jumpCtr == 0 and landCtr > 0) {
-            this->y++;
-            landCtr--;
-        }
-    }
+    void jumpProcess();
 
     /**
      * Wyzwala podrzucenie po uderzeniu weń głową gracza.
      */
-    void kickUp() {
-        if (jumpCtr == 0)
-            jumpCtr += 10;
-        hasCoin = false;
-        this->sprite.setTexture(*TexturesStorage::getInstance()->getEmptyBrickTexture());
-    }
+    void kickUp();
 
     /**
      * Zwraca informacje o przechowywaniu monety.
-     * @todo animacja
      */
     bool ifHasCoin() {return hasCoin;}
 };
