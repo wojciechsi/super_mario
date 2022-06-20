@@ -34,18 +34,19 @@ Menu::Menu(float width, float height)
     //Creators
     mainMenu[3].setFont(*font);
     mainMenu[3].setFillColor(sf::Color::White);
-    mainMenu[3].setString("Tworcy");
+    mainMenu[3].setString("Wyjdz z gry");
     mainMenu[3].setCharacterSize(0.6*SCREEN_WIDTH);
     mainMenu[3].setScale(0.1, 0.1);
     mainMenu[3].setPosition(0.5*SCREEN_WIDTH, 0.6*SCREEN_HEIGHT);
 
     //exit game
-    mainMenu[4].setFont(*font);
+   /* mainMenu[4].setFont(*font);
     mainMenu[4].setFillColor(sf::Color::White);
     mainMenu[4].setString("Wyjdz z gry");
     mainMenu[4].setCharacterSize(0.6*SCREEN_WIDTH);
     mainMenu[4].setScale(0.1, 0.1);
     mainMenu[4].setPosition(0.5*SCREEN_WIDTH, 0.7*SCREEN_HEIGHT);
+    */
 
     optionsMenu[0].setFont(*font);
     optionsMenu[0].setFillColor(sf::Color::White);
@@ -143,13 +144,14 @@ void Menu::handleKeyboardInput(sf::RenderWindow &window)
 
         else if(selected == 3)
         {
-
-        }
-        else if(selected == 4)
-        {
             wantLeave = true;
             end = true;
         }
+       /* else if(selected == 4)
+        {
+            wantLeave = true;
+            end = true;
+        }*/
         cooldown = cooldownmax;
         Pressed();
 

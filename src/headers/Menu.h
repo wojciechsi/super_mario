@@ -7,7 +7,7 @@
 #include "defs.h"
 #include "TexturesStorage.h"
 
-#define Max_main_menu 5
+#define Max_main_menu 4
 /**
  * Klasa zapewniająca opcje wyboru
  */
