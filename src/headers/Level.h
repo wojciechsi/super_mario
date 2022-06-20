@@ -141,6 +141,11 @@ private:
      * Czyści poziom ze wszystkich elementów
      */
     void clearLevel();
+
+    /**
+     * Wczytuje poziom z pliku.
+     */
+    void readLevel() const;
 };
 
 

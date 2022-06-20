@@ -107,7 +107,6 @@ public:
     Bonduaries getBonduariesBoxes();
 
 private:
-
     sf::Texture texture;
     std::weak_ptr<sf::Texture> pTexture;
 };

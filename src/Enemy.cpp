@@ -9,7 +9,8 @@ void Enemy::update() {
 
 void Enemy::bounceFromOther() {
     if (collisions.left or collisions.right) {
-        velocity *= -1;
+        if (y > SCREEN_HEIGHT - 40) return;
+        else velocity *= -1;
     }
 }
 

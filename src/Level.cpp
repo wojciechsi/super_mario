@@ -65,6 +65,12 @@ void Level::createFirstLevel()
 
 Level::Level() {
     TexturesStorage::getInstance()->loadTexturesToStorage();
+    readLevel();
+    std::string filePath = ReadingSystem::getInstance()->getFilePath();
+    createLevelFromFile(filePath);
+    }
+
+void Level::readLevel() const {
     if(ReadingSystem::getInstance()->ifUserInput() & ReadingSystem::getInstance()->ifFirstInput())
     {
         ReadingSystem::getInstance()->levelReader();
@@ -80,10 +86,7 @@ Level::Level() {
         std::jthread t1([&]{ReadingSystem::getInstance()->changeFirstRun();});
 
     }
-    std::string filePath = ReadingSystem::getInstance()->getFilePath();
-    createLevelFromFile(filePath);
-   // LevelReader();
-    }
+}
 
 void Level::printLevelContent(sf::RenderWindow &iwindow) {
     for (auto &tile : groundTiles) {
@@ -111,43 +114,41 @@ void Level::printLevelContent(sf::RenderWindow &iwindow) {
 }
 
 void Level::updateLevelPositionsWhileWalk() {
-    for (auto &tile : groundTiles) {
+    for (auto &tile : groundTiles)
         tile.moveOneStepLeft();
-    }
     for(auto &tile1 : backgroundTiles)
-    {
         tile1.moveOneStepLeft();
-    }
-    for (auto &turtle : turtles) {
+    for (auto &turtle : turtles)
         turtle.moveOneStepLeft();
-    }
-    for (auto &gumba : gumbas) {
+    for (auto &gumba : gumbas)
         gumba.moveOneStepLeft();
-    }
-    for (auto &brick : bricks) {
+    for (auto &brick : bricks)
         brick.moveOneStepLeft();
-    }
-    for (auto &patykPart: patyk) {
+    for (auto &patykPart: patyk)
         patykPart.moveOneStepLeft();
-    }
     //@todo others in future
 }
 
 void Level::updateEnemiesPositions() {
-     for (auto & gumba : gumbas) {
-         if (gumba.isOnScreen()) {
-             generateCollisions(gumba);
-             checkCollisionsBetweenEnemies(gumba);
-             gumba.update();
-         }
-     }
-     for (auto &turtle: turtles)
-         if (turtle.isOnScreen()) {
-             generateCollisions(turtle);
-             checkCollisionsBetweenEnemies(turtle);
-             turtle.update();
-         }
     processBrickJumps();
+    std::jthread gumbaThread ([&](){
+        std::for_each(std::ranges::begin(gumbas), std::ranges::end(gumbas), [&](Gumba& gumba){
+            if (gumba.isOnScreen()) {
+                generateCollisions(gumba);
+                checkCollisionsBetweenEnemies(gumba);
+                gumba.update();
+            }
+        });
+    });
+    std::jthread turtleThread ([&](){
+        std::for_each(std::ranges::begin(turtles), std::ranges::end(turtles), [&](Turtle& turtle){
+            if (turtle.isOnScreen()) {
+                generateCollisions(turtle);
+                checkCollisionsBetweenEnemies(turtle);
+                turtle.update();
+            }
+        });
+    });
 }
 
 void Level::generateCollisions(MovingItem& movingItem, bool headFlag) {
@@ -224,7 +225,6 @@ bool Level::chceckEnemiesCollisions(const sf::FloatRect &rectangle, bool killing
                 }
                 return true;
             }
-
         }
     }
     return false;
@@ -273,7 +273,6 @@ void Level::checkCollisionsBetweenEnemies(Enemy& enemy) {
                 }
             }
         }
-
     enemy.setLeftAndRightCollisons(newLeft, newRight);
 }
 
