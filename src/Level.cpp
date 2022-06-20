@@ -323,6 +323,27 @@ else {
                 patyk.emplace_back(j * TILE, i * TILE, TexturesStorage::getInstance()->getPatyk());
             else if (lineVector[i][j] == '6')
                 patyk.emplace_back(j * TILE, i * TILE, TexturesStorage::getInstance()->getPatykTop());
+            else if(lineVector[i][j] == '7')
+                backgroundTiles.emplace_back(j*TILE, i*TILE, TexturesStorage::getInstance()->getChmuraBottomLeft());
+            else if(lineVector[i][j] == '8')
+                backgroundTiles.emplace_back(j*TILE, i*TILE, TexturesStorage::getInstance()->getChmuraBottom());
+            else if(lineVector[i][j] == '9')
+                backgroundTiles.emplace_back(j*TILE, i*TILE, TexturesStorage::getInstance()->getChmuraBottomRight());
+            else if(lineVector[i][j] == 'r')
+                backgroundTiles.emplace_back(j*TILE, i*TILE, TexturesStorage::getInstance()->getChmuraTopLeft());
+            else if(lineVector[i][j] == 'i')
+                backgroundTiles.emplace_back(j*TILE, i*TILE, TexturesStorage::getInstance()->getChmuraTop());
+            else if(lineVector[i][j] == 'y')
+                backgroundTiles.emplace_back(j*TILE, i*TILE, TexturesStorage::getInstance()->getChmuraTopRight());
+            else if(lineVector[i][j] == 'j')
+                backgroundTiles.emplace_back(j*TILE, i*TILE, TexturesStorage::getInstance()->getKrzakLeft());
+            else if(lineVector[i][j] == 'k')
+                backgroundTiles.emplace_back(j*TILE, i*TILE, TexturesStorage::getInstance()->getKrzak());
+            else if(lineVector[i][j] == 'l')
+                backgroundTiles.emplace_back(j*TILE, i*TILE, TexturesStorage::getInstance()->getKrzakRight());
+            else if(lineVector[i][j] == 'e')
+                groundTiles.emplace_back(j*TILE, i*TILE, TexturesStorage::getInstance()->getEmptyBrickTexture());
+
         }
 
     }
