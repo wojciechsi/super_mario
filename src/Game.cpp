@@ -226,7 +226,7 @@ void Game::loadSoundAndText() {
         std::cerr<<"Background music load error\n";
     }
     menuMusic.openFromFile("../src/resources/menuMusic.ogg");
-    if(!deathMusic.openFromFile("../src/resources/death.ogg"))
+    if(!deathMusic.openFromFile("../src/resources/death.wav"))
     {
         std::cerr<<"Death music load error\n";
     }

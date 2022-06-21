@@ -131,10 +131,19 @@ private:
      */
     void finishGame();
 
+    /**
+     * Przetwarza koniec gry.
+     */
     void processGameOver();
 
+    /**
+     * Przetwarza menu
+     */
     void processMenu();
 
+    /**
+     * Przetwarza utratę życia.
+     */
     void handleLifeLost();
 };
 
