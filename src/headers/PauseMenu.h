@@ -20,14 +20,45 @@ public:
     PauseMenu() : PauseMenu(SCREEN_WIDTH, SCREEN_HEIGHT) {}
     PauseMenu(float width, float height);
     ~PauseMenu();
+    /**
+     * Nakładanie efektu rozmycia w menu pauzy.
+     * @param window
+     */
     void blur(sf::RenderWindow& window);
+    /**
+     * Wyświetlanie menu pauzy podczas gry.
+     * @param window
+     */
     void draw(sf::RenderWindow& window);
+    /**
+     * Wybór opcji powyżej.
+     */
     void up();
+    /**
+     * Wybór opcji poniżej.
+     */
     void down();
+    /**
+     * Przetwarzanie danych wejściowych użytkownika.
+     */
     void handleInput();
+    /**
+     * Informacja, czy użytkownik chce wrócić do menu.
+     * @return Informacja o powrocie do menu.
+     */
     bool getexitStatus();
+    /**
+     * Zmienia flagę powrotu do menu głównego.
+     */
     void changeExitStatus();
+    /**
+     * Zwraca flagę, czy użytkownik chce powrócić do gry.
+     * @return Flaga powrotu do gry.
+     */
     bool getBackStatus();
+    /**
+     * Zmiana flagi powrotu do gry.
+     */
     void changeBackStatus();
 
 private:

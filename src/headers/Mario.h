@@ -46,10 +46,22 @@ public:
      */
     void addPoints (int points);
 
+    /**
+     * Metoda zwraca aktualną liczbę punktów.
+     * @return Aktualna liczba punktów.
+     */
     int getPoints();
 
+    /**
+     * Skok niezależny od kolizji.
+     */
     void jumpWithinConditions () {this->move(0.0f, -50.0f);}
 
+
+/**
+ * Metoda zwraca aktualną liczbę żyć.
+ * @return Aktualna liczba życ.
+ */
     int getLives() const;
 
     bool checkLostLife ();

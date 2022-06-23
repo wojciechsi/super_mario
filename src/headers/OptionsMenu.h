@@ -18,21 +18,50 @@ class OptionsMenu
 public:
     OptionsMenu() : OptionsMenu(SCREEN_WIDTH, SCREEN_HEIGHT) {}
     OptionsMenu(float width, float height);
+    /**
+     * Metoda wyświetla menu opcji na ekranie
+     */
     void draw(sf::RenderWindow& window);
+    /**
+     * Wybór opcji powyżej.
+     */
     void up();
+    /**
+     * Wybór opcji poniżej.
+     */
     void down();
-    bool getEnd();
-    void select();
+
+    /**
+     * Przetwarzania danych wejściowych użytkownika
+     */
     void handleKeyboardInput(sf::RenderWindow &window);
+    /**
+     * Metoda zwraca wybraną opcję w menu opcji.
+     */
     int Pressed()
     {
         return selected;
     }
+    /**
+     * Metoda zwraca informacje, czy użytkownik chce wrócić do menu.
+     */
     void returnToMenu();
+    /**
+     * Metoda ustawia flagę powrotu do menu głównego.
+     */
     void setReturn();
+    /**
+     * Metoda zwraca informację, czy użytkownik chce wrócić do menu głównego.
+     */
     bool getReturn();
     bool displayTextBox = false;
+    /**
+     * Metoda zwraca informację, czy użytkownik chce wyświetlić pole tekstowe.
+     */
     bool ifTextbox();
+    /**
+     * Metoda ustawia flagę pola tekstowego..
+     */
     void setTextBox();
 private:
 
