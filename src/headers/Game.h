@@ -131,10 +131,19 @@ private:
      */
     void finishGame();
 
+    /**
+     * Metoda odpowiada za proces końca gry.
+     */
     void processGameOver();
 
+/**
+ * Metoda odpowiada za całość związaną z menu.
+ */
     void processMenu();
 
+/*
+ * Metoda przetwarza ewentualną stratę życia.
+ */
     void handleLifeLost();
 };
 
